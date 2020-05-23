@@ -6,3 +6,18 @@ For a fast installation of dotfiles GNU `stow` is suggested. Once installed simp
 
 	$ stow home config local
 
+# My configuration
+
++ **Shell**: `zsh` (I also have a `.bashrc`, just in case something goes wrong.)
++ **Editor**: Neovim (there is also `.vimrc`, just to be safe)
++ **Music Player**: `mpd` and `ncmpcpp`
++ **Notification Manager**: `dunst`
++ **File manager**: `ranger`
+
+# Scripts
+All the scripts are in `local/.local/bin`.
+
++ `chaudio`: using `dmenu` to select the audio interface to use
++ `chnet`: using `dmenu` to select the internet interface to use
++ `shortcuts`: with `folderc` and `configrc` (in `.config`) make shortcuts for shell and `ranger`
++ `wallp`: choose randomly a wallpaper
