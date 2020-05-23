@@ -1,0 +1,61 @@
+#!/bin/bash
+
+#  Backup media folder with rsync!
+
+#  TODO:
+#  -----
+#  1. Rendere più estensibile con $NAS_DIR, $NAS_IP, ecc...
+#  2. Controllare che il NAS non sia già montanto
+#  3. Controllare che il NAS presente nella rete
+NAS_DIR=/nas
+NAS_IP=nas-backup
+
+# Rsync flags
+FLAG="-rlptD --ignore-errors --delete"
+
+# Run as root, of course.
+ROOT_UID=0
+E_NOTROOT=87
+
+if [ "$UID" -ne "$ROOT_UID" ]
+then
+  echo "ERROR: Must be root to run this script."
+  exit $E_NOTROOT
+fi
+
+# Ping 4 times to see if connected to the router
+echo -ne "\e[1;29mChecking the nas on the network\e[0m......."
+ping -c 4 $NAS_IP &> /dev/null || { echo -e "\e[1;31mERROR\e[0m: The nas isn't on the network"; exit 1; }
+echo -e "[\e[1;32mOK\e[0m]"
+
+# Mounting the NAS
+mount -t cifs //$NAS_IP/admin $NAS_DIR -o user=admin,workgroup=workgroup,ip=192.168.178.34,iocharset=utf8,vers=1.0 || { echo -e "\e[1;31mERROR\e[0m: cannot mount the nas"; exit 1; }
+echo -ne "Mounting nas to \e[1;29m$NAS_DIR\e[0m.................."
+echo -e "[\e[1;32mOK\e[0m]"
+
+# Sync the document folder
+echo -ne "Sync \e[1;29mDocumenti\e[0m........................"
+rsync $FLAG --exclude giochi --exclude programmi /home/fonsy/documenti/ /nas/private/backup/documenti
+echo -e "[\e[1;32mOK\e[0m]"
+
+# Sync the image folder
+echo -ne "Sync \e[1;29mImages\e[0m..........................."
+rsync $FLAG /home/fonsy/immagini/ /nas/private/backup/immagini
+echo -e "[\e[1;32mOK\e[0m]"
+
+# Sync the music folder
+echo -ne "Sync \e[1;29mMusic\e[0m............................"
+rsync $FLAG /home/fonsy/musica/ /nas/private/backup/musica
+echo -e "[\e[1;32mOK\e[0m]"
+
+# Sync the video folder
+echo -ne "Sync \e[1;29mVideo\e[0m............................"
+rsync $FLAG --exclude anime --exclude film --exclude serie-tv --exclude tmp /home/fonsy/video/ /nas/private/backup/video
+echo -e "[\e[1;32mOK\e[0m]"
+
+echo -ne "Unmounting the nas...................."
+umount /nas
+echo -e "[\e[1;32mOK\e[0m]"
+
+exit 0
+

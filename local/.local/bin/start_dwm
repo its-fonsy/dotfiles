@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Display settings
+	xrandr --output DVI-I-1 --mode 1920x1080 --rate 144.00
+	xrandr --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1
+	displaycal-apply-profiles
+	# Warm color when night comes
+	redshift -l 45:10 &> /dev/null &
+
+# Mouse settings
+	MOUSE=$(xinput list |
+				grep -i Logitech |
+				awk -F= '{ print $2}' |
+				awk '{print $1}' |
+				awk 'BEGIN{ RS = "" ; FS = "\n" }{print $1}')
+
+	xinput set-prop $MOUSE "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 1.9
+	xinput set-prop $MOUSE "libinput Accel Speed" 0
+	xinput set-prop $MOUSE "libinput Middle Emulation Enabled" 0
+	# Scroll wheel gotta go fest
+	imwheel --kill -b 45
+
+# Set wallpaper
+	$HOME/.local/bin/wallp -f
+	compton &
+
+# Source for the terminal
+	xrdb -merge $HOME/.xres &
+
+# Bar
+	$HOME/.local/bin/dwmbar &
+
+# Notification server
+	dunst &
+	mpd
+
+# font
+	xset fp+ $HOME/.fonts &
+	xset fp rehash &
+
+# set keyboard layout to us international
+	setxkbmap it
+	#setxkbmap us -v intl
+
+# Start your dwm!
+	exec dwm

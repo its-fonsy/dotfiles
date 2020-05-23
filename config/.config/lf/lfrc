@@ -1,0 +1,4 @@
+map	gp	cd ~/documenti/Progetti/code
+map	gt	cd ~/documenti/Progetti/tex
+map	gu	cd ~/gdrive/Uni
+map - $~/.config/lf/draw_img.sh $f

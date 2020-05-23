@@ -1,0 +1,9 @@
+cfD	~/.local/bin/start_dwm
+cfF	~/.config/folderc
+cfa ~/.config/aliasrc
+cfb	~/.bashrc
+cfc	~/.config/configrc
+cfd	~/.Xdefaults
+cfr	~/.config/ranger/rc.conf
+cfv	~/.config/nvim/init.vim
+cfz ~/.config/zsh/.zshrc
