@@ -1,8 +1,11 @@
 # nvim plugin
 config/.config/nvim/plugged
 
-$ mpd generated files
+# mpd generated files
 config/.config/mpd/database
 config/.config/mpd/pid
 config/.config/mpd/state
+config/.config/mpd/sticker.sql
+
+# ncmpcpp logs
 config/.config/ncmpcpp/error.log
