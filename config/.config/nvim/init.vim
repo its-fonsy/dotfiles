@@ -68,8 +68,9 @@ call plug#end()
 	highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 
 " Tabs settings
+	set autoindent
+	set noexpandtab
 	set tabstop=4
-	set softtabstop=0 noexpandtab
 	set shiftwidth=4
 
 " indentLine
@@ -94,6 +95,9 @@ call plug#end()
 " Quick saving and quitting:
 	map <leader>w :w<CR>
 	map <leader>q :q<CR>
+
+" Copy visual selection to clipboard
+	map <leader>y :"+y
 
 " Replace all is aliased to S.
 	nnoremap <leader>s :%s//g<Left><Left>
