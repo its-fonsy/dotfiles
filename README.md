@@ -9,7 +9,7 @@ For a fast installation of dotfiles use GNU `stow`. Once installed simply run
 # My configuration
 
 + **Shell**: `zsh` (I also have a `.bashrc`, just in case something goes wrong.)
-+ **Editor**: Neovim (there is also `.vimrc`, just to be safe)
++ **Editor**: Neovim (there is also `.vimrc` in `config/vim`, just to be safe)
 + **Music Player**: `mpd` and `ncmpcpp`
 + **Notification Manager**: `dunst`
 + **File manager**: `ranger`
