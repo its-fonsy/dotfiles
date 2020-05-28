@@ -10,9 +10,11 @@ alias \
 		sdn="shutdown -h 0" \
 		reboot="shutdown -r 0" \
 		ls="ls -lh --color=auto --group-directories-first"
+		wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+		#gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
 
 alias \
-		imwheel="imwheel --kill -b 45" \
+		imwheel='imwheel -c $XDG_CONFIG_HOME/imwheelrc --kill -b 45' \
 		backup="sudo ~/.local/bin/backup" \
 		grub-up="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
 		nas-mount="sudo mount -t cifs //nas-backup/admin /nas -o user=admin,vers=1.0" \
