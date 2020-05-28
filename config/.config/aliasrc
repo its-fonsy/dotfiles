@@ -9,9 +9,11 @@ alias \
 		grep="grep --color" \
 		sdn="shutdown -h 0" \
 		reboot="shutdown -r 0" \
-		ls="ls -lh --color=auto --group-directories-first"
-		wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-		gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
+		ls="ls -lh --color=auto --group-directories-first" \
+		wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"' \
+		gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg' \
+		mbsync='mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc'
+
 
 alias \
 		imwheel='imwheel -c $XDG_CONFIG_HOME/imwheelrc --kill -b 45' \

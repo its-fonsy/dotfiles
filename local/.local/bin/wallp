@@ -18,4 +18,4 @@ else
 	WALL=$( ls -la $WALL_FOLDER | grep -E $EXT | awk -v n="$(( 1 + $RANDOM % $N ))" '{if(NR==n) print $9}' )
 fi
 
-feh --bg-scale $WALL_FOLDER/$WALL
+feh --bg-scale $WALL_FOLDER/$WALL --no-fehbg
