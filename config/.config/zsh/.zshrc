@@ -16,6 +16,9 @@ PS1="┌%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[mag
 └─$%b "
 export PS1
 
+# Remove .xsession-errors
+[ -e $HOME/.xsession-errors ] && rm $HOME/.xsession-errors
+
 # Sources shortcuts and aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
@@ -71,24 +74,5 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Aliases
-alias ls='ls -lh --color=auto --group-directories-first'
-alias grep='grep --color'
-alias cls='clear'
-alias n="neomutt"
-alias shutdown="shutdown -h 0"
-alias reboot="shutdown -r 0"
-alias grub-up='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias backup='sudo ~/.local/bin/backup'
-alias nas-mount='sudo mount -t cifs //nas-backup/admin /nas -o user=admin,vers=1.0'
-alias r='ranger'
-alias blitz="wine '/home/fonsy/Games/Blitz/drive_c/users/fonsy/Local Settings/Application Data/Blitz/Blitz.exe' && exit"
-alias imwheel="imwheel --kill -b 45"
-alias lol="sudo sh -c 'sysctl -w abi.vsyscall32=0'"
-#alias drivep='CUR_DIR=$(pwd); cd ~/gdrive && drive push && cd $CUR_DIR'
-
-#source $HOME/.config/shortcuts
-
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
