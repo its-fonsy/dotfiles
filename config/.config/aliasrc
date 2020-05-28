@@ -16,7 +16,7 @@ alias \
 
 
 alias \
-		imwheel='imwheel -c $XDG_CONFIG_HOME/imwheelrc --kill -b 45' \
+		imwheel='imwheel --kill -b 45' \
 		backup="sudo ~/.local/bin/backup" \
 		grub-up="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
 		nas-mount="sudo mount -t cifs //nas-backup/admin /nas -o user=admin,vers=1.0" \
