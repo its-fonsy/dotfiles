@@ -107,7 +107,7 @@ call plug#end()
 	cnoremap w!! w suda://%
 
 " Automatically deletes all trailing whitespace on save.
-	autocmd BufWritePre * %s/\s\+$//e
+	" autocmd BufWritePre * %s/\s\+$//e
 
 " Quickly compile LaTeX
 	autocmd FileType tex nnoremap <leader>c :!pdflatex %<CR>

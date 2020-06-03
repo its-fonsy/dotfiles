@@ -20,7 +20,7 @@ alias \
 		backup="sudo ~/.local/bin/backup" \
 		grub-up="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
 		nas-mount="sudo mount -t cifs //nas-backup/admin /nas -o user=admin,vers=1.0" \
-		lol="sudo sh -c "sysctl -w abi.vsyscall32=0""
+		lol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 
 #alias drivep="CUR_DIR=$(pwd); cd ~/gdrive && drive push && cd $CUR_DIR"
 
