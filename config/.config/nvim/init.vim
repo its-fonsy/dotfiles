@@ -10,24 +10,17 @@ endif
 
 " Plugin installed
 call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'bling/vim-airline'
-Plug 'unblevable/quick-scope'
-
-Plug 'sainnhe/gruvbox-material'
-Plug 'dylanaraps/wal.vim'
-
-Plug 'tpope/vim-commentary'
-
-Plug 'Yggdroot/indentLine'
-Plug 'valloric/MatchTagAlways'
-Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'svermeulen/vim-yoink'
-Plug 'lervag/vimtex'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'lambdalisue/suda.vim'
+	Plug 'scrooloose/nerdtree'
+	Plug 'bling/vim-airline'
+	Plug 'unblevable/quick-scope'
+	Plug 'sainnhe/gruvbox-material'
+	Plug 'tpope/vim-commentary'
+	Plug 'tpope/vim-surround'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+	Plug 'lambdalisue/suda.vim'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
 call plug#end()
 
 " Some basics:
@@ -43,7 +36,15 @@ call plug#end()
 	let g:gruvbox_material_background = 'hard'
 	let g:airline_theme = 'gruvbox_material'
 	colorscheme gruvbox-material
-	"colorscheme wal
+
+" Ultisnips
+	let g:UltiSnipsExpandTrigger="<tab>"
+	let g:UltiSnipsJumpForwardTrigger="<c-b>"
+	let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+	" If you want :UltiSnipsEdit to split your window.
+	let g:UltiSnipsEditSplit="vertical"
+	let g:UltiSnipsSnippetDirectories=["UltiSnips", "fnippets"]
 
 " Finding Files
 	set path+=**
@@ -51,13 +52,6 @@ call plug#end()
 
 " Tag jumping
 	command! MakeTags !ctags -R .
-
-" Yoink Plugin Setup
-	nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-	nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-
-	nmap p <plug>(YoinkPaste_p)
-	nmap P <plug>(YoinkPaste_P)
 
 " Goyo plugin makes text more readable when writing prose:
 	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
@@ -72,12 +66,6 @@ call plug#end()
 	set noexpandtab
 	set tabstop=4
 	set shiftwidth=4
-
-" indentLine
-	let g:indentLine_char = '¦'
-	let g:indentLine_concealcursor = ''
-	let g:indentLine_conceallevel = 0
-	let g:indentLine_setConceal = 0
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow splitright
@@ -105,12 +93,3 @@ call plug#end()
 " Save file as sudo on files that require root permission
 	"cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 	cnoremap w!! w suda://%
-
-" Automatically deletes all trailing whitespace on save.
-	" autocmd BufWritePre * %s/\s\+$//e
-
-" Quickly compile LaTeX
-	autocmd FileType tex nnoremap <leader>c :!pdflatex %<CR>
-
-" Snippet
-	autocmd FileType html runtime snippet/html/html.vim

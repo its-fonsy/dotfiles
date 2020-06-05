@@ -71,10 +71,10 @@ to .bashrc or the script your shell you are using'
 		;;
 		-e|-a|--edit|--add)
 			if [ -z "$EDITOR" ]; then
-				$EDITOR $MD_FOLDER/$2
-			else
 				echo -e "$ERROR: EDITOR variable empty"
 				exit 1
+			else
+				$EDITOR $MD_FOLDER/$2
 			fi
 			exit 0
 		;;
