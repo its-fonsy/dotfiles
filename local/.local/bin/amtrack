@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+try:
+    import requests
+    from bs4 import BeautifulSoup
+except:
+    print('Import error, be sure to install "requests" and "bs4"')
+
+import argparse
+
+# Parse the argument
+parser = argparse.ArgumentParser(description='Simple Amazon price tracker')
+parser.add_argument('-l', '--list', action='store_true',
+                        help='List all the product that are being tracked')
+args = parser.parse_args()
+
+# Dictionarie with the product to track
+products = {
+        'ITEK Taurus GF650' : 'https://amzn.to/2Y55ldn',
+        'Sharkoon Coolzero 650w 80Gold' : 'https://amzn.to/3gZ9mc6'
+        }
+
+# Dealing with the -l param
+if args.list:
+    print("Products tracked:")
+    i = 1
+    for prod in products:
+        print(f"  {i}. {prod}")
+        i += 1
+    quit()
+
+
+def check_price(link):
+    headers = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+    }
+    response = requests.get(link, headers=headers)
+    soup = BeautifulSoup(response.content, 'lxml')
+    soup.encode('utf-8')
+
+    # Sometimes the page not load correctly
+    try:
+        title = soup.find(id= "productTitle").get_text()
+    except AttributeError:
+        check_price(link)
+
+    try:
+        price = soup.find(id = "priceblock_ourprice").get_text().strip()
+        return price
+    except AttributeError:
+        return 'Unavailable'
+
+
+def main():
+    for prod in products:
+        link = products[prod]
+        price = check_price(link)
+        print(f"  {prod}: {price}")
+
+
+if __name__ == '__main__':
+    main()
