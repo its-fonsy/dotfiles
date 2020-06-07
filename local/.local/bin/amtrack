@@ -17,7 +17,9 @@ args = parser.parse_args()
 # Dictionarie with the product to track
 products = {
         'ITEK Taurus GF650' : 'https://amzn.to/2Y55ldn',
-        'Sharkoon Coolzero 650w 80Gold' : 'https://amzn.to/3gZ9mc6'
+        'Sharkoon Coolzero 650w 80Gold' : 'https://amzn.to/3gZ9mc6',
+        'Phanteks P400A' : 'https://amzn.to/2MyE25W',
+        'SeaSonic CORE GM-650' : 'https://amzn.to/2UiWIuM'
         }
 
 # Dealing with the -l param
