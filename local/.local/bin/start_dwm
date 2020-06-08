@@ -32,7 +32,7 @@
 
 # Notification server
 	dunst &
-	mpd
+	pidof mpd || mpd
 
 # font
 	xset fp+ $HOME/.fonts &
