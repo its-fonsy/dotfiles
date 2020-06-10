@@ -42,7 +42,7 @@ def check_price(link):
 
     # Sometimes the page not load correctly
     try:
-        title = soup.find(id= "productTitle").get_text()
+        soup.find(id= "productTitle").get_text()
     except AttributeError:
         check_price(link)
 
