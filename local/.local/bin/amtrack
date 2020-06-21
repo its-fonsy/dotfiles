@@ -19,7 +19,9 @@ products = {
         'ITEK Taurus GF650' : 'https://amzn.to/2Y55ldn',
         'Sharkoon Coolzero 650w 80Gold' : 'https://amzn.to/3gZ9mc6',
         'Phanteks P400A' : 'https://amzn.to/2MyE25W',
-        'SeaSonic CORE GM-650' : 'https://amzn.to/2UiWIuM'
+        'SeaSonic CORE GM-650' : 'https://amzn.to/2UiWIuM',
+        'AfterShokz Trekz Air' : 'https://amzn.to/3dXAJRY',
+        'AfterShokz Trekz Titanium' : 'https://amzn.to/2YutA4X'
         }
 
 # Dealing with the -l param

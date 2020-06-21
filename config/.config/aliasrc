@@ -3,7 +3,8 @@
 # Gotta type lezz
 alias \
 		cls="clear" \
-		n="neomutt" \
+		nm="neomutt" \
+		nb="newsboat" \
 		r="ranger" \
 		pm="pulsemixer"\
 		grep="grep --color" \

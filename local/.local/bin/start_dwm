@@ -5,7 +5,7 @@
 	xrandr --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1
 	displaycal-apply-profiles
 	# Warm color when night comes
-	redshift -l 45:10 &> /dev/null &
+		redshift -l 45:10 &> /dev/null &
 
 # Mouse settings
 	MOUSE=$(xinput list |
