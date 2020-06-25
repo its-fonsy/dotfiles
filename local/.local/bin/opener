@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+
+FILE="$1"
+EXT="${FILE#*.}"
+
+MIME="$(file --mime-type "$FILE")"
+MIME="${MIME##* }"
+
+handle_img() {
+	sxiv "$FILE" &> /dev/null
+}
+
+handle_vid() {
+	mpv "$FILE" &> /dev/null
+}
+
+handle_pdf() {
+	zathura "$FILE" &> /dev/null
+}
+
+handle_txt() {
+	$TERMINAL -e $EDITOR $FILE
+}
+
+mime_based() {
+	case "$MIME" in
+		image/*)
+			handle_img
+			;;
+		video/*)
+			handle_vid
+			;;
+		text/*)
+			handle_txt
+			;;
+		*)
+			echo "Unknown Filetype"
+			exit 1
+			;;
+	esac
+}
+
+case "$EXT" in
+	png|jpg|jpeg)
+		handle_img
+		;;
+	mp4|mkv|webm|avi)
+		handle_vid
+		;;
+	pdf)
+		handle_pdf
+		;;
+	*)
+		mime_based
+		;;
+esac
+
+exit 0
