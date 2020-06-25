@@ -1,8 +1,8 @@
-https://www.ansa.it/sito/ansait_rss.xml			"~ANSA" politica
-https://www.wired.it/feed/						cultura
+https://www.ilsole24ore.com/rss/italia.xml			politica
+https://www.wired.it/feed/							cultura
 
 https://www.eurogamer.net/?format=rss 			gaming
 
 https://www.tomshw.it/feed/?post_type=hardware 	computer hardware
-https://www.gamersnexus.net/news/feed			computer hardware
+https://www.gamersnexus.net/news/feed			computer hardware "~Gamer Nexus"
 https://www.archlinux.org/feeds/news/			computer linux
