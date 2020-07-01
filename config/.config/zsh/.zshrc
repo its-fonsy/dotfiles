@@ -24,8 +24,8 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 # Sources shortcuts and aliases
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/shortcutrc"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/aliasrc"
 
 # History in cache directory:
 HISTSIZE=10000
@@ -78,25 +78,7 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# ranger-cd
-function ranger {
-    local IFS=$'\t\n'
-    local tempfile="$(mktemp -t tmp.XXXXXX)"
-    local ranger_cmd=(
-        command
-        ranger
-        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
-    )
-    
-    ${ranger_cmd[@]} "$@"
-    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-        cd -- "$(cat "$tempfile")" || return
-    fi
-    command rm -f -- "$tempfile" 2>/dev/null
-}
-
 # NNN configuration
-export NNN_BMS='d:~/documenti;D:~/Downloads/'
 export NNN_OPENER=opener
 function n ()
 {
@@ -110,7 +92,7 @@ function n ()
     # To cd on quit only on ^G, remove the "export" as in:
     #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
     # NOTE: NNN_TMPFILE is fixed, should not be modified
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
     # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
     # stty start undef
