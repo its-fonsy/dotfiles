@@ -19,10 +19,10 @@ DEVICE_NAME=$(pacmd list-sinks |
 				sed 's/\tname: <//;s/>//' |
 				awk 'END{ print }' )
 
-pacmd set-default-sink $DEVICE_NAME &> /dev/null
+pacmd set-default-sink $DEVICE_NAME
 
-SINKS=$( pacmd list-sink-inputs | grep 'index' | grep -o '[0-9]' )
+SINKS=$( pacmd list-sink-inputs | grep 'index' | grep -o '[0-9].' )
 for i in $SINKS
 do
-	pacmd move-sink-input $i $DEVICE_NAME &> /dev/null
+	pacmd move-sink-input $i $DEVICE_NAME
 done

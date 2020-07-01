@@ -6,6 +6,14 @@ EXT="${FILE#*.}"
 MIME="$(file --mime-type "$FILE")"
 MIME="${MIME##* }"
 
+if [ "$MIME" = "inode/symlink" ]; then
+	FILE="$(readlink $1)"
+	EXT="${FILE#*.}"
+
+	MIME="$(file --mime-type "$FILE")"
+	MIME="${MIME##* }"
+fi
+
 handle_img() {
 	sxiv "$FILE" &> /dev/null
 }
@@ -19,7 +27,7 @@ handle_pdf() {
 }
 
 handle_txt() {
-	$TERMINAL -e $EDITOR $FILE
+	$TERMINAL -e $EDITOR $FILE &> /dev/null
 }
 
 mime_based() {
