@@ -12,7 +12,7 @@ For a fast installation of dotfiles use GNU `stow`. Once installed simply run
 + **Editor**: Neovim (there is also `.vimrc` in `config/vim`, just to be safe)
 + **Music Player**: `mpd` and `ncmpcpp`
 + **Notification Manager**: `dunst`
-+ **File manager**: `ranger`
++ **File manager**: `nnn`
 
 # Scripts
 All the scripts are in `local/.local/bin`.
