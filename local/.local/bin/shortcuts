@@ -1,31 +1,46 @@
 #!/bin/bash
 
 # Config locations
-folders="$HOME/.config/folderc"
-configs="$HOME/.config/configrc"
+folders="${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/folderc"
+configs="${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/configrc"
 
 # Output locations
-shell_shortcuts="$HOME/.config/shortcutrc"
-ranger_shortcuts="$HOME/.config/ranger/shortcuts.conf"
+shell_shortcuts="${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/shortcutrc"
+# ranger_shortcuts="$HOME/.config/ranger/shortcuts.conf"
 
 # Shell rc file (i.e. bash vs. zsh, etc.)
-shellrc="$HOME/.bashrc"
+shellrc="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.zshrc"
 
 # Download the shorcut files if not present.
 [[ ! -f $folders ]] && curl https://raw.githubusercontent.com/its-fonsy/dotfiles/master/config/folderc > "$folders"
 [[ ! -f $configs ]] && curl https://raw.githubusercontent.com/its-fonsy/dotfiles/master/config/configrc > "$configs"
 
-# Remove
-rm -f $shell_shortcuts $ranger_shortcuts
+#### Remove
+# shell
+rm -f $shell_shortcuts
+# ranger
+rm -f $ranger_shortcuts
 
 # Ensuring that output locations are properly sourced
-(grep "source \$HOME/.config/shortcuts" $shellrc)>/dev/null || echo "source $shell_shortcuts" >> $shellrc
-(grep "source $HOME/.config/ranger/shortcuts.conf" $HOME/.config/ranger/rc.conf)>/dev/null || echo "source $HOME/.config/ranger/shortcuts.conf" >> $HOME/.config/ranger/rc.conf
+(grep 'source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/shortcutrc"' $shellrc)>/dev/null || echo "shortcutrc not sourced!"
+# (grep "source $HOME/.config/ranger/shortcuts.conf" $HOME/.config/ranger/rc.conf)>/dev/null || echo "source $HOME/.config/ranger/shortcuts.conf" >> $HOME/.config/ranger/rc.conf
+# (grep "source \$HOME/.config//shortcuts" $shellrc)>/dev/null || echo "source $shell_shortcuts" >> $shellrc
 
-# directory shortcuts
+##### DIRECTORY SHORTCUTS ####
+# shell
+echo -e "#!/usr/bin/env sh\n\n# Folder shortcuts" >> $shell_shortcuts
 sed "/^#/d" $folders | awk '{print "alias "$1"=\"cd "$2"\""}' >> $shell_shortcuts
-sed "/^#/d" $folders | awk '{print "map g"$1" cd "$2"\nmap t"$1" tab_new "$2"\nmap m"$1" shell mv -v %s "$2"\nmap Y"$1" shell cp -rv %s "$2}' >> $ranger_shortcuts
+# NNN
+echo -e "\n# NNN Folder shortcuts" >> $shell_shortcuts
+printf "export NNN_BMS='%s'\n" $(sed "/^#/d" $folders | awk '{printf "%s",""$1":"$2";"}') >> $shell_shortcuts
+# ranger
+# sed "/^#/d" $folders | awk '{print "map g"$1" cd "$2"\nmap t"$1" tab_new "$2"\nmap m"$1" shell mv -v %s "$2"\nmap Y"$1" shell cp -rv %s "$2}' >> $ranger_shortcuts
 
-# dotfile shortcuts
+#### DOTFILE SHORTCUTS ####
+# shell
+echo -e "\n# Change config file shortcuts" >> $shell_shortcuts
 sed "/^#/d" $configs | awk '{print "alias "$1"=\"$EDITOR "$2"\""}' >> $shell_shortcuts
-sed "/^#/d" $configs | awk '{print "map "$1" shell $EDITOR "$2}' >> $ranger_shortcuts
+#ranger
+# sed "/^#/d" $configs | awk '{print "map "$1" shell $EDITOR "$2}' >> $ranger_shortcuts
+
+exit 0

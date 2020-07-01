@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+# Folder shortcuts
+alias b="cd ~/.local/bin"
+alias C="cd ~/.config"
+alias c="cd ~/documenti/code"
+alias d="cd ~/documenti"
+alias D="cd ~/Downloads"
+alias h="cd ~/"
+alias i="cd ~/immagini"
+alias m="cd ~/musica"
+alias P="cd ~/documenti/code/python/lyrpy"
+alias p="cd ~/documenti/Progetti"
+alias t="cd ~/documenti/Progetti/tex"
+alias T="cd /media/torrents"
+alias u="cd ~/gdrive/Uni"
+alias v="cd ~/video"
+
+# NNN Folder shortcuts
+export NNN_BMS='b:~/.local/bin;C:~/.config;c:~/documenti/code;d:~/documenti;D:~/Downloads;h:~/;i:~/immagini;m:~/musica;P:~/documenti/code/python/lyrpy;p:~/documenti/Progetti;t:~/documenti/Progetti/tex;T:/media/torrents;u:~/gdrive/Uni;v:~/video;'
+
+# Change config file shortcuts
+alias cfD="$EDITOR ~/.local/bin/start_dwm"
+alias cfF="$EDITOR ~/.config/folderc"
+alias cfa="$EDITOR ~/.config/aliasrc"
+alias cfb="$EDITOR ~/.bashrc"
+alias cfc="$EDITOR ~/.config/configrc"
+alias cfd="$EDITOR ~/.Xdefaults"
+alias cfr="$EDITOR ~/.config/ranger/rc.conf"
+alias cfv="$EDITOR ~/.config/nvim/init.vim"
+alias cfz="$EDITOR ~/.config/zsh/.zshrc"
