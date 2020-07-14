@@ -9,3 +9,6 @@ config/.config/mpd/sticker.sql
 
 # ncmpcpp logs
 config/.config/ncmpcpp/error.log
+
+# zsh
+config/.config/zsh/.zcompdump
