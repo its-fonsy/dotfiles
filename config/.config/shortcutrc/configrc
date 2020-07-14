@@ -1,9 +1,10 @@
 cfD	~/.local/bin/start_dwm
-cfF	~/.config/folderc
-cfa ~/.config/aliasrc
+cfF	~/.config/shortcutrc/folderc
+cfa ~/.config/shortcutrc/aliasrc
 cfb	~/.bashrc
-cfc	~/.config/configrc
+cfc	~/.config/shortcutrc/configrc
 cfd	~/.Xdefaults
 cfr	~/.config/ranger/rc.conf
+cfu ~/.config/newsboat/urls
 cfv	~/.config/nvim/init.vim
 cfz ~/.config/zsh/.zshrc
