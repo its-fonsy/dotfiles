@@ -1,8 +1,5 @@
-https://www.ilsole24ore.com/rss/italia.xml			politica
-https://www.wired.it/feed/							cultura
-
-https://www.eurogamer.net/?format=rss 			gaming
-
-https://www.tomshw.it/feed/?post_type=hardware 	computer hardware
+https://www.ilsole24ore.com/rss/italia.xml		politica
 https://www.gamersnexus.net/news/feed			computer hardware "~Gamer Nexus"
 https://www.archlinux.org/feeds/news/			computer linux
+https://www.spreaker.com/show/4176168/episodes/feed	"~Tech is It"
+https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 "~Luke Smith PeerTube"
