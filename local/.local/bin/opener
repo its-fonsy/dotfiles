@@ -15,7 +15,9 @@ if [ "$MIME" = "inode/symlink" ]; then
 fi
 
 handle_img() {
-	sxiv "$FILE" &> /dev/null
+	dir=$(realpath "$FILE")
+	img_list=$(find "${dir%/*}" -type f | grep -E 'png|jpg|ico')
+	sxiv $img_list &> /dev/null
 }
 
 handle_vid() {
@@ -27,7 +29,7 @@ handle_pdf() {
 }
 
 handle_txt() {
-	$TERMINAL -e $EDITOR $FILE &> /dev/null
+	$TERMINAL -e $EDITOR "$FILE" &> /dev/null
 }
 
 mime_based() {
@@ -49,7 +51,7 @@ mime_based() {
 }
 
 case "$EXT" in
-	png|jpg|jpeg)
+	png|jpg|jpeg|ico)
 		handle_img
 		;;
 	mp4|mkv|webm|avi)
