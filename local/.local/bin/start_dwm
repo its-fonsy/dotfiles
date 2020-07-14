@@ -15,8 +15,8 @@
 				awk 'BEGIN{ RS = "" ; FS = "\n" }{print $1}')
 
 	xinput set-prop $MOUSE "Coordinate Transformation Matrix" 1 0 0 0 1 0 0 0 1.9
-	xinput set-prop $MOUSE "libinput Accel Speed" 0
-	xinput set-prop $MOUSE "libinput Middle Emulation Enabled" 0
+	# xinput set-prop $MOUSE "libinput Accel Speed" 0
+	# xinput set-prop $MOUSE "libinput Middle Emulation Enabled" 0
 	# Scroll wheel gotta go fest
 	imwheel --kill -b 45
 
