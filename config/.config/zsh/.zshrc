@@ -108,5 +108,29 @@ function n ()
     fi
 }
 
+function ard ()
+{
+	# usage: ardu ARDUINO PORT SKETCH
+
+	[ -x "$(command -v arduino-cli)" ] || { echo "arduino-cli not installed"; return 1; }
+	
+	case "$1" in
+		"nano")
+			board="arduino:avr:nano:cpu=atmega328old"
+			;;
+		"uno")
+			board="arduino:avr:uno"
+			;;
+		*)
+			echo "usage: ardu BOARD PORT SKETCH"
+			return 1
+			;;
+	esac
+
+	{ echo [COMPILING]; arduino-cli compile --fqbn $board $3 } && \
+		{  echo [UPLOADING]; arduino-cli upload -p $2 --fqbn $board $3 } && \
+		echo "done"
+}
+
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
