@@ -13,7 +13,8 @@ alias \
 		ls="ls -lh --color=auto --group-directories-first" \
 		wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"' \
 		gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg' \
-		mbsync='mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc'
+		mbsync='mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc' \
+		mb='mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc gmail'
 
 
 alias \
