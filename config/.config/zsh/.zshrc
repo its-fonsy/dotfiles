@@ -127,8 +127,8 @@ function ard ()
 			;;
 	esac
 
-	{ echo [COMPILING]; arduino-cli compile --fqbn $board $3 } && \
-		{  echo [UPLOADING]; arduino-cli upload -p $2 --fqbn $board $3 } && \
+	{ echo "[COMPILING]"; arduino-cli compile --fqbn $board $3; } && \
+		{  echo "[UPLOADING]"; arduino-cli upload -p $2 --fqbn $board $3; } && \
 		echo "done"
 }
 
