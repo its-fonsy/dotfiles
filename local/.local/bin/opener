@@ -16,7 +16,8 @@ fi
 
 handle_img() {
 	dir=$(realpath "$FILE")
-	img_list=$(find "${dir%/*}" -type f | grep -E 'png|jpg|ico')
+	img_list=$(find "${dir%/*}" -type f | grep -E 'png|jpg|ico|jpeg' | grep -v "$FILE")
+	img_list="$dir $img_list"
 	sxiv $img_list &> /dev/null
 }
 
