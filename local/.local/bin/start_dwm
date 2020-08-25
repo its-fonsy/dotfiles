@@ -21,7 +21,7 @@
 	imwheel --kill -b 45
 
 # Set wallpaper
-	$HOME/.local/bin/wallp -f
+	feh --bg-scale /media/immagini/wallpaper/wp.jpg --no-fehbg
 	compton &
 
 # Source for the terminal
