@@ -32,6 +32,13 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
+# If history doesn't exist create it
+if test ! -e $HISTFILE
+then
+	mkdir -p "${HISTFILE%/*}"
+	touch "$HISTFILE"
+fi
+
 # History Search
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
