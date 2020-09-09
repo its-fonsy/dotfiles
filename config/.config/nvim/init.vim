@@ -86,7 +86,7 @@ call plug#end()
 
 " Copy visual selection to clipboard
 	map <leader>y :"+y
-	map <leader>c :make<CR><CR>
+	map <leader>c :w<CR>:make<CR>
 
 " Replace all is aliased to S.
 	nnoremap <leader>s :%s//g<Left><Left>
