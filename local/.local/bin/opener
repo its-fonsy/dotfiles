@@ -16,9 +16,11 @@ fi
 
 handle_img() {
 	dir=$(realpath "$FILE")
-	img_list=$(find "${dir%/*}" -type f | grep -E 'png|jpg|ico|jpeg' | grep -v "$FILE")
+	img_list=$(find "${dir%/*}" -type f | grep -E 'png|jpg|ico|jpeg' | sed 's/ /\\ /g'| grep -v "$FILE")
+	dir=$(realpath "$FILE" | sed 's/ /\\ /g')
 	img_list="$dir $img_list"
-	sxiv $img_list &> /dev/null
+	# sxiv $img_list &> /dev/null
+	sxiv $img_list
 }
 
 handle_vid() {
