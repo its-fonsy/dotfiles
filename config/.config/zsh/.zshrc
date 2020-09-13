@@ -115,9 +115,10 @@ function n ()
     fi
 }
 
+# compile abd send arduino sketch to the board
 function ard ()
 {
-	# usage: ardu ARDUINO PORT SKETCH
+	# usage: ardu BOARD PORT SKETCH
 
 	[ -x "$(command -v arduino-cli)" ] || { echo "arduino-cli not installed"; return 1; }
 	
@@ -137,6 +138,16 @@ function ard ()
 	{ echo "[COMPILING]"; arduino-cli compile --fqbn $board $3; } && \
 		{  echo "[UPLOADING]"; arduino-cli upload -p $2 --fqbn $board $3; } && \
 		echo "done"
+}
+
+# git shortcut to add and commit a file
+function com()
+{
+	# usage: com FILE
+	test -z $1 && { echo "usage: com FILE"; return 1; }
+
+	git add $1
+	git commit
 }
 
 # Load zsh-syntax-highlighting; should be last.
