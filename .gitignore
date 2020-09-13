@@ -1,5 +1,6 @@
 # nvim plugin
 config/.config/nvim/plugged
+config/.config/nvim/autoload
 
 # mpd generated files
 config/.config/mpd/database
