@@ -14,6 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'bling/vim-airline'
 	Plug 'unblevable/quick-scope'
 	Plug 'sainnhe/gruvbox-material'
+	Plug 'sainnhe/sonokai'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'jiangmiao/auto-pairs'
@@ -21,6 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'lambdalisue/suda.vim'
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
+	Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " Some basics:
@@ -30,12 +32,25 @@ call plug#end()
 	set number relativenumber
 	set nocompatible
 
-" Gruvbox theme
-	set termguicolors
-	set background=dark
-	let g:gruvbox_material_background = 'hard'
-	let g:airline_theme = 'gruvbox_material'
-	colorscheme gruvbox-material
+" Sonokai theme
+	if has('termguicolors')
+	  set termguicolors
+	endif
+
+	" The configuration options should be placed before `colorscheme sonokai`.
+	let g:sonokai_style = 'andromeda'
+	let g:sonokai_enable_italic = 1
+	let g:sonokai_disable_italic_comment = 1
+	let g:airline_theme = 'sonokai'
+
+	colorscheme sonokai
+
+" " Gruvbox theme
+" 	set termguicolors
+" 	set background=dark
+" 	let g:gruvbox_material_background = 'hard'
+" 	let g:airline_theme = 'gruvbox_material'
+" 	colorscheme gruvbox-material
 
 " Ultisnips
 	let g:UltiSnipsExpandTrigger="<tab>"
