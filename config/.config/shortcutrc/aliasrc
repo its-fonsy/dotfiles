@@ -15,7 +15,7 @@ alias \
 		gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg' \
 		mbsync='mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc' \
 		mb='mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc gmail' \
-		gts='git status'
+		gst='git status'
 
 alias \
 		imwheel='imwheel --kill -b 45' \
