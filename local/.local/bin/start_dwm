@@ -30,7 +30,7 @@
 # Bar
 	$HOME/.local/bin/dwmbar &
 
-# Notification server
+# Notification | Music
 	dunst &
 	pidof mpd || mpd
 
