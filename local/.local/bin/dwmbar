@@ -69,7 +69,7 @@ while true; do
 
 	net="dwl ^c#FFFFFF^$vel_recv^d^ upl ^c#FFFFFF^$vel_trans^d^"
 
-	xsetroot -name "$net $(mail) $(vol) $(kbd) $(tie) $(dte) "
+	xsetroot -name "$net $(kbd) $(tie) $(dte) "
 
 	# Update old values to perform new calculations
 	old_received_bytes=$received_bytes
