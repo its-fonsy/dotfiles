@@ -50,7 +50,7 @@ echo -e "[\e[1;32mOK\e[0m]"
 
 # Sync the video folder
 echo -ne "Sync \e[1;29mVideo\e[0m............................"
-rsync $FLAG --exclude anime --exclude film --exclude serie-tv --exclude tmp /home/fonsy/video/ /nas/private/backup/video
+rsync $FLAG --exclude anime --exclude film --exclude serie-tv --exclude tmp --exclude lezioni /home/fonsy/video/ /nas/private/backup/video
 echo -e "[\e[1;32mOK\e[0m]"
 
 echo -ne "Unmounting the nas...................."
