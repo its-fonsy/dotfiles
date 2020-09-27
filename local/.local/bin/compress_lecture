@@ -1,0 +1,89 @@
+#!/usr/bin/env sh
+
+# usage: compress_lecture MKV_DIR
+
+# Compress all .mkv files inside the folder and subfolder of MKV_DIR.
+# Update a file MKV_DIR/.data_size with the size in MB of the MKV and WEBM.
+# Generate a MKV_DIR/rm_list file with the list of all .mkv compressed, that can
+# to delete them with
+# 		xargs rm -f < MKV_DIR/rm_list
+
+help(){
+
+	# help and usage message
+	echo -e "usage: "$(basename $0)" MKV_DIR\n"
+
+	echo "Compress all .mkv files inside the folder and subfolder of MKV_DIR."
+	echo "Update a file MKV_DIR/.data_size with the size in MB of the MKV and WEBM."
+	echo "Generate a MKV_DIR/rm_list file with the list of all .mkv compressed."
+	echo -e "With that you can delete them with"
+	echo -e "\txargs rm -f < MKV_DIR/rm_list\n"
+
+	echo "OPTIONS"
+	echo "  -h --help    print this help message"
+}
+
+# Verify the user is correctly using this script
+test "$1" = "-h" -o "$1" = "--help" && help
+test -d "$1" && video_dir="$1" || { echo "ERROR: $1 is not a video directory"; exit 1; }
+
+video_to_compress=""
+mkv_files=$(find $video_dir -type f -name "*.mkv" | sort)
+
+# List the video that will be compressed
+echo "[ List of video to compress ]"
+for vid in $mkv_files; do
+
+	# be sure the video is not already compressed
+	if test ! -e "${vid%%.mkv}.webm"; then
+		echo -e "\t ${vid##*/}"
+		video_to_compress="$video_to_compress $vid"
+	fi
+
+done
+
+# if there is none video to compress exit
+test -n "$video_to_compress" || { echo "There is no file to compress" ; exit 0 ; }
+
+# start compressing if the user confirm
+echo -e "\nProceed with compression? (y/n)"
+read ans
+test ! $ans = "y" && exit 0
+
+echo "[ Start compressing ]"
+for vid in $video_to_compress; do
+	echo -e "...compressing \033[1m${vid##*/}\033[0m"
+	ffmpeg -i $vid -filter:v fps=5 -b:a 16k -loglevel fatal ${vid%%.mkv}.webm
+done
+echo "[ Done compressing ]"
+
+# Check that every compression has been done correctly
+echo "[ Checking for errors... ]"
+for vid in $video_to_compress; do
+    webm_size="$(du -sh "${vid%%.mkv}.webm" | cut -f 1)"
+
+	# If file size is 0, that means the conversion failed
+	if test "$webm_size" = '0'; then
+		echo "	Maybe ${vid%%.mkv}.webm is corrupted"
+	fi
+done
+
+echo "[ Updating the data_size file... }"
+for vid in $video_to_compress; do
+    mkv_size="$(du -sh $vid| cut -f 1)"
+    webm_size="$(du -sh "${vid%%.mkv}.webm" | cut -f 1)"
+    echo -e "${vid##*/}\t$mkv_size\t$webm_size" | sed 's/\.mkv//' | sed 's/M//g' >> $video_dir/.data_size
+done
+
+sort -o $video_dir/.data_size $video_dir/.data_size 
+
+echo "[ Generating the rm_list ]"
+rm_list=""
+for vid in $video_to_compress; do
+	if test -e "${vid%%.mkv}.webm"; then
+		rm_list="$rm_list $vid"
+	fi
+done
+echo $rm_list > $video_dir/rm_list
+
+exit 0
