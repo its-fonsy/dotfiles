@@ -8,6 +8,7 @@ alias d="cd ~/documenti"
 alias D="cd ~/Downloads"
 alias h="cd ~/"
 alias i="cd ~/immagini"
+alias l="cd ~/video/lezioni"
 alias m="cd ~/musica"
 alias P="cd ~/documenti/code/python/lyrpy"
 alias p="cd ~/documenti/Progetti"
@@ -18,7 +19,7 @@ alias v="cd ~/video"
 alias w="cd ~/documenti/Progetti/site/website"
 
 # NNN Folder shortcuts
-export NNN_BMS='b:~/.local/bin;C:~/.config;c:~/documenti/code;d:~/documenti;D:~/Downloads;h:~/;i:~/immagini;m:~/musica;P:~/documenti/code/python/lyrpy;p:~/documenti/Progetti;t:~/documenti/Progetti/tex;T:/media/torrents;u:~/gdrive/Uni;v:~/video;w:~/documenti/Progetti/site/website;'
+export NNN_BMS='b:~/.local/bin;C:~/.config;c:~/documenti/code;d:~/documenti;D:~/Downloads;h:~/;i:~/immagini;l:~/video/lezioni;m:~/musica;P:~/documenti/code/python/lyrpy;p:~/documenti/Progetti;t:~/documenti/Progetti/tex;T:/media/torrents;u:~/gdrive/Uni;v:~/video;w:~/documenti/Progetti/site/website;'
 
 # Change config file shortcuts
 alias cfD="$EDITOR ~/.local/bin/start_dwm"
