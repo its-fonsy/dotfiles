@@ -22,7 +22,8 @@ alias \
 		backup="sudo ~/.local/bin/backup" \
 		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
 		nas-mount="sudo mount -t cifs //nas-backup/admin /nas -o user=admin,vers=1.0" \
-		lol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
+		case_check='echo -n "Arrivo previsto Phankteks P400A: ";curl "http://www.drako.it/drako_catalog/product_info.php?products_id=23517" &> /dev/null | grep -A 4 'DISPONIBILITA' | tail -n 1 | cut -d">" -f3 | cut -d"<" -f1'
+		
 
 #alias drivep="CUR_DIR=$(pwd); cd ~/gdrive && drive push && cd $CUR_DIR"
 
