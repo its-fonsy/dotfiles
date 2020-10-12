@@ -24,38 +24,38 @@ then
 fi
 
 # Ping 4 times to see if connected to the router
-echo -ne "\e[1;29mChecking the nas on the network\e[0m......."
+echo -ne "\e[1;29mChecking the nas on the network\e[0m"
 ping -c 4 $NAS_IP &> /dev/null || { echo -e "\e[1;31mERROR\e[0m: The nas isn't on the network"; exit 1; }
-echo -e "[\e[1;32mOK\e[0m]"
+echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas on the network"
 
 # Mounting the NAS
 mount -t cifs //$NAS_IP/admin $NAS_DIR -o user=admin,workgroup=workgroup,ip=192.168.178.34,iocharset=utf8,vers=1.0 || { echo -e "\e[1;31mERROR\e[0m: cannot mount the nas"; exit 1; }
-echo -ne "Mounting nas to \e[1;29m$NAS_DIR\e[0m.................."
-echo -e "[\e[1;32mOK\e[0m]"
+echo -ne "Mounting nas to \e[1;29m$NAS_DIR\e[0m"
+echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas mounted to \e[1;29m$NAS_DIR\e[0m"
 
 # Sync the document folder
-echo -ne "Sync \e[1;29mDocumenti\e[0m........................"
+echo -ne "Sync \e[1;29mDocumenti\e[0m"
 rsync $FLAG --exclude giochi --exclude programmi /home/fonsy/documenti/ /nas/private/backup/documenti
-echo -e "[\e[1;32mOK\e[0m]"
+echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Documenti"
 
 # Sync the image folder
-echo -ne "Sync \e[1;29mImages\e[0m..........................."
+echo -ne "Sync \e[1;29mImages\e[0m"
 rsync $FLAG /home/fonsy/immagini/ /nas/private/backup/immagini
-echo -e "[\e[1;32mOK\e[0m]"
+echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Images"
 
 # Sync the music folder
-echo -ne "Sync \e[1;29mMusic\e[0m............................"
+echo -ne "Sync \e[1;29mMusic\e[0m"
 rsync $FLAG /home/fonsy/musica/ /nas/private/backup/musica
-echo -e "[\e[1;32mOK\e[0m]"
+echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Music"
 
 # Sync the video folder
-echo -ne "Sync \e[1;29mVideo\e[0m............................"
+echo -ne "Sync \e[1;29mVideo\e[0m"
 rsync $FLAG --exclude anime --exclude film --exclude serie-tv --exclude tmp --exclude lezioni /home/fonsy/video/ /nas/private/backup/video
-echo -e "[\e[1;32mOK\e[0m]"
+echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Video"
 
-echo -ne "Unmounting the nas...................."
+echo -ne "Unmounting the nas"
 umount /nas
-echo -e "[\e[1;32mOK\e[0m]"
+echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas unmounted"
 
 exit 0
 
