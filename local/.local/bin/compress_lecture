@@ -78,7 +78,7 @@ test ! $ans = "y" && exit 0
 echo "[ Start compressing ]"
 for vid in $video_to_compress; do
 	echo -e "...compressing \033[1m${vid##*/}\033[0m"
-	ffmpeg -i $vid -filter:v fps=1 -b:a 16k ${vid%%.mkv}.webm
+	ffmpeg -i $vid -filter:v fps=1 -b:a 16k -max_muxing_queue_size 1024 ${vid%%.mkv}.webm
 done
 echo "[ Done compressing ]"
 
