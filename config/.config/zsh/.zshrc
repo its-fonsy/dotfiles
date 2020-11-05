@@ -12,9 +12,21 @@
 autoload -U colors && colors	# Load colors
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
-PS1="┌%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}
-└─$%b "
-export PS1
+
+# Prompt
+setopt PROMPT_SUBST
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' get-revision true
+
+zstyle ':vcs_info:*' formats '(%F{green}%u%c%b%f)'
+zstyle ':vcs_info:*' unstagedstr '%f%F{red}'
+zstyle ':vcs_info:*' stagedstr '%f%F{yellow}'
+precmd () { vcs_info }
+
+PROMPT='${vcs_info_msg_0_} %B%F{blue}%n%f:%F{yellow}%~%f » %b'
 
 # Remove .xsession-errors
 [ -e $HOME/.xsession-errors ] && rm $HOME/.xsession-errors
@@ -152,3 +164,4 @@ function com()
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+autoload -Uz compinit && compinit
