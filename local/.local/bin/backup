@@ -2,11 +2,6 @@
 
 #  Backup media folder with rsync!
 
-#  TODO:
-#  -----
-#  1. Rendere più estensibile con $NAS_DIR, $NAS_IP, ecc...
-#  2. Controllare che il NAS non sia già montanto
-#  3. Controllare che il NAS presente nella rete
 NAS_DIR=/nas
 NAS_IP=nas-backup
 
