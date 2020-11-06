@@ -21,12 +21,12 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' get-revision true
 
-zstyle ':vcs_info:*' formats '(%F{green}%u%c%b%f)'
+zstyle ':vcs_info:*' formats '(%F{green}%u%c%b%f) '
 zstyle ':vcs_info:*' unstagedstr '%f%F{red}'
 zstyle ':vcs_info:*' stagedstr '%f%F{yellow}'
 precmd () { vcs_info }
 
-PROMPT='${vcs_info_msg_0_} %B%F{blue}%n%f:%F{yellow}%~%f » %b'
+PROMPT='${vcs_info_msg_0_}%B%F{blue}%n%f:%F{yellow}%~%f » %b'
 
 # Remove .xsession-errors
 [ -e $HOME/.xsession-errors ] && rm $HOME/.xsession-errors
