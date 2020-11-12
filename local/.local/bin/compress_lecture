@@ -24,7 +24,7 @@ help() {
 }
 
 function gen_rm_list() {
-	echo "[ Generating the rm_list ]"
+	echo -ne "\e[1;33m ->\e[0m\e[1m Generating the rm_list\e[0m\n"
 	rm_list=""
 	for vid in $mkv_files; do
 		if test -e "${vid%%.mkv}.webm"; then
@@ -52,38 +52,45 @@ video_to_compress=""
 mkv_files=$(find $video_dir -type f -name "*.mkv" | sort)
 
 # List the video that will be compressed
-echo "[ List of video to compress ]"
+# echo -ne ":: Scanning the folder..."
+echo -ne "\e[1;34m::\e[0m\e[1m Scanning the folder...\e[0m\n"
 for vid in $mkv_files; do
-
 	# be sure the video is not already compressed
 	if test ! -e "${vid%%.mkv}.webm"; then
-		echo -e "\t ${vid##*/}"
 		video_to_compress="$video_to_compress $vid"
 	fi
-
 done
 
 # if there is none video to compress exit
 if test ! -n "$video_to_compress"; then
+	echo " There is no file to compress"
 	test $generate_rm_list -eq 1 && gen_rm_list
-	echo "There is no file to compress"
 	exit 0 
 fi 
 
-# start compressing if the user confirm
-echo -e "\nProceed with compression? (y/n)"
-read ans
-test ! $ans = "y" && exit 0
-
-echo "[ Start compressing ]"
-for vid in $video_to_compress; do
-	echo -e "...compressing \033[1m${vid##*/}\033[0m"
-	ffmpeg -i $vid -filter:v fps=1 -b:a 16k -max_muxing_queue_size 1024 ${vid%%.mkv}.webm
+# display the video to convert
+i=1
+echo -ne "\e[1;33m ->\e[0m\e[1m List of video to compress\e[0m\n"
+for vid in "$video_to_compress"; do
+	echo -e "  $i: ${vid##*/}"
+	let "i+=1"
 done
-echo "[ Done compressing ]"
+
+# start compressing if the user confirm
+echo -ne "\n\e[1;34m::\e[0m\e[1m Which video to compress? [a]ll [n]one\e[0m "
+
+read ans
+test ! $ans = "a" && exit 0
+
+echo -ne "\e[1;33m ->\e[0m\e[1m Start compressing\e[0m\n"
+for vid in $video_to_compress; do
+	echo -e " compressing ${vid##*/}"
+	ffpb -i $vid -filter:v fps=1 -b:a 16k -max_muxing_queue_size 1024 ${vid%%.mkv}.webm
+done
+echo -ne "\e[1;33m ->\e[0m\e[1m Done compressing\e[0m\n"
 
 # Check that every compression has been done correctly
-echo "[ Checking for errors... ]"
+echo -ne "\e[1;33m ->\e[0m\e[1m Checking for errors\e[0m\n"
 for vid in $video_to_compress; do
     webm_size="$(du -sh "${vid%%.mkv}.webm" | cut -f 1)"
 
@@ -93,7 +100,7 @@ for vid in $video_to_compress; do
 	fi
 done
 
-echo "[ Updating the data_size file... }"
+echo -ne "\e[1;33m ->\e[0m\e[1m Updating the data_size file\e[0m\n"
 for vid in $video_to_compress; do
     mkv_size="$(du -sh $vid| cut -f 1)"
     webm_size="$(du -sh "${vid%%.mkv}.webm" | cut -f 1)"
