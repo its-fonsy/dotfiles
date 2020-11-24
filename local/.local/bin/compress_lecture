@@ -69,18 +69,16 @@ if test ! -n "$video_to_compress"; then
 fi 
 
 # display the video to convert
-i=1
 echo -ne "\e[1;33m ->\e[0m\e[1m List of video to compress\e[0m\n"
-for vid in "$video_to_compress"; do
-	echo -e "  $i: ${vid##*/}"
-	let "i+=1"
+for vid in $video_to_compress; do
+	echo -e "    ${vid##*/}"
 done
 
 # start compressing if the user confirm
-echo -ne "\n\e[1;34m::\e[0m\e[1m Which video to compress? [a]ll [n]one\e[0m "
+echo -ne "\n\e[1;34m::\e[0m\e[1m Compress all video? [y/n] \e[0m"
 
 read ans
-test ! $ans = "a" && exit 0
+test ! $ans = "y" && exit 0
 
 echo -ne "\e[1;33m ->\e[0m\e[1m Start compressing\e[0m\n"
 for vid in $video_to_compress; do
