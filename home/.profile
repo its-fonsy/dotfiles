@@ -9,6 +9,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="firefox"
+export LYRICS_DIR="/home/fonsy/musica/foobar/lyrics/"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
