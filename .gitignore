@@ -13,3 +13,6 @@ config/.config/ncmpcpp/error.log
 
 # zsh
 config/.config/zsh/.zcompdump
+
+# termite
+config/.config/termite/config.user
