@@ -48,6 +48,8 @@ background=#212121
 foreground=#f7f7f7
 cursor=#218693
 
+background = rgba(13, 13, 13, 0.95)
+
 color0=#000000
 color1=#c75646
 color2=#8eb33b
