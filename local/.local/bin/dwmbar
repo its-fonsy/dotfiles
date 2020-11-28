@@ -53,6 +53,49 @@ function get_velocity {
 	fi
 }
 
+function net {
+	# download speed string
+	vel_recv=$1
+	unit="${vel_recv: -4}"
+	vel=${vel_recv::-4}
+
+	if test $unit = "KB/s"
+	then
+		if test "$vel" -lt 10
+		then
+			dwl_speed="dwl ^c#FFFFFF^    $vel$unit"
+		elif test "$vel" -lt 100
+		then
+			dwl_speed="dwl ^c#FFFFFF^   $vel$unit"
+		else
+			dwl_speed="dwl ^c#FFFFFF^  $vel$unit"
+		fi
+	else
+		dwl_speed="dwl ^c#FFFFFF^ $vel$unit"
+	fi
+
+	# upload speed string
+	vel_trans=$2
+	unit="${vel_trans: -4}"
+	vel=${vel_trans::-4}
+	if test $unit = "KB/s"
+	then
+		if test "$vel" -lt 10
+		then
+			upl_speed="upl ^c#FFFFFF^    $vel$unit"
+		elif test "$vel" -lt 100
+		then
+			upl_speed="upl ^c#FFFFFF^   $vel$unit"
+		else
+			upl_speed="upl ^c#FFFFFF^  $vel$unit"
+		fi
+	else
+		upl_speed="upl ^c#FFFFFF^ $vel$unit"
+	fi
+
+	echo "$dwl_speed^d^ $upl_speed"
+}
+
 # Get initial values
 get_bytes
 old_received_bytes=$received_bytes
@@ -67,9 +110,10 @@ while true; do
 	vel_recv=$(get_velocity $received_bytes $old_received_bytes $now)
 	vel_trans=$(get_velocity $transmitted_bytes $old_transmitted_bytes $now)
 
-	net="dwl ^c#FFFFFF^$vel_recv^d^ upl ^c#FFFFFF^$vel_trans^d^"
+	# net="dwl ^c#FFFFFF^$vel_recv^d^ upl ^c#FFFFFF^$vel_trans^d^"
+	# echo "$(net $vel_recv $vel_trans)"
 
-	xsetroot -name "$net $(kbd) $(tie) $(dte) "
+	xsetroot -name "$(net $vel_recv $vel_trans) $(kbd) $(tie) $(dte) "
 
 	# Update old values to perform new calculations
 	old_received_bytes=$received_bytes
@@ -78,4 +122,3 @@ while true; do
 
     sleep 1
 done
-
