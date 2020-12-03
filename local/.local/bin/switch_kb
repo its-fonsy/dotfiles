@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+lt="$(setxkbmap -query | awk '/layout/{print $2}')"
+
+test $lt = "it" && setxkbmap us || setxkbmap it
