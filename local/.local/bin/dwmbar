@@ -71,7 +71,13 @@ function net {
 			dwl_speed="dwl ^c#FFFFFF^  $vel$unit"
 		fi
 	else
-		dwl_speed="dwl ^c#FFFFFF^ $vel$unit"
+		int="${vel%.*}"
+		if test "$int" -lt 10
+		then
+			dwl_speed="dwl ^c#FFFFFF^ $vel$unit"
+		else
+			dwl_speed="dwl ^c#FFFFFF^$vel$unit"
+		fi
 	fi
 
 	# upload speed string
@@ -90,10 +96,16 @@ function net {
 			upl_speed="upl ^c#FFFFFF^  $vel$unit"
 		fi
 	else
-		upl_speed="upl ^c#FFFFFF^ $vel$unit"
+		int="${vel%.*}"
+		if test "$int" -lt 10
+		then
+			upl_speed="upl ^c#FFFFFF^ $vel$unit"
+		else
+			upl_speed="upl ^c#FFFFFF^$vel$unit"
+		fi
 	fi
 
-	echo "$dwl_speed^d^ $upl_speed"
+	echo "$dwl_speed^d^ $upl_speed^d^"
 }
 
 # Get initial values
