@@ -28,9 +28,5 @@
 	xset fp+ $HOME/.fonts &
 	xset fp rehash &
 
-# set keyboard layout to us international
-	setxkbmap it
-	#setxkbmap us -v intl
-
 # Start your dwm!
 	exec dwm
