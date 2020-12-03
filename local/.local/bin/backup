@@ -24,7 +24,8 @@ ping -c 4 $NAS_IP &> /dev/null || { echo -e "\e[1;31mERROR\e[0m: The nas isn't o
 echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas on the network"
 
 # Mounting the NAS
-mount -t cifs //$NAS_IP/admin $NAS_DIR -o user=admin,workgroup=workgroup,ip=192.168.178.34,iocharset=utf8,vers=1.0 || { echo -e "\e[1;31mERROR\e[0m: cannot mount the nas"; exit 1; }
+# mount -t cifs //$NAS_IP/admin $NAS_DIR -o user=admin,workgroup=workgroup,ip=192.168.178.34,iocharset=utf8,vers=1.0 || { echo -e "\e[1;31mERROR\e[0m: cannot mount the nas"; exit 1; }
+mount -t cifs //$NAS_IP/admin $NAS_DIR -o user=admin,vers=1.0 || { echo -e "\e[1;31mERROR\e[0m: cannot mount the nas"; exit 1; }
 echo -ne "Mounting nas to \e[1;29m$NAS_DIR\e[0m"
 echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas mounted to \e[1;29m$NAS_DIR\e[0m"
 
