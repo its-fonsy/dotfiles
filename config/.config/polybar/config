@@ -144,19 +144,20 @@ label-unmounted-foreground = ${colors.foreground-alt}
 type = internal/bspwm
 pin-workspaces = true
 
-label-focused = %index%
+label-focused = %name%
 label-focused-background = #8F8F8F
+label-focused-foreground = #000000
 label-focused-underline= ${colors.background-alt}
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = %name%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
@@ -165,7 +166,7 @@ label-empty-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song> <toggle>
 
 icon-prev = 
 icon-stop = 
@@ -173,8 +174,9 @@ icon-play = 
 icon-pause = 
 icon-next = 
 
-label-song-maxlen = 25
-label-song-ellipsis = true
+label-song-maxlen = 50
+label-song-ellipsis = false
+label-song = %artist% - %title%
 
 [module/xbacklight]
 type = internal/xbacklight
