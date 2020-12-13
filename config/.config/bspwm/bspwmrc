@@ -7,13 +7,14 @@ displaycal-apply-profiles
 
 # Set wallpaper
 feh --bg-scale /media/immagini/wallpaper/wp.jpg --no-fehbg
-compton &
+picom --experimental-backends &
 
-# Notification | Music | Mouse
+# Notification | Music | Mouse | Eyes | Cursor
 dunst &
 pidof mpd || mpd
 imwheel --kill -b 45
 pidof redshift || redshift -l 45:10 &> /dev/null &
+xsetroot -cursor_name left_ptr
 
 # polybar
 $HOME/.config/polybar/launch.sh

@@ -1,6 +1,7 @@
 # dotfiles
 Using Github to manage and track my dotfiles.
 
+
 # Install
 For a fast installation of dotfiles use GNU `stow`. Once installed simply run
 
@@ -8,10 +9,16 @@ For a fast installation of dotfiles use GNU `stow`. Once installed simply run
 
 # My configuration
 
++ **Window manager** `bspwm`
++ **Terminal** `alacritty`
++ **compositor** `picom`
 + **Shell** `zsh` (I also have a `.bashrc`, just in case something goes wrong)
-+ **Editor** Neovim (there is also `.vimrc` in `config/vim`)
-+ **Music Player** `mpd` and `ncmpcpp`
 + **Notification Manager** `dunst`
+
+# Utilities 
+
++ **Editor** Neovim
++ **Music Player** `mpd` and `ncmpcpp`
 + **File manager** `nnn`
 
 # Scripts
