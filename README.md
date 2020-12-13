@@ -1,6 +1,6 @@
 # dotfiles
 Using Github to manage and track my dotfiles.
-
+![screenshot](screen.png "screenshot")
 
 # Install
 For a fast installation of dotfiles use GNU `stow`. Once installed simply run
