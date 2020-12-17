@@ -29,12 +29,12 @@ alert = #bd2c40
 
 [bar/monitor-DVI]
 monitor = DVI-I-1
-width = 98%
+width = 20%
 height = 24
-offset-x = 1%
+offset-x = 40%
 offset-y = 1 %
 radius = 9.5
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -46,7 +46,7 @@ border-size = 0
 border-color = #00000000
 
 padding-left = 2
-padding-right = 2
+padding-right = 4
 
 module-margin-left = 1
 module-margin-right = 2
@@ -56,8 +56,8 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
-modules-center = xwindow
-modules-right = mpd pulseaudio xkeyboard eth date powermenu
+modules-center = 
+modules-right = xkeyboard date
 
 tray-position = none
 tray-detached = true
@@ -120,15 +120,15 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-underline = ${colors.background}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.background}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-underline = ${colors.background}
 
 [module/filesystem]
 type = internal/fs
@@ -266,7 +266,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = ${colors.background}
 
 label = %date% %time%
 
