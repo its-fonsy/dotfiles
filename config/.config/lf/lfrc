@@ -1,4 +1,29 @@
-map	gp	cd ~/documenti/Progetti/code
-map	gt	cd ~/documenti/Progetti/tex
-map	gu	cd ~/gdrive/Uni
-map - $~/.config/lf/draw_img.sh $f
+set previewer ~/.config/lf/preview
+
+# Basic Settings
+set preview true
+set ignorecase true
+
+map gb	cd ~/.local/bin
+map gC	cd ~/.config
+map gc	cd ~/documenti/code
+map gd	cd ~/documenti
+map gD	cd ~/Downloads
+map gh	cd ~/
+map gi	cd ~/immagini
+map gl	cd ~/video/lezioni
+map gm	cd ~/musica
+map gP	cd ~/documenti/code/python/lyrpy
+map gp	cd ~/documenti/Progetti
+map gt	cd ~/documenti/Progetti/tex
+map gT	cd /media/torrents
+map gu	cd ~/gdrive/Uni
+map gv	cd ~/video
+map gw	cd ~/documenti/Progetti/site/website
+
+cmd open ${{
+    case $(file --mime-type $f -b) in
+        text/*) $EDITOR "$f";;
+        *) xdg-open "$f" ;;
+    esac
+}}
