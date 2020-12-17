@@ -30,6 +30,9 @@ super + b
 super + p
 	bspc rule -a \* -o state=floating && $TERMINAL -e pulsemixer
 
+super + a
+	switch_kb
+	# test "$(setxkbmap -query | awk '/layout/{print $2}')" = "it" && setxkbmap us || setxkbmap it
 #
 # bspwm hotkeys
 #
