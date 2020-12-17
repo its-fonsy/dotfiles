@@ -3,8 +3,8 @@ let mapleader =","
 " Install Plugin manager
 if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ~/.config/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+	silent !mkdir -p $XDG_CONFIG_HOME/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > $XDG_CONFIG_HOME/nvim/autoload/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
 
@@ -13,8 +13,6 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'scrooloose/nerdtree'
 	Plug 'bling/vim-airline'
 	Plug 'unblevable/quick-scope'
-	Plug 'sainnhe/gruvbox-material'
-	Plug 'sainnhe/sonokai'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'jiangmiao/auto-pairs'
@@ -31,26 +29,7 @@ call plug#end()
 	set encoding=utf-8
 	set number relativenumber
 	set nocompatible
-
-" Sonokai theme
-	if has('termguicolors')
-	  set termguicolors
-	endif
-
-	" The configuration options should be placed before `colorscheme sonokai`.
-	let g:sonokai_style = 'andromeda'
-	let g:sonokai_enable_italic = 1
-	let g:sonokai_disable_italic_comment = 1
-	let g:airline_theme = 'sonokai'
-
-	colorscheme sonokai
-
-" " Gruvbox theme
-" 	set termguicolors
-" 	set background=dark
-" 	let g:gruvbox_material_background = 'hard'
-" 	let g:airline_theme = 'gruvbox_material'
-" 	colorscheme gruvbox-material
+	colorscheme elflord
 
 " Ultisnips
 	let g:UltiSnipsExpandTrigger="<tab>"
