@@ -99,10 +99,11 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
 modules-center = xwindow
-modules-right = mpd pulseaudio xkeyboard eth date powermenu
+modules-right = mpd pulseaudio xkeyboard eth
 
-tray-position = none
-tray-detached = true
+tray-position = right
+tray-detached = false
+tray-maxsize = 16
 tray-padding = 2
 
 wm-restack = bspwm

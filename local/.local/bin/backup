@@ -31,7 +31,8 @@ echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas mounted to \e[1;29m$NAS_DIR\e[0m"
 
 # Sync the document folder
 echo -ne "Sync \e[1;29mDocumenti\e[0m"
-rsync $FLAG --exclude giochi --exclude programmi /home/fonsy/documenti/ /nas/private/backup/documenti
+rsync $FLAG --exclude giochi --exclude programmi --exclude università /home/fonsy/documenti/ /nas/private/backup/documenti
+rsync $FLAG /media/mega/unibo /nas/private/backup/documenti/università
 echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Documenti"
 
 # Sync the image folder

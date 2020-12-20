@@ -14,6 +14,7 @@ dunst &
 pidof mpd || mpd
 imwheel --kill -b 45
 pidof redshift || redshift -l 45:10 &> /dev/null &
+pidof megasync || megasync &
 xsetroot -cursor_name left_ptr
 
 # polybar
@@ -35,3 +36,4 @@ bspc config gapless_monocle      true
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Zathura state=tiled
+bspc rule -a MEGAsync state=floating rectangle=1x1+1470+50
