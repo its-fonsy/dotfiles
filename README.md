@@ -1,5 +1,5 @@
 # dotfiles
-Using Github to manage and track my dotfiles.
+Github repo of my dotfiles!
 ![screenshot](screen.png "screenshot")
 
 # Install
