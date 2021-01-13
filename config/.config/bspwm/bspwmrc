@@ -37,3 +37,4 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Zathura state=tiled
 bspc rule -a MEGAsync state=floating rectangle=1x1+1470+50
+bspc rule -a Steam state=floating
