@@ -29,7 +29,7 @@ call plug#end()
 	set encoding=utf-8
 	set number relativenumber
 	set nocompatible
-	colorscheme elflord
+	colorscheme default
 
 " Ultisnips
 	let g:UltiSnipsExpandTrigger="<tab>"
