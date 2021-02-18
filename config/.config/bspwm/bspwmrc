@@ -6,7 +6,7 @@ xrandr --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1
 displaycal-apply-profiles
 
 # Set wallpaper
-feh --bg-scale /media/immagini/wallpaper/wp.jpg --no-fehbg
+feh --bg-scale /media/immagini/wallpaper/wp.png --no-fehbg
 picom --experimental-backends &
 
 # Notification | Music | Mouse | Eyes | Cursor
