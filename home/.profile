@@ -4,6 +4,8 @@
 
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+# Adds `/usr/local/texlive/2020/bin/x86_64-linux` to $PATH
+export PATH="$PATH:$(du "/usr/local/texlive/2020/bin/x86_64-linux" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # Default programs:
 export EDITOR="nvim"
@@ -33,3 +35,5 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export CUDA_CACHE_PATH="{$XDG_CACHE_HOME}/nv"
+
+export QSYS_ROOTDIR="/media/quartus/quartus/sopc_builder/bin"

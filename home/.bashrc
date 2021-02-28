@@ -51,3 +51,5 @@ alias lol="sudo sh -c 'sysctl -w abi.vsyscall32=0'"
 # Shortcut
 # ! Remember to export EDITOR before sourcing the shortcuts
 source $HOME/.config/shortcuts
+
+export QSYS_ROOTDIR="/media/quartus/quartus/sopc_builder/bin"
