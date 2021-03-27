@@ -21,6 +21,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 	Plug 'sheerun/vim-polyglot'
+	Plug 'sonph/onehalf', { 'rtp': 'vim' } " Theme
 call plug#end()
 
 " Some basics:
@@ -29,7 +30,12 @@ call plug#end()
 	set encoding=utf-8
 	set number relativenumber
 	set nocompatible
-	colorscheme default
+
+" Colorscheme
+	" set t_Co=256
+	set cursorline
+	colorscheme onehalfdark
+	let g:airline_theme='onehalfdark'
 
 " Ultisnips
 	let g:UltiSnipsExpandTrigger="<tab>"
@@ -81,6 +87,7 @@ call plug#end()
 " Copy visual selection to clipboard
 	map <leader>y :"+y
 	map <leader>c :w<CR>:make<CR>
+	map <leader>d :setlocal spell spelllang=it
 
 " Replace all is aliased to S.
 	nnoremap <leader>s :%s//g<Left><Left>

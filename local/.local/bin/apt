@@ -20,9 +20,11 @@ read notes_n
 i=1
 for note in $notes_path; do
 	if [ $i -eq $notes_n ]; then
+
 		cd $note/appunti
 		$TERM -e nvim *.tex &
 		$READER *.pdf &
+
 		latexmk -pvc --pdf
 		latexmk -c
 		exit 0

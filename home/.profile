@@ -5,7 +5,9 @@
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 # Adds `/usr/local/texlive/2020/bin/x86_64-linux` to $PATH
-export PATH="$PATH:$(du "/usr/local/texlive/2020/bin/x86_64-linux" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux
+# Adds `/home/fonsy/.local/share/gem/ruby/2.7.0/bin` to $PATH
+export PATH=$PATH:$HOME/.local/share/gem/ruby/2.7.0/bin
 
 # Default programs:
 export EDITOR="nvim"
@@ -37,3 +39,11 @@ export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export CUDA_CACHE_PATH="{$XDG_CACHE_HOME}/nv"
 
 export QSYS_ROOTDIR="/media/quartus/quartus/sopc_builder/bin"
+
+# Quartus variables
+export ALTERAPATH="/media/quartus/"
+export QUARTUS_ROOTDIR=${ALTERAPATH}/quartus
+export QUARTUS_ROOTDIR_OVERRIDE="$QUARTUS_ROOTDIR"
+export PATH=$PATH:${ALTERAPATH}/quartus/bin
+export PATH=$PATH:${ALTERAPATH}/nios2eds/bin
+export PATH=$PATH:${QSYS_ROOTDIR}

@@ -3,9 +3,9 @@ Figura~\ref{fig:$1}$0
 endsnippet
 
 snippet fig "Figure template"
-\begin{figure}
+\begin{figure}[!hbt]
 	\centering
-	\includegraphics[width=$1\textwidth]{$2}
+	\includegraphics[width=$1\linewidth]{$2}
 	\caption{$3}
 	\label{fig:$4}
 \end{figure}
@@ -14,4 +14,25 @@ endsnippet
 
 snippet	sii "SI unit shortcut"
 \SI{$1}{$2}$0
+endsnippet
+
+snippet for "for shortcuts"
+\foreach \\$1 in {$2}{
+	$0
+}
+endsnippet
+
+snippet tikz "fast tikzing"
+\begin{figure}[htpb]
+	\centering
+	\begin{tikzpicture}[scale=1, transform shape]
+		$0
+	\end{tikzpicture}
+	\caption{}%
+	\label{fig:}
+\end{figure}
+endsnippet
+
+snippet cdo "abbrev cdot"
+\cdot 
 endsnippet
