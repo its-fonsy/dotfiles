@@ -6,8 +6,10 @@
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 # Adds `/usr/local/texlive/2020/bin/x86_64-linux` to $PATH
 export PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux
-# Adds `/home/fonsy/.local/share/gem/ruby/2.7.0/bin` to $PATH
-export PATH=$PATH:$HOME/.local/share/gem/ruby/2.7.0/bin
+
+# Adds Ruby Gems to ~/.local/share/gems
+export GEM_HOME="$HOME/.local/share/gems"
+export PATH="/home/fonsy/.local/share/gem/ruby/3.0.0/bin:$PATH"
 
 # Default programs:
 export EDITOR="nvim"
@@ -47,3 +49,8 @@ export QUARTUS_ROOTDIR_OVERRIDE="$QUARTUS_ROOTDIR"
 export PATH=$PATH:${ALTERAPATH}/quartus/bin
 export PATH=$PATH:${ALTERAPATH}/nios2eds/bin
 export PATH=$PATH:${QSYS_ROOTDIR}
+
+# Arduino-mk
+export ARDUINO_DIR=/usr/share/arduino
+export ARDMK_DIR=/usr/share/arduino
+export AVR_TOOLS_DIR=/usr

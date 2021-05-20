@@ -143,31 +143,6 @@ lfcd () {
 
 bindkey -s '^o' 'lfcd\n'  # zsh
 
-# compile abd send arduino sketch to the board
-function ard ()
-{
-	# usage: ardu BOARD PORT SKETCH
-
-	[ -x "$(command -v arduino-cli)" ] || { echo "arduino-cli not installed"; return 1; }
-	
-	case "$1" in
-		"nano")
-			board="arduino:avr:nano:cpu=atmega328old"
-			;;
-		"uno")
-			board="arduino:avr:uno"
-			;;
-		*)
-			echo "usage: ardu BOARD PORT SKETCH"
-			return 1
-			;;
-	esac
-
-	{ echo "[COMPILING]"; arduino-cli compile --fqbn $board $3; } && \
-		{  echo "[UPLOADING]"; arduino-cli upload -p $2 --fqbn $board $3; } && \
-		echo "done"
-}
-
 # git shortcut to add and commit a file
 function com()
 {
