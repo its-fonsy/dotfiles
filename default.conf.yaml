@@ -1,0 +1,22 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ['~', '~/.config']
+
+- link:
+  $HOME/.bashrc : common/bashrc
+  $HOME/.profile : common/profile
+  $HOME/.zshrc: common/zshrc
+
+  $HOME/.config/alacritty/alacritty.yml: common/alacritty.yml
+  $HOME/.config/mpd: common/mpd
+  $HOME/.config/ncmpcpp: common/ncmpcpp
+  $HOME/.config/nvim/: common/nvim/*
+  $HOME/.config/vim/vimrc: common/vimrc
+  $HOME/.config/zathura/zathurarc: common/zathurarc
+
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

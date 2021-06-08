@@ -1,0 +1,8 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['$HOME/.local/bin']
+
+- link:
+  $HOME/.local/bin/ : scripts/*
