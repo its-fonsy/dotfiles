@@ -5,4 +5,6 @@
 - clean: ['$HOME/.local/bin']
 
 - link:
-  $HOME/.local/bin/ : scripts/*
+      $HOME/.local/bin/ :
+          glob: true
+          path: scripts/*

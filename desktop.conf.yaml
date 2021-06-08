@@ -1,17 +1,17 @@
 - defaults:
     link:
-      relink: true
-      create: true
+        relink: true
+        create: true
+        force: true
 
 - clean: ['~', '~/.config']
 
 - link:
-  $HOME/.imwheelrc : desktop/imwheelrc
-
-  $HOME/.config/newsboat : desktop/newsboat
-  $HOME/.config/polybar : desktop/polybar
-  $HOME/.config/shortcutrc : desktop/shortcutrc
-  $HOME/.config/bspwm/bspwmrc : desktop/bspwmrc
-  $HOME/.config/dunst/dunstrc : desktop/dunstrc
-  $HOME/.config/pulsemixer.cfg : desktop/pulsemixer.cfg
-  $HOME/.config/sxhkd/sxhkdrc : desktop/sxhkdrc
+      $HOME/.imwheelrc : desktop/imwheelrc
+      $HOME/.config/newsboat : desktop/newsboat
+      $HOME/.config/polybar : desktop/polybar
+      $HOME/.config/shortcutrc : desktop/shortcutrc
+      $HOME/.config/bspwm/bspwmrc : desktop/bspwmrc
+      $HOME/.config/dunst/dunstrc : desktop/dunstrc
+      $HOME/.config/pulsemixer.cfg : desktop/pulsemixer.cfg
+      $HOME/.config/sxhkd/sxhkdrc : desktop/sxhkdrc
