@@ -1,30 +1,18 @@
 # dotfiles
-Github repo of my dotfiles!
+Github repo for my dotfiles with [dotbo](https://github.com/anishathalye/dotbot)!
 ![screenshot](screen.png "screenshot")
 
 # Install
-For a fast installation of dotfiles use GNU `stow`. Once installed simply run
+For fast and modular (check [this](https://github.com/anishathalye/dotbot/pull/11#issuecomment-73082152)) installation run
 
-	$ stow home config local
+	git clone https://github.com/its-fonsy/dotfiles.git
+	./install desktop scripts
 
 # My configuration
 
-+ **Window manager** `bspwm`
-+ **Terminal** `alacritty`
-+ **compositor** `picom`
-+ **Shell** `zsh` (I also have a `.bashrc`, just in case something goes wrong)
-+ **Notification Manager** `dunst`
-
-# Utilities 
-
-+ **Editor** Neovim
-+ **Music Player** `mpd` and `ncmpcpp`
-+ **File manager** `nnn`
-
-# Scripts
-All the scripts are in `local/.local/bin`.
-
-+ `chaudio`: using `dmenu` to select the audio interface to use
-+ `chnet`: using `dmenu` to select the internet interface to use
-+ `shortcuts`: with `folderc` and `configrc` (in `.config`) make shortcuts for shell and `ranger`
-+ `wallp`: choose randomly a wallpaper
++ **Window manager**: `bspwm`
++ **Terminal**: `alacritty`
++ **Shell**: `zsh`
++ **Editor**: `neovim`
++ **Music Player**: `mpd` and `ncmpcpp`
++ **File manager**: `nnn`
