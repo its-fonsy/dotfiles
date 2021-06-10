@@ -1,6 +1,5 @@
 # dotfiles
 Github repo for my dotfiles with [dotbot](https://github.com/anishathalye/dotbot)!
-![screenshot](screen.png "screenshot")
 
 # Install
 For fast and modular (check [this](https://github.com/anishathalye/dotbot/pull/11#issuecomment-73082152))
@@ -12,7 +11,7 @@ then
 
 	./install desktop scripts
 
-# My configuration
+# My Desktop configuration
 
 + **Window manager**: `bspwm`
 + **Terminal**: `alacritty`
@@ -20,3 +19,9 @@ then
 + **Editor**: `neovim`
 + **Music Player**: `mpd` and `ncmpcpp`
 + **File manager**: `nnn`
+
+# My Thinkpad configuration
+
++ **Window manager**: `i3`
++ **File manager**: `ranger`
++ other stuff is the same as desktop
