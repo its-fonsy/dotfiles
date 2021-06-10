@@ -8,6 +8,7 @@
 
 - link:
       $HOME/.imwheelrc : desktop/imwheelrc
+      $HOME/.config/alacritty/alacritty.yml: common/alacritty.yml
       $HOME/.config/newsboat : desktop/newsboat
       $HOME/.config/polybar : desktop/polybar
       $HOME/.config/shortcutrc : desktop/shortcutrc

@@ -6,14 +6,13 @@
 - clean: ['~', '~/.config']
 
 - link:
-    ~/.bashrc: common/bashrc
-    ~/.profile: common/profile
-    ~/.zshrc: common/zshrc
-    ~/.config/alacritty/alacritty.yml: common/alacritty.yml
-    ~/.config/mpd: common/mpd
-    ~/.config/ncmpcpp: common/ncmpcpp
-    ~/.config/nvim/:
+    $HOME/.bashrc: common/bashrc
+    $HOME/.profile: common/profile
+    $HOME/.zshrc: common/zshrc
+    $HOME/.config/mpd: common/mpd
+    $HOME/.config/ncmpcpp: common/ncmpcpp
+    $HOME/.config/nvim/:
         glob: true
         path: common/nvim/**
-    ~/.config/vim/vimrc: common/vimrc
-    ~/.config/zathura/zathurarc: common/zathurarc
+    $HOME/.config/vim/vimrc: common/vimrc
+    $HOME/.config/zathura/zathurarc: common/zathurarc
