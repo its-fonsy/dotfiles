@@ -9,8 +9,12 @@
     $HOME/.bashrc: common/bashrc
     $HOME/.profile: common/profile
     $HOME/.zshrc: common/zshrc
-    $HOME/.config/mpd: common/mpd
-    $HOME/.config/ncmpcpp: common/ncmpcpp
+    $HOME/.config/mpd/:
+        glob: true
+        path: common/mpd/**
+    $HOME/.config/ncmpcpp/:
+        glob: true
+        path: common/ncmpcpp/*
     $HOME/.config/nvim/:
         glob: true
         path: common/nvim/**
