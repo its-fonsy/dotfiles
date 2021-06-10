@@ -1,5 +1,5 @@
 # dotfiles
-Github repo for my dotfiles with [dotbot](https://github.com/anishathalye/dotbot)!
+Github repo of my dotfiles handled with [dotbot](https://github.com/anishathalye/dotbot)!
 
 # Install
 For fast and modular (check [this](https://github.com/anishathalye/dotbot/pull/11#issuecomment-73082152))
