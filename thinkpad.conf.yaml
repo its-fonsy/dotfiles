@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    ~/.config/alacritty/alacritty.yml: thinkpad/alacritty.yml
+    ~/.config/i3/config: thinkpad/config_i3
+    ~/.config/i3status/config: thinkpad/config_i3status
