@@ -1,0 +1,15 @@
+#!/bin/sh
+
+alias \
+		cls="clear" \
+		grep="grep --color" \
+		sdn="shutdown -h now" \
+		ls="ls -lh --color=auto --group-directories-first" \
+		wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"' \
+
+# git aliases
+alias \
+		gst='git status' \
+		gcm='git commit' \
+		gdf='git diff' \
+		gad='git add'
