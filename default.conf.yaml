@@ -7,7 +7,6 @@
 
 - link:
     $HOME/.bashrc: common/bashrc
-    $HOME/.profile: common/profile
     $HOME/.zshrc: common/zshrc
     $HOME/.config/mpd/:
         glob: true
