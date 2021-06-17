@@ -5,7 +5,7 @@
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 # Adds `/usr/local/texlive/2020/bin/x86_64-linux` to $PATH
-export PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux
+export PATH=$PATH:$HOME/.opt/texlive/2021/bin/x86_64-linux
 
 # Adds Ruby Gems to ~/.local/share/gems
 export GEM_HOME="$HOME/.local/share/gems"
