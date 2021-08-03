@@ -26,8 +26,7 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 # Sources shortcuts and aliases
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/shortcutrc"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc/aliasrc"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
 
 # History in cache directory:
 HISTSIZE=10000
@@ -117,6 +116,28 @@ function n ()
     fi
 }
 
+# fzf for navigate on the filesystem
+cdg() {
+	local dest_dir=$(fzf --reverse --height 20% < $XDG_CONFIG_HOME/folderc)
+	if [[ $dest_dir != '' ]]; then
+		cd "$dest_dir"
+	fi
+}
+
+# add current folder to bookmark
+alias bm="pwd >> $XDG_CONFIG_HOME/folderc"
+
+# fast edit files
+cfg() {
+	local cfg_file=$(fzf --reverse --height 20% < $XDG_CONFIG_HOME/configrc)
+
+   if [[ $cfg_file != '' ]]; then
+      $EDITOR "$cfg_file"
+   fi
+
+}
+
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
 autoload -Uz compinit && compinit
