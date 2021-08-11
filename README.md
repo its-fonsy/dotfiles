@@ -11,17 +11,10 @@ then
 
 	./install desktop scripts
 
-# My Desktop configuration
+# Configuration
 
-+ **Window manager**: `bspwm`
++ **Window manager**: `i3`
 + **Terminal**: `alacritty`
 + **Shell**: `zsh`
 + **Editor**: `neovim`
 + **Music Player**: `mpd` and `ncmpcpp`
-+ **File manager**: `nnn`
-
-# My Thinkpad configuration
-
-+ **Window manager**: `i3`
-+ **File manager**: `ranger`
-+ other stuff is the same as desktop
