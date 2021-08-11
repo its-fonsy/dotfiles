@@ -21,6 +21,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 	Plug 'sheerun/vim-polyglot'
+	Plug 'junegunn/goyo.vim'
 	Plug 'sonph/onehalf', { 'rtp': 'vim' } " Theme
 call plug#end()
 
