@@ -27,6 +27,10 @@ export GPG_TTY
 
 # Sources shortcuts and aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
+alias cls="clear"
+alias grep="grep --color"
+alias ls="ls -lh --color=auto --group-directories-first"
+
 
 # History in cache directory:
 HISTSIZE=10000

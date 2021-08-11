@@ -1,12 +1,6 @@
 #!/bin/sh
 
 alias \
-		cls="clear" \
-		nb="newsboat" \
-		grep="grep --color" \
-		sdn="killall -q Discord; shutdown -h 0" \
-		rbt="killall -q Discord; shutdown -r 0" \
-		ls="ls -lh --color=auto --group-directories-first" \
 		wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"' \
 		gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
 
