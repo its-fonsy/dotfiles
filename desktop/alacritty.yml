@@ -1,7 +1,7 @@
 window:
   dimensions:
-    columns: 150
-    lines: 40
+    columns: 100 
+    lines: 25
   startup_mode: Windowed
   title: Alacritty
   dynamic_title: true
