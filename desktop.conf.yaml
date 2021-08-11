@@ -14,5 +14,6 @@
       $HOME/.config/aliasrc : desktop/aliasrc
       $HOME/.config/folderc : desktop/folderc
       $HOME/.config/configrc : desktop/configrc
+      $HOME/.config/autostart.sh : desktop/autostart.sh
       $HOME/.config/dunst/dunstrc : desktop/dunstrc
       $HOME/.config/pulsemixer.cfg : desktop/pulsemixer.cfg
