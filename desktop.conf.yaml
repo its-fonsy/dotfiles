@@ -11,11 +11,8 @@
       $HOME/.profile : desktop/profile
       $HOME/.config/alacritty/alacritty.yml: desktop/alacritty.yml
       $HOME/.config/newsboat : desktop/newsboat
-      $HOME/.config/polybar : desktop/polybar
-      $HOME/.config/aliasrc : desktop/shortcutrc/aliasrc
-      $HOME/.config/folderc : desktop/shortcutrc/folderc
-      $HOME/.config/configrc : desktop/shortcutrc/configrc
-      $HOME/.config/bspwm/bspwmrc : desktop/bspwmrc
+      $HOME/.config/aliasrc : desktop/aliasrc
+      $HOME/.config/folderc : desktop/folderc
+      $HOME/.config/configrc : desktop/configrc
       $HOME/.config/dunst/dunstrc : desktop/dunstrc
       $HOME/.config/pulsemixer.cfg : desktop/pulsemixer.cfg
-      $HOME/.config/sxhkd/sxhkdrc : desktop/sxhkdrc

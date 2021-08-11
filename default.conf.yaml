@@ -8,6 +8,8 @@
 - link:
     $HOME/.bashrc: default/bashrc
     $HOME/.zshrc: default/zshrc
+    $HOME/.config/i3/config: default/i3_config
+    $HOME/.config/i3status/config: default/i3status_config
     $HOME/.config/mpd/:
         glob: true
         path: default/mpd/**
