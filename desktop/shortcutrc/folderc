@@ -1,16 +1,16 @@
-# You can add comments to these files with #
-b   ~/.local/bin
-C   ~/.config
-c   ~/documenti/code
-d   ~/documenti
-D   ~/Downloads
-i   ~/immagini
-l   ~/video/lezioni
-m   /media/mega
-o   ~/dotfiles
-p   ~/documenti/Progetti
-t   ~/documenti/Progetti/tex
-T   /media/torrents
-u   ~/documenti/università/unibo
-v   ~/video
-w   ~/documenti/Progetti/site/website
+/home/fonsy/.config
+/home/fonsy/.dotfiles
+/home/fonsy/.local/bin
+/home/fonsy/Downloads
+/home/fonsy/documenti
+/home/fonsy/documenti/Progetti
+/home/fonsy/documenti/Progetti/site/website
+/home/fonsy/documenti/Progetti/tex
+/home/fonsy/documenti/code
+/home/fonsy/documenti/università/unibo
+/home/fonsy/documenti/wiki/mds
+/home/fonsy/immagini
+/home/fonsy/video
+/home/fonsy/video/lezioni
+/media/mega
+/media/torrents

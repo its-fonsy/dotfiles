@@ -1,9 +1,8 @@
-cfa	~/.config/shortcutrc/aliasrc
-cfb	~/.config/bspwm/bspwmrc
-cfc	~/.config/shortcutrc/configrc
-cff	~/.config/shortcutrc/folderc
-cfp	~/.config/polybar/config
-cfs	~/.config/sxhkd/sxhkdrc
-cfu	~/.config/newsboat/urls
-cfv	~/.config/nvim/init.vim
-cfz	~/.config/zsh/.zshrc
+/home/fonsy/.config/alacritty/alacritty.yml
+/home/fonsy/.config/aliasrc
+/home/fonsy/.config/configrc
+/home/fonsy/.config/folderc
+/home/fonsy/.config/i3/config
+/home/fonsy/.config/nvim/init.vim
+/home/fonsy/.config/polybar/config
+/home/fonsy/.zshrc
