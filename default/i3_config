@@ -188,6 +188,8 @@ bindsym $mod+r mode "resize"
 bar {
 	status_command i3status
 	tray_output DVI-I-1
+	font pango: Iosevka Term 11 
+	separator_symbol " "
 }
 
 # Power of menu

@@ -3,6 +3,7 @@
 /home/fonsy/.config/configrc
 /home/fonsy/.config/folderc
 /home/fonsy/.config/i3/config
+/home/fonsy/.config/i3status/config
 /home/fonsy/.config/nvim/init.vim
 /home/fonsy/.config/polybar/config
 /home/fonsy/.zshrc
