@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# simple script that open tmux in horizontal split window
+# left is $EDITOR right terminal
+
+tmux new-session -d "$EDITOR"
+tmux split-window -h
+tmux -2 attach-session -d

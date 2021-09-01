@@ -53,3 +53,5 @@ alias lol="sudo sh -c 'sysctl -w abi.vsyscall32=0'"
 source $HOME/.config/shortcuts
 
 export QSYS_ROOTDIR="/media/quartus/quartus/sopc_builder/bin"
+
+source /home/fonsy/.config/broot/launcher/bash/br

@@ -23,6 +23,8 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'sheerun/vim-polyglot'
 	Plug 'junegunn/goyo.vim'
 	Plug 'sonph/onehalf', { 'rtp': 'vim' } " Theme
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 " Some basics:
@@ -55,7 +57,7 @@ call plug#end()
 	command! MakeTags !ctags -R .
 
 " Goyo plugin makes text more readable when writing prose:
-	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
+	" map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 	let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -96,3 +98,11 @@ call plug#end()
 " Save file as sudo on files that require root permission
 	"cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 	cnoremap w!! w suda://%
+
+
+" Find files using Telescope command-line sugar.
+	nnoremap <leader>ff <cmd>Telescope find_files<cr>
+	nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+	nnoremap <leader>fb <cmd>Telescope buffers<cr>
+	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
