@@ -3,6 +3,11 @@
 # simple script that open tmux in horizontal split window
 # left is $EDITOR right terminal
 
-tmux new-session -d "$EDITOR"
+FILE=""
+if [ -f "$1" ]; then
+	FILE="$1"
+fi
+
+tmux new-session -d "$EDITOR $FILE"
 tmux split-window -h
 tmux -2 attach-session -d
