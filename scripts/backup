@@ -1,16 +1,40 @@
 #!/bin/bash
 
 #  Backup media folder with rsync!
-
-NAS_DIR=/nas
+NAS_MNT_DIR=/nas
 NAS_IP=nas-backup
 
 # Rsync flags
-FLAG="-rlptD --ignore-errors --delete"
+RSYNC_FLAG="-rlptvD --delete --stats --progress"
+RSYNC_SRC="/media/"
+RSYNC_DST="$NAS_MNT_DIR/private/backup/"
+RSYNC_EXCLUDE="
+--exclude documenti/giochi
+--exclude documenti/programmi
+--exclude documenti/università
+--exclude video/anime
+--exclude video/film
+--exclude video/serie-tv
+--exclude video/lezioni"
+
+RSYNC_INCLUDE="
+--include documenti/***
+--include immagini/***
+--include musica/***
+--include video/***
+--include mega/unibo/***"
+# RSYNC_INCLUDE="--include dir1/*** --include dir3/***"
+# RSYNC_EXCLUDE="--exclude no_sync"
+
+RSYNC_LOG=/tmp/backup.log
 
 # Run as root, of course.
 ROOT_UID=0
 E_NOTROOT=87
+
+CL="\033[K"	# clear the line
+CR="\r"		# carriege return
+UL="\033[F"
 
 if [ "$UID" -ne "$ROOT_UID" ]
 then
@@ -19,40 +43,33 @@ then
 fi
 
 # Ping 4 times to see if connected to the router
-echo -ne "\e[1;29mChecking the nas on the network\e[0m"
-ping -c 4 $NAS_IP &> /dev/null || { echo -e "\e[1;31mERROR\e[0m: The nas isn't on the network"; exit 1; }
-echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas on the network"
+echo -ne "...checking if the NAS is on the local network$CR"
+ping -c 4 $NAS_IP &> /dev/null || { echo -e "$CL ERROR: NAS not on the network"; exit 1; }
+echo -e "$CL[OK] Nas on the network"
 
 # Mounting the NAS
-# mount -t cifs //$NAS_IP/admin $NAS_DIR -o user=admin,workgroup=workgroup,ip=192.168.178.34,iocharset=utf8,vers=1.0 || { echo -e "\e[1;31mERROR\e[0m: cannot mount the nas"; exit 1; }
-mount -t cifs //$NAS_IP/admin $NAS_DIR -o user=admin,vers=1.0 || { echo -e "\e[1;31mERROR\e[0m: cannot mount the nas"; exit 1; }
-echo -ne "Mounting nas to \e[1;29m$NAS_DIR\e[0m"
-echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas mounted to \e[1;29m$NAS_DIR\e[0m"
+echo -ne "...mounting nas to $NAS_MNT_DIR$CR"
+mount -t cifs //$NAS_IP/admin $NAS_MNT_DIR -o user=admin,vers=1.0 || { echo -e "$CL ERROR: can't mount the nas"; exit 1; }
+echo -e "$CL[OK] Nas mounted to $NAS_MNT_DIR"
 
-# Sync the document folder
-echo -ne "Sync \e[1;29mDocumenti\e[0m"
-rsync $FLAG --exclude giochi --exclude programmi --exclude università /home/fonsy/documenti/ /nas/private/backup/documenti
-rsync $FLAG /media/mega/unibo /nas/private/backup/documenti/università
-echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Documenti"
+# If the script is killed also kill all the process
+trap '[ -z $! ] || kill $!' SIGHUP SIGINT SIGQUIT SIGTERM
 
-# Sync the image folder
-echo -ne "Sync \e[1;29mImages\e[0m"
-rsync $FLAG /home/fonsy/immagini/ /nas/private/backup/immagini
-echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Images"
+echo -e "...start backup\n\n"
+rsync $RSYNC_FLAG $RSYNC_EXCLUDE $RSYNC_INCLUDE --exclude='*/' $RSYNC_SRC $RSYNC_DST > $RSYNC_LOG &
+rsync_pid=$!
 
-# Sync the music folder
-echo -ne "Sync \e[1;29mMusic\e[0m"
-rsync $FLAG /home/fonsy/musica/ /nas/private/backup/musica
-echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Music"
+sleep 5
 
-# Sync the video folder
-echo -ne "Sync \e[1;29mVideo\e[0m"
-rsync $FLAG --exclude anime --exclude film --exclude serie-tv --exclude tmp --exclude lezioni /home/fonsy/video/ /nas/private/backup/video
-echo -e "\033[1K\r[\e[1;32mOK\e[0m] Synced Video"
+while [ -e /proc/$rsync_pid ]; do
+	echo -ne "$UL$CL$UL$CL"
+	tail -n 2 $RSYNC_LOG
+	[ -n "$(tail -n 1 /tmp/backup.log | grep "    ")" ] && echo " "
+	sleep 1
+done
 
-echo -ne "Unmounting the nas"
-umount /nas
-echo -e "\033[1K\r[\e[1;32mOK\e[0m] Nas unmounted"
+echo -ne "...unmounting the nas$CR"
+umount /nas || { echo -e "$CL\ERROR: cant umount the nas"; exit 1; }
+echo -e "$CL[OK] Nas unmounted"
 
 exit 0
-
