@@ -49,7 +49,7 @@ done
 test -d "$video_dir" || { echo "ERROR: $1 is not a video directory"; exit 1; }
 
 video_to_compress=""
-mkv_files=$(find $video_dir -type f -name "*.mkv" | sort)
+mkv_files=$(find $video_dir -type f -name "*.mkv" ! -path "$video_dir/.tmp/*" | sort)
 
 # List the video that will be compressed
 # echo -ne ":: Scanning the folder..."
