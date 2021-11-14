@@ -2,8 +2,8 @@
 ### ncmpcpp config ###
 ######################
 
-ncmpcpp_directory = ~/.config/ncmpcpp
-lyrics_directory = ~/.config/ncmpcpp/lyrics
+ncmpcpp_directory = $XDG_CONFIG_HOME/ncmpcpp
+lyrics_directory = $XDG_CONFIG_HOME/ncmpcpp/lyrics
 
 ##### connection settings #####
 
@@ -14,7 +14,7 @@ mpd_port = 6600
 #mpd_connection_timeout = 5
 
 ## Needed for tag editor and file operations to work.
-mpd_music_dir = ~/musica/Libreria
+mpd_music_dir = /media/musica/lib
 
 #mpd_crossfade_time = 5
 
