@@ -5,28 +5,24 @@ NAS_MNT_DIR=/nas
 NAS_IP=nas-backup
 
 # Rsync flags
-RSYNC_FLAG="-rlptvD --delete --stats --progress"
-RSYNC_SRC="/media/"
+RSYNC_FLAG="-rlptD --delete --stats --progress"
 RSYNC_DST="$NAS_MNT_DIR/private/backup/"
 RSYNC_EXCLUDE="
---exclude documenti/giochi
---exclude documenti/programmi
---exclude documenti/università
---exclude video/anime
---exclude video/film
---exclude video/serie-tv
---exclude video/lezioni"
+--exclude giochi
+--exclude repo
+--exclude qmk_firmware
+--exclude programmi
+--exclude anime
+--exclude film
+--exclude serie-tv
+--exclude lezioni"
 
-RSYNC_INCLUDE="
---include documenti/***
---include immagini/***
---include musica/***
---include video/***
---include mega/unibo/***"
-# RSYNC_INCLUDE="--include dir1/*** --include dir3/***"
-# RSYNC_EXCLUDE="--exclude no_sync"
-
-RSYNC_LOG=/tmp/backup.log
+BACKUP_FOLDERS="
+/media/documenti
+/media/immagini
+/media/musica
+/media/video
+/media/mega/unibo"
 
 # Run as root, of course.
 ROOT_UID=0
@@ -52,24 +48,13 @@ echo -ne "...mounting nas to $NAS_MNT_DIR$CR"
 mount -t cifs //$NAS_IP/admin $NAS_MNT_DIR -o user=admin,vers=1.0 || { echo -e "$CL ERROR: can't mount the nas"; exit 1; }
 echo -e "$CL[OK] Nas mounted to $NAS_MNT_DIR"
 
-# If the script is killed also kill all the process
-trap '[ -z $! ] || kill $!' SIGHUP SIGINT SIGQUIT SIGTERM
-
 echo -e "...start backup\n\n"
-rsync $RSYNC_FLAG $RSYNC_EXCLUDE $RSYNC_INCLUDE --exclude='*/' $RSYNC_SRC $RSYNC_DST > $RSYNC_LOG &
-rsync_pid=$!
-
-sleep 5
-
-while [ -e /proc/$rsync_pid ]; do
-	echo -ne "$UL$CL$UL$CL"
-	tail -n 2 $RSYNC_LOG
-	[ -n "$(tail -n 1 /tmp/backup.log | grep "    ")" ] && echo " "
-	sleep 1
+for folder in $BACKUP_FOLDERS; do
+	rsync $RSYNC_FLAG $RSYNC_EXCLUDE $folder $RSYNC_DST
 done
 
 echo -ne "...unmounting the nas$CR"
-umount /nas || { echo -e "$CL\ERROR: cant umount the nas"; exit 1; }
+umount /nas || { echo -e "$CL ERROR: can't umount the nas"; exit 1; }
 echo -e "$CL[OK] Nas unmounted"
 
 exit 0
