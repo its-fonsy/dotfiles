@@ -13,8 +13,6 @@ then
 
 # Configuration
 
-+ **Window manager**: `i3`
-+ **Terminal**: `alacritty`
++ **Desktop Environment**: `gnome`
 + **Shell**: `zsh`
 + **Editor**: `neovim`
-+ **Music Player**: `mpd` and `ncmpcpp`
