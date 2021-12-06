@@ -16,7 +16,7 @@ zstyle ':vcs_info:*' unstagedstr '%f%F{red}'
 zstyle ':vcs_info:*' stagedstr '%f%F{yellow}'
 precmd () { vcs_info }
 
-PROMPT='${vcs_info_msg_0_}%B%F{blue}%n%f:%F{yellow}%3~%f » %b'
+PROMPT='$vcs_info_msg_0_ %n@%m %F{blue}%/%f $ '
 
 # Remove .xsession-errors
 [ -e $HOME/.xsession-errors ] && rm $HOME/.xsession-errors
@@ -151,5 +151,3 @@ cfg() {
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 autoload -Uz compinit && compinit
-
-source /home/fonsy/.config/broot/launcher/bash/br

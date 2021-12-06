@@ -9,11 +9,6 @@
 - link:
       $HOME/.imwheelrc : desktop/imwheelrc
       $HOME/.profile : desktop/profile
-      $HOME/.config/alacritty/alacritty.yml: desktop/alacritty.yml
-      $HOME/.config/newsboat : desktop/newsboat
       $HOME/.config/aliasrc : desktop/aliasrc
       $HOME/.config/folderc : desktop/folderc
       $HOME/.config/configrc : desktop/configrc
-      $HOME/.config/autostart.sh : desktop/autostart.sh
-      $HOME/.config/dunst/dunstrc : desktop/dunstrc
-      $HOME/.config/pulsemixer.cfg : desktop/pulsemixer.cfg
