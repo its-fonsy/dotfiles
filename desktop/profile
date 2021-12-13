@@ -3,7 +3,7 @@
 # zsh profile file. Runs on login. Environmental variables are set here.
 
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH=$PATH:$HOME/.local/bin/
 # Adds `/usr/local/texlive/2020/bin/x86_64-linux` to $PATH
 export PATH=$PATH:$HOME/.opt/texlive/2021/bin/x86_64-linux
 export MANPATH=$MANPATH:$HOME/.opt/texlive/2021/texmf-dist/doc/man
