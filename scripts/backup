@@ -1,60 +1,99 @@
-#!/bin/bash
+#!/bin/sh
 
-#  Backup media folder with rsync!
-NAS_MNT_DIR=/nas
-NAS_IP=nas-backup
-
-# Rsync flags
-RSYNC_FLAG="-rlptD --delete --stats --progress"
-RSYNC_DST="$NAS_MNT_DIR/private/backup/"
-RSYNC_EXCLUDE="
---exclude giochi
---exclude repo
---exclude qmk_firmware
---exclude programmi
---exclude anime
---exclude film
---exclude serie-tv
---exclude lezioni"
-
-BACKUP_FOLDERS="
-/media/documenti
-/media/immagini
-/media/musica
-/media/video
-/media/mega/unibo"
-
-# Run as root, of course.
-ROOT_UID=0
-E_NOTROOT=87
-
-CL="\033[K"	# clear the line
-CR="\r"		# carriege return
-UL="\033[F"
-
-if [ "$UID" -ne "$ROOT_UID" ]
-then
-  echo "ERROR: Must be root to run this script."
-  exit $E_NOTROOT
+# Check if packages are installed on this machine
+if ! [ -x "$(command -v borg)" ]; then
+  echo 'Error: borg is not installed.' >&2
+  exit 1
 fi
 
-# Ping 4 times to see if connected to the router
-echo -ne "...checking if the NAS is on the local network$CR"
-ping -c 4 $NAS_IP &> /dev/null || { echo -e "$CL ERROR: NAS not on the network"; exit 1; }
-echo -e "$CL[OK] Nas on the network"
+if ! [ -x "$(command -v wol)" ]; then
+  echo 'Error: wol is not installed.' >&2
+  exit 1
+fi
 
-# Mounting the NAS
-echo -ne "...mounting nas to $NAS_MNT_DIR$CR"
-mount -t cifs //$NAS_IP/admin $NAS_MNT_DIR -o user=admin,vers=1.0 || { echo -e "$CL ERROR: can't mount the nas"; exit 1; }
-echo -e "$CL[OK] Nas mounted to $NAS_MNT_DIR"
+# NAS variables
+NAS_IP=192.168.1.136
+NAS_USER=root
+NAS_BACKUP_DIR=/srv/dev-disk-by-label-Disco1/backup-archpc
+NAS_MAC="D0:50:99:34:CD:2B"
 
-echo -e "...start backup\n\n"
-for folder in $BACKUP_FOLDERS; do
-	rsync $RSYNC_FLAG $RSYNC_EXCLUDE $folder $RSYNC_DST
+# Setting this, so the repo does not need to be given on the commandline:
+export BORG_REPO=$NAS_USER@$NAS_IP:$NAS_BACKUP_DIR
+
+# some helpers and error handling:
+info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
+trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
+
+# Waking up the NAS
+max_attempt=10
+until ping -c 3 "$NAS_IP" &> /dev/null
+do
+	let max_attempt--
+	if [ $max_attempt -ne 0 ]; then
+		info "nas at $NAS_IP not power on, waking up"
+		wol $NAS_MAC
+		sleep 10
+	else
+		info "Cannot power on the NAS"
+		exit 1
+	fi
 done
 
-echo -ne "...unmounting the nas$CR"
-umount /nas || { echo -e "$CL ERROR: can't umount the nas"; exit 1; }
-echo -e "$CL[OK] Nas unmounted"
+info "Starting backup"
 
-exit 0
+# Backup the most important directories into an archive named after
+# the machine this script is currently running on:
+
+borg create                                  \
+    --verbose                                \
+    --filter AME                             \
+    --list                                   \
+    --stats                                  \
+    --show-rc                                \
+    --compression lz4                        \
+    --exclude-caches                         \
+    --exclude '/media/documenti/giochi/*'    \
+    --exclude '/media/documenti/programmi/*' \
+    --exclude '/media/video/anime/*'         \
+    --exclude '/media/video/film/*'          \
+    --exclude '/media/video/serie-tv//*'     \
+                                             \
+    ::'{hostname}-{now}'                     \
+    /media/documenti				         \
+    /media/musica					         \
+    /media/video					         \
+    /media/immagini					         \
+    /media/mega/unibo				         \
+
+backup_exit=$?
+
+info "Pruning repository"
+
+# Use the `prune` subcommand to maintain 3 daily, 1 weekly and 1 monthly
+# archives of THIS machine. The '{hostname}-' prefix is very important to
+# limit prune's operation to this machine's archives and not apply to
+# other machines' archives also:
+
+borg prune                          \
+    --list                          \
+    --prefix '{hostname}-'          \
+    --show-rc                       \
+    --keep-daily    3               \
+    --keep-weekly   1               \
+    --keep-monthly  1               \
+
+prune_exit=$?
+
+# use highest exit code as global exit code
+global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
+
+if [ ${global_exit} -eq 0 ]; then
+    info "Backup and Prune finished successfully, powering off the NAS"
+	ssh -t $NAS_USER@$NAS_IP poweroff &> /dev/null
+elif [ ${global_exit} -eq 1 ]; then
+    info "Backup and/or Prune finished with warnings"
+else
+    info "Backup and/or Prune finished with errors"
+fi
+
+exit ${global_exit}
