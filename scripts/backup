@@ -19,24 +19,35 @@ NAS_MAC="D0:50:99:34:CD:2B"
 
 # Setting this, so the repo does not need to be given on the commandline:
 export BORG_REPO=$NAS_USER@$NAS_IP:$NAS_BACKUP_DIR
+if [ -z $BORG_PASSPHRASE ]; then
+	echo -n "BORG_PASSPHRASE not set, type it now: "
+	read -s user_pw
+	export BORG_PASSPHRASE="$user_pw"
+fi
 
 # some helpers and error handling:
-info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
+info() { printf "\n%s %s\n\n" "[$( date +"%H:%m:%S" )]" "$*" >&2; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
 # Waking up the NAS
 max_attempt=10
+attempt=0
 until ping -c 3 "$NAS_IP" &> /dev/null
 do
-	let max_attempt--
-	if [ $max_attempt -ne 0 ]; then
-		info "nas at $NAS_IP not power on, waking up"
-		wol $NAS_MAC
-		sleep 10
-	else
+
+	let attempt++
+	if [ $attempt -eq $max_attempt ]; then
 		info "Cannot power on the NAS"
 		exit 1
 	fi
+
+	if [ $attempt -eq 1 ]; then
+			info "nas at $NAS_IP not power on, waking up"
+		else
+			info "sending WOL packet the $attempt time"
+	fi
+	wol $NAS_MAC &> /dev/null
+	sleep 10
 done
 
 info "Starting backup"
