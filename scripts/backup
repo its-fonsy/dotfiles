@@ -4,9 +4,7 @@
 if ! [ -x "$(command -v borg)" ]; then
   echo 'Error: borg is not installed.' >&2
   exit 1
-fi
-
-if ! [ -x "$(command -v wol)" ]; then
+elif ! [ -x "$(command -v wol)" ]; then
   echo 'Error: wol is not installed.' >&2
   exit 1
 fi
@@ -20,13 +18,14 @@ NAS_MAC="D0:50:99:34:CD:2B"
 # Setting this, so the repo does not need to be given on the commandline:
 export BORG_REPO=$NAS_USER@$NAS_IP:$NAS_BACKUP_DIR
 if [ -z $BORG_PASSPHRASE ]; then
-	echo -n "BORG_PASSPHRASE not set, type it now: "
+	echo -n "BORG_PASSPHRASE not set, type it now:"
 	read -s user_pw
 	export BORG_PASSPHRASE="$user_pw"
+	echo "BORG_PASSPHRASE set correctly"
 fi
 
 # some helpers and error handling:
-info() { printf "\n%s %s\n\n" "[$( date +"%H:%m:%S" )]" "$*" >&2; }
+info() { printf "%s %s\n" "[$( date +"%H:%m:%S" )]" "$*" >&2; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
 # Waking up the NAS
