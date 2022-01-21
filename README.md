@@ -1,7 +1,7 @@
 # dotfiles
 Github repo of my dotfiles handled with [dotbot](https://github.com/anishathalye/dotbot)!
 
-[screenshot](screenshot.png)
+![screenshot](screenshot.png)
 
 In the screenshot above you can see [my fork of dwm](https://github.com/its-fonsy/dwm),
 in this repo you can find all the configs of other programs that I use daily.
