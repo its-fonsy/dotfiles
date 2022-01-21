@@ -1,0 +1,1 @@
+/home/fonsy/Documenti/code/repo/public/suckless/slstatus/config.h
