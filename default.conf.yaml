@@ -13,5 +13,8 @@
     $HOME/.config/nvim/:
         glob: true
         path: default/nvim/**
+    $HOME/.config/rofi/:
+        glob: true
+        path: default/rofi/*
     $HOME/.config/vim/vimrc: default/vimrc
     $HOME/.config/zathura/zathurarc: default/zathurarc
