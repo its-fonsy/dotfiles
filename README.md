@@ -1,7 +1,7 @@
 # dotfiles
 Github repo of my dotfiles handled with [dotbot](https://github.com/anishathalye/dotbot)!
 
-[screenshot]{screenshot.png}
+[screenshot](screenshot.png)
 
 In the screenshot above you can see [my fork of dwm](https://github.com/its-fonsy/dwm),
 in this repo you can find all the configs of other programs that I use daily.
@@ -40,8 +40,8 @@ I changed the colorschem to [Dracula](https://draculatheme.com/) and some keybin
 To see all of them give a look at the source code of the
 [dwm repo](https://github.com/its-fonsy/dwm).
 
-I use rofi as an application launcher (<kbd>MOD</kbd>+<kbd>r</kbd>) and
-as a powermenu (<kbd>MOD</kbd>+<kbd>SHIFT</kbd>+<kbd>p</kbd>).
+I use rofi as an application launcher (<kbd>MOD</kbd>+<kbd>R</kbd>) and
+as a powermenu (<kbd>MOD</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
 ## Others
 
