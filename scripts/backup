@@ -18,10 +18,10 @@ NAS_MAC="D0:50:99:34:CD:2B"
 # Setting this, so the repo does not need to be given on the commandline:
 export BORG_REPO=$NAS_USER@$NAS_IP:$NAS_BACKUP_DIR
 if [ -z $BORG_PASSPHRASE ]; then
-	echo -n "BORG_PASSPHRASE not set, type it now:"
+	echo -n "BORG_PASSPHRASE not set, type it now: "
 	read -s user_pw
 	export BORG_PASSPHRASE="$user_pw"
-	echo "BORG_PASSPHRASE set correctly"
+	echo -e "\nBORG_PASSPHRASE set correctly"
 fi
 
 # some helpers and error handling:
@@ -43,7 +43,7 @@ do
 	if [ $attempt -eq 1 ]; then
 			info "nas at $NAS_IP not power on, waking up"
 		else
-			info "sending WOL packet the $attempt time"
+			info "sending WOL packet ($attempt)"
 	fi
 	wol $NAS_MAC &> /dev/null
 	sleep 10

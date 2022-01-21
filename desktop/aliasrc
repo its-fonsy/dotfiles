@@ -14,4 +14,4 @@ alias \
 alias \
 		imwheel='imwheel --kill -b 45' \
 		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
-		nas-mount="sudo mount -t cifs //nas-backup/admin /nas -o user=admin,vers=1.0"
+		nas-mount="sudo mount -t cifs -o username=Marco,uid=$(id -u),gid=$(id -g) //192.168.1.136/Plex /mnt"
