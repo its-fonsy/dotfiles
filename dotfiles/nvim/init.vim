@@ -26,7 +26,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'sonph/onehalf', { 'rtp': 'vim' } " Theme
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'Mofiqul/dracula.nvim'
+	" Plug 'Mofiqul/dracula.nvim'
 call plug#end()
 
 " Some basics:
@@ -39,8 +39,7 @@ call plug#end()
 " Colorscheme
 	" set t_Co=256
 	set cursorline
-	colorscheme dracula
-	" let g:airline_theme='onehalfdark'
+	colorscheme default
 
 " Ultisnips
 	let g:UltiSnipsExpandTrigger="<tab>"

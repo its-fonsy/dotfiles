@@ -1,0 +1,37 @@
+- defaults:
+    link:
+        relink: true
+        create: true
+        force: true
+
+- clean:
+    ~/:
+        force: true
+    ~/.config:
+        recursive: true
+    ~/.local/bin:
+        force: true
+
+- link:
+    ~/.imwheelrc : dotfiles/imwheelrc
+    ~/.profile : dotfiles/profile
+    ~/.bashrc: dotfiles/bashrc
+    ~/.zshrc: dotfiles/zshrc
+    ~/.tmux.conf: dotfiles/tmux
+    ~/.config/aliasrc : dotfiles/aliasrc
+    ~/.config/folderc : dotfiles/folderc
+    ~/.config/configrc : dotfiles/configrc
+    ~/.config/alacritty/alacritty.yml: dotfiles/alacritty.yml
+    ~/.config/vim/vimrc: dotfiles/vimrc
+    ~/.config/zathura/zathurarc: dotfiles/zathurarc
+    ~/.config/i3/config: dotfiles/i3_config
+    ~/.config/i3status/config: dotfiles/i3status_config
+    ~/.config/nvim/:
+        glob: true
+        path: dotfiles/nvim/**
+    ~/.local/bin/:
+        glob: true
+        path: scripts/*
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
