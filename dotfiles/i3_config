@@ -170,7 +170,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	status_command i3status
-	tray_output DVI-I-1
+	tray_output primary
 	font pango: Iosevka Term 11 
 	separator_symbol " "
 }
@@ -195,15 +195,3 @@ bindsym $mod+Escape mode "$mode_system"
 # for_window [class=".*"] border pixel 2
 # gaps inner 10
 # gaps outer 10
-
-# Multiple monitor settings
-workspace $ws1 output DVI-I-1
-workspace $ws2 output DVI-I-1
-workspace $ws3 output DVI-I-1
-workspace $ws4 output DVI-I-1
-workspace $ws5 output DVI-I-1
-workspace $ws6 output HDMI-0
-workspace $ws7 output HDMI-0
-workspace $ws8 output HDMI-0
-workspace $ws9 output HDMI-0
-workspace $ws10 output HDMI-0
