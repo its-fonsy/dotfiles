@@ -11,9 +11,8 @@ Clone the repo then launch the install script
 # Configuration
 The program that I use are:
 
-| Terminal | `alacritty` |
-|---------:|:-----------:|
-|    Shell |     `zsh`   |
-|   Editor |   `neovim`  |
-|       DE |     `i3`    |
-|      Bar |  `i3status` |
++ Terminal: `alacritty` 
++ Shell: `zsh`
++ Editor: `neovim`
++ DE: `i3`
++ Bar: `i3status` 
