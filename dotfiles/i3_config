@@ -4,7 +4,7 @@
 # Constants
 set $mod Mod4
 set $term alacritty
-set $browser firefox
+set $browser chromium
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -18,7 +18,8 @@ exec --no-startup-id "setxkbmap us"
 exec --no-startup-id "displaycal-apply-profiles &> /dev/null"
 # exec --no-startup-id "redshift -l 45.19:10.97 &> /dev/null &"
 exec --no-startup-id "megasync &"
-exec --no-startup-id "nitrogen --restore &"
+exec --no-startup-id "nitrogen --restore"
+exec --no-startup-id "imwheel --kill -b 45"
 exec --no-startup-id "xset -dpms s off"
 
 # Use pactl to adjust volume in PulseAudio.
@@ -94,6 +95,10 @@ exec --no-startup-id $term --class "cmus_scratchpad" -e cmus
 for_window [instance="pmix_scratchpad"] floating enable, move scratchpad
 bindsym $mod+p [instance="pmix_scratchpad"] scratchpad show; sticky enable
 exec --no-startup-id $term --class "pmix_scratchpad" -e pulsemixer
+
+for_window [instance="term_scratchpad"] floating enable, move scratchpad
+bindsym $mod+t [instance="term_scratchpad"] scratchpad show; sticky enable
+exec --no-startup-id $term --class "term_scratchpad"
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
