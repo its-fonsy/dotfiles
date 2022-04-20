@@ -16,19 +16,19 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: Iosevka
+    family: Comic Mono
     style: Regular
 
   bold:
-    family: Iosevka
+    family: Comic Mono
     style: Bold
 
   italic:
-    family: Iosevka
+    family: Comic Mono
     style: Italic
 
   bold_italic:
-    family: Iosevka
+    family: Comic Mono
     style: Bold Italic
 
   size: 11.0
