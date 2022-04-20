@@ -75,8 +75,16 @@ call plug#end()
 	set splitbelow splitright
 
 " Nerd tree
+	let NERDTreeShowLineNumbers=1
+	autocmd FileType nerdtree setlocal relativenumber
 	map <leader>n :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Find files using Telescope command-line sugar.
+	nnoremap <leader>ff <cmd>Telescope find_files<cr>
+	nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+	nnoremap <leader>fb <cmd>Telescope buffers<cr>
+	nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
