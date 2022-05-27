@@ -4,10 +4,11 @@
 
 # Adds `~/.local/bin` to $PATH
 export PATH=$PATH:$HOME/.local/bin/
+
 # Adds `/usr/local/texlive/2020/bin/x86_64-linux` to $PATH
-export PATH=$PATH:$HOME/.opt/texlive/2021/bin/x86_64-linux
-export MANPATH=$MANPATH:$HOME/.opt/texlive/2021/texmf-dist/doc/man
-export INFOPATH=$INFOPATH:$HOME/.opt/texlive/2021/texmf-dist/doc/info
+export PATH=$PATH:$HOME/.local/opt/texlive/2022/bin/x86_64-linux
+export MANPATH=$MANPATH:$HOME/.local/opt/texlive/2022/texmf-dist/doc/man
+export INFOPATH=$INFOPATH:$HOME/.local/opt/texlive/2022/texmf-dist/doc/info
 
 # Adds Ruby Gems to ~/.local/share/gems
 export GEM_HOME="$HOME/.local/share/gems"
