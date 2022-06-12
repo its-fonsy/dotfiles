@@ -1,6 +1,13 @@
 #!/bin/sh
 
-# Check if packages are installed on this machine
+# Shutdwon or not the NAS when the backup is done
+if [[ "$1" = "-s" ]]; then
+	SHUTDOWN=1
+else
+	SHUTDOWN=0
+fi
+
+# Check if packages are installed
 if ! [ -x "$(command -v borg)" ]; then
   echo 'Error: borg is not installed.' >&2
   exit 1
@@ -15,7 +22,7 @@ NAS_USER=root
 NAS_BACKUP_DIR=/srv/dev-disk-by-label-Disco1/backup-archpc
 NAS_MAC="D0:50:99:34:CD:2B"
 
-# Setting this, so the repo does not need to be given on the commandline:
+# Check if the passphrase of the backup is set on a VARIABLE
 export BORG_REPO=$NAS_USER@$NAS_IP:$NAS_BACKUP_DIR
 if [ -z $BORG_PASSPHRASE ]; then
 	echo -n "BORG_PASSPHRASE not set, type it now: "
@@ -98,8 +105,11 @@ prune_exit=$?
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
 
 if [ ${global_exit} -eq 0 ]; then
-    info "Backup and Prune finished successfully, powering off the NAS"
-	ssh -t $NAS_USER@$NAS_IP poweroff &> /dev/null
+    info "Backup and Prune finished successfully"
+	if [[ $SHUTDOWN -eq 1 ]]; then
+		info "Powering off the NAS"
+		ssh -t $NAS_USER@$NAS_IP poweroff &> /dev/null
+	fi
 elif [ ${global_exit} -eq 1 ]; then
     info "Backup and/or Prune finished with warnings"
 else
