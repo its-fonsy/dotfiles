@@ -18,7 +18,7 @@ export PATH="/home/fonsy/.local/share/gem/ruby/3.0.0/bin:$PATH"
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
-export LYRICS_DIR="/home/fonsy/musica/foobar/lyrics/"
+export LYRICS_DIR="/media/musica/lyrics"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
