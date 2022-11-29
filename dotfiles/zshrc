@@ -16,7 +16,7 @@ zstyle ':vcs_info:*' unstagedstr '%f%F{red}'
 zstyle ':vcs_info:*' stagedstr '%f%F{yellow}'
 precmd () { vcs_info }
 
-PROMPT='$vcs_info_msg_0_%n@%m %F{blue}%/%f $ '
+PROMPT='$vcs_info_msg_0_%n@%m %3~ $ '
 
 # Remove .xsession-errors
 [ -e $HOME/.xsession-errors ] && rm $HOME/.xsession-errors
