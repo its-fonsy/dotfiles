@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+# NAS variables
+NAS_IP=192.168.1.136
+NAS_USER=root
+NAS_MAC="D0:50:99:34:CD:2B"
+
+# Waking up the NAS
+echo -ne "Waking up $NAS_IP"
+max_attempt=20
+attempt=0
+until ping -c 3 "$NAS_IP" &> /dev/null
+do
+	let attempt++
+	if [ $attempt -eq $max_attempt ]; then
+		echo "ERROR: $NAS_IP can't be wake up"
+		exit 1
+	fi
+	echo -ne "."
+
+	wol $NAS_MAC &> /dev/null
+	sleep 2 
+done
+
+echo -e "\nSUCCESS: $NAS_IP is online"
+
+exit 0
