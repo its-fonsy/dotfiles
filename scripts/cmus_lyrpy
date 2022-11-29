@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# Simple script that lunch a tmux session with splitted cmus and lyrpy
+
+tmux new-session -d cmus
+tmux split-window -h -d "sleep 2 && lyrpy"
+tmux -2 attach-session -d
+
+exit 0
