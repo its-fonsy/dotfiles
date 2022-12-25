@@ -13,7 +13,8 @@ font pango:Iosevka 11
 # Startup script
 bindsym $mod+space exec "(setxkbmap -query | grep it > /dev/null) && setxkbmap us || setxkbmap it"
 bindsym $mod+i exec notify_info
-exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 "
+# exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 "
+exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00"
 exec --no-startup-id "setxkbmap us"
 exec --no-startup-id "displaycal-apply-profiles &> /dev/null"
 # exec --no-startup-id "redshift -l 45.19:10.97 &> /dev/null &"
