@@ -1,7 +1,7 @@
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
-setopt autocd		# Automatically cd into typed directory.
-stty stop undef		# Disable ctrl-s to freeze terminal.
+setopt autocd                   # Automatically cd into typed directory.
+stty stop undef                 # Disable ctrl-s to freeze terminal.
 
 # Prompt
 setopt PROMPT_SUBST
@@ -26,25 +26,19 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 # Sources shortcuts and aliases
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
-alias cls="clear"
-alias grep="grep --color"
-alias ls="ls --color=auto"
-alias la="ls -a --color=auto"
-alias ll="ls -lh --color=auto --group-directories-first"
-alias lla="ls -lah --color=auto --group-directories-first"
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ]; then
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
+fi
 
 
 # History in cache directory:
+HISTFILE=$XDG_CACHE_HOME/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
 
-# If history doesn't exist create it
-if test ! -e $HISTFILE
-then
-	mkdir -p "${HISTFILE%/*}"
-	touch "$HISTFILE"
+if [ -f $HISTFILE ]; then
+    mkdir -p "${HISTFILE%/*}"
+    touch "$HISTFILE"
 fi
 
 # zoxide
@@ -78,79 +72,15 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# NNN configuration
-export NNN_OPENER=opener
-function n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
-    NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn -E "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-
-# fzf for navigate on the filesystem
-cdg() {
-	local dest_dir=$(fzf --reverse --height 20% < $XDG_CONFIG_HOME/folderc)
-	if [[ $dest_dir != '' ]]; then
-		cd "$dest_dir"
-	fi
-}
-
-# add current folder to bookmark
-alias bm="pwd >> $XDG_CONFIG_HOME/folderc"
-
 # fast edit files
 cfg() {
-	local cfg_file=$(fzf --reverse --height 20% < $XDG_CONFIG_HOME/configrc)
+    local cfg_file=$(fzf --reverse --height 20% < $XDG_CONFIG_HOME/configrc)
 
-   if [[ $cfg_file != '' ]]; then
-      $EDITOR "$cfg_file"
-   fi
-
+    if [[ $cfg_file != '' ]]; then
+        $EDITOR "$cfg_file"
+    fi
 }
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
 autoload -Uz compinit && compinit
