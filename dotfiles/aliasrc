@@ -1,21 +1,27 @@
 #!/bin/sh
 
-alias \
-		wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"' \
-		gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+alias gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
 
 # git aliases
-alias \
-		gst='git status' \
-		gcm='git commit' \
-		gdf='git diff' \
-		gad='git add'
+alias gst='git status'
+alias gcm='git commit'
+alias gdf='git diff'
+alias gad='git add'
 
-alias \
-		r='ranger' \
-		imwheel='imwheel --kill -b 45' \
-		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
-		nas-mount="sudo mount -t cifs -o username=Marco,uid=$(id -u),gid=$(id -g) //192.168.1.136/Plex /mnt" \
-		nas-po="ssh -t root@192.168.1.136 poweroff" \
-		nas-wu="wakeup-nas" \
-		nas-pg="ping 192.168.1.136"
+
+alias r='ranger'
+alias imwheel='imwheel --kill -b 45'
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+alias nas-mount="sudo mount -t cifs -o username=Marco,uid=$(id -u),gid=$(id -g) //192.168.1.136/Plex /mnt"
+alias nas-po="ssh -t root@192.168.1.136 poweroff"
+alias nas-wu="wakeup-nas"
+alias nas-pg="ping 192.168.1.136"
+
+alias cls="clear"
+alias grep="grep --color"
+alias ls="ls --color=auto"
+alias la="ls -a --color=auto"
+alias ll="ls -lh --color=auto --group-directories-first"
+alias lla="ls -lah --color=auto --group-directories-first"
