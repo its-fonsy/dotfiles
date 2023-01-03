@@ -8,6 +8,7 @@ window:
   class:
     instance: Alacritty
     general: Alacritty
+  opacity: 0.1
 
 scrolling:
   history: 10000
@@ -31,7 +32,7 @@ font:
     family: JetBrains Mono
     style: Bold Italic
 
-  size: 10.0
+  size: 11.5
 
   offset:
     x: 0
