@@ -23,6 +23,20 @@ return require('packer').startup(function(use)
 
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('theprimeagen/harpoon')
+    use {
+        'lervag/vimtex',
+        opt = true,
+        config = function ()
+            vim.g.vimtex_view_general_viewer = 'okular'
+            vim.g.vimtex_view_method = 'zathura'
+            -- vim.g.vimtex_compiler_latexmk_engines = {
+            --     _ = '-xelatex'
+            -- }
+            vim.g.tex_comment_nospell = 1
+            vim.g.vimtex_compiler_progname = 'nvr'
+        end,
+        ft = 'tex'
+    }
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
@@ -45,5 +59,14 @@ return require('packer').startup(function(use)
 			{'rafamadriz/friendly-snippets'},
 		}
 	}
+
+    use {
+        "iurimateus/luasnip-latex-snippets.nvim",
+        requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+        config = function()
+            require'luasnip-latex-snippets'.setup()
+        end,
+        ft = "tex",
+    }
 
 end)
