@@ -39,6 +39,7 @@ bindsym $mod+Shift+q kill
 # app shortcuts
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
+bindsym $mod+n exec nemo
 bindsym $mod+d exec --no-startup-id dmenu_run
 
 # change focus
@@ -100,6 +101,10 @@ exec --no-startup-id $term --class "pmix_scratchpad" -e pulsemixer
 for_window [instance="term_scratchpad"] floating enable, move scratchpad
 bindsym $mod+t [instance="term_scratchpad"] scratchpad show; sticky enable
 exec --no-startup-id $term --class "term_scratchpad"
+
+for_window [instance="ranger_scratchpad"] floating enable, move scratchpad
+bindsym $mod+u [instance="ranger_scratchpad"] scratchpad show; sticky enable
+exec --no-startup-id $term --class "ranger_scratchpad" -e ranger
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
