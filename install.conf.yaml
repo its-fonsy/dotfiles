@@ -18,8 +18,8 @@
     ~/.config/aliasrc : dotfiles/aliasrc
     ~/.config/configrc : dotfiles/configrc
     ~/.config/folderc : dotfiles/folderc
-    ~/.config/i3/config: dotfiles/i3_config
-    ~/.config/i3status/config: dotfiles/i3status_config
+    ~/.config/i3/config: dotfiles/i3
+    ~/.config/i3status/config: dotfiles/i3status
     ~/.config/nvim/:
         glob: true
         path: dotfiles/nvim/**
