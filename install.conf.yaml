@@ -13,25 +13,26 @@
         force: true
 
 - link:
-    ~/.imwheelrc : dotfiles/imwheelrc
-    ~/.profile : dotfiles/profile
     ~/.bashrc: dotfiles/bashrc
-    ~/.zshrc: dotfiles/zshrc
-    ~/.tmux.conf: dotfiles/tmux
-    ~/.config/aliasrc : dotfiles/aliasrc
-    ~/.config/folderc : dotfiles/folderc
-    ~/.config/configrc : dotfiles/configrc
     ~/.config/alacritty/alacritty.yml: dotfiles/alacritty.yml
-    ~/.config/vim/vimrc: dotfiles/vimrc
-    ~/.config/zathura/zathurarc: dotfiles/zathurarc
+    ~/.config/aliasrc : dotfiles/aliasrc
+    ~/.config/configrc : dotfiles/configrc
+    ~/.config/folderc : dotfiles/folderc
     ~/.config/i3/config: dotfiles/i3_config
     ~/.config/i3status/config: dotfiles/i3status_config
     ~/.config/nvim/:
         glob: true
         path: dotfiles/nvim/**
+    ~/.config/ranger/rc.conf: dotfiles/rc.conf
+    ~/.config/vim/vimrc: dotfiles/vimrc
+    ~/.config/zathura/zathurarc: dotfiles/zathurarc
     ~/.local/bin/:
         glob: true
         path: scripts/*
+    ~/.imwheelrc : dotfiles/imwheelrc
+    ~/.profile : dotfiles/profile
+    ~/.tmux.conf: dotfiles/tmux
+    ~/.zshrc: dotfiles/zshrc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
