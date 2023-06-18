@@ -9,7 +9,6 @@ alias gcm='git commit'
 alias gdf='git diff'
 alias gad='git add'
 
-
 alias r='ranger'
 alias imwheel='imwheel --kill -b 45'
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -21,6 +20,8 @@ alias nas-pg="ping 192.168.1.136"
 
 alias cls="clear"
 alias grep="grep --color"
+
+# ls aliases
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
 alias ll="ls -lh --color=auto --group-directories-first"
