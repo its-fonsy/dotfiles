@@ -4,6 +4,7 @@
 
 # PATH folders 
 export PATH=$PATH:$HOME/.local/bin/
+export PATH=$PATH:$HOME/.local/bin/fonsy/
 export PATH=$PATH:$HOME/.local/share/cargo/bin/
 export PATH=$PATH:$HOME/.local/opt/texlive/2023/bin/x86_64-linux
 
@@ -38,8 +39,3 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
 export CUDA_CACHE_PATH="{$XDG_CACHE_HOME}/nv"
-
-# Arduino-mk
-export ARDUINO_DIR=/usr/share/arduino
-export ARDMK_DIR=/usr/share/arduino
-export AVR_TOOLS_DIR=/usr
