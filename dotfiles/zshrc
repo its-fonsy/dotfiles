@@ -84,3 +84,11 @@ cfg() {
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 autoload -Uz compinit && compinit
+
+# Directory Stack copied from
+#   https://dev.to/phantas0s/understanding-and-configuring-zsh-3jnd
+setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack
+setopt PUSHD_SILENT         # Do not print the directory stack after pushd/popd
+
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
