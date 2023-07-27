@@ -16,22 +16,22 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: Fantasque Sans Mono
+    family: JetBrains Mono
     style: Regular
 
   bold:
-    family: Fantasque Sans Mono
+    family: JetBrains Mono
     style: Bold
 
   italic:
-    family: Fantasque Sans Mono
+    family: JetBrains Mono
     style: Italic
 
   bold_italic:
-    family: Fantasque Sans Mono
+    family: JetBrains Mono
     style: Bold Italic
 
-  size: 13
+  size: 10
 
   offset:
     x: 0
