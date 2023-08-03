@@ -1,40 +1,53 @@
-let mapleader =","
+let mapleader =" "
 
-" Some basics:
-	filetype plugin on
-	syntax on
-	set encoding=utf-8
-	set number relativenumber
+" basics
+syntax enable
+filetype plugin on
+colorscheme default
+set nocompatible
+set encoding=utf-8
+set number relativenumber
 
-" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-	set splitbelow splitright
+" finding files in a fuzzy way
+set path+=**
+set wildmenu
 
-" Nerd tree
-	map <leader>n :NERDTreeToggle<CR>
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nohlsearch
+set incsearch
 
-" Shortcutting split navigation, saving a keypress:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
+set scrolloff=10
+set signcolumn="yes"
+set colorcolumn=80
 
-" Quick saving and quitting:
-	map <leader>w :w<CR>
-	map <leader>q :q<CR>
+" NETRw config
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+nnoremap <leader>pv :Ex<CR>
 
-" Replace all is aliased to S.
-	nnoremap <leader>s :%s//g<Left><Left>
+" remaps
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap J mzJ`z
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" substitue all occurences of word under cursor
+nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Save file as sudo on files that require root permission
-	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
-" Automatically deletes all trailing whitespace on save.
-	autocmd BufWritePre * %s/\s\+$//e
-
-set undodir=$XDG_DATA_HOME/vim/undo
-set directory=$XDG_DATA_HOME/vim/swap
-set backupdir=$XDG_DATA_HOME/vim/backup
-set viewdir=$XDG_DATA_HOME/vim/view
-set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
-set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+" Automatically deletes all trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e

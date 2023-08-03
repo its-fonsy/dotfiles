@@ -24,7 +24,7 @@
         glob: true
         path: dotfiles/nvim/**
     ~/.config/ranger/rc.conf: dotfiles/rc.conf
-    ~/.config/vim/vimrc: dotfiles/vimrc
+    ~/.vim/vimrc: dotfiles/vimrc
     ~/.config/zathura/zathurarc: dotfiles/zathurarc
     ~/.local/bin/:
         glob: true
