@@ -5,14 +5,14 @@ This is the Github repo of my dotfiles handled with
 # Install
 Clone the repo then launch the install script
 
-	git clone https://github.com/its-fonsy/dotfiles.git
+	git clone --recursive https://github.com/its-fonsy/dotfiles.git
 	./install
 
 # Configuration
 The program that I use are:
 
-+ Terminal: `alacritty` 
++ Terminal: `xterm` 
 + Shell: `zsh`
-+ Editor: `neovim`
++ Editor: `vim`
 + DE: `i3`
 + Bar: `i3status` 
