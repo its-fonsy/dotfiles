@@ -1,7 +1,7 @@
 # Enable colors and change prompt:
-autoload -U colors && colors	# Load colors
-setopt autocd                   # Automatically cd into typed directory.
-stty stop undef                 # Disable ctrl-s to freeze terminal.
+autoload -U colors && colors
+setopt autocd
+stty stop undef
 
 # Prompt
 setopt PROMPT_SUBST
@@ -30,13 +30,39 @@ if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ]; then
     source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
 fi
 
+# aliases
+alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+alias gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
+
+alias gst='git status'
+alias gcm='git commit'
+alias gdf='git diff'
+alias gad='git add'
+
+alias r='ranger'
+alias v='vim .'
+alias imwheel='imwheel --kill -b 45'
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+alias nas-mount="sudo mount -t cifs -o username=Marco,uid=$(id -u),gid=$(id -g) //192.168.1.136/Plex /mnt"
+alias nas-po="ssh -t root@192.168.1.136 poweroff"
+alias nas-wu="wakeup-nas"
+alias nas-pg="ping 192.168.1.136"
+
+alias cls="clear"
+alias grep="grep --color"
+
+alias ls="ls --color=auto"
+alias la="ls -a --color=auto"
+alias ll="ls -lh --color=auto --group-directories-first"
+alias lla="ls -lah --color=auto --group-directories-first"
 
 # History in cache directory:
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 
-if [ -f $HISTFILE ]; then
+if ! [ -f $HISTFILE ]; then
     mkdir -p "${HISTFILE%/*}"
     touch "$HISTFILE"
 fi
@@ -72,23 +98,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# fast edit files
-cfg() {
-    local cfg_file=$(fzf --reverse --height 20% < $XDG_CONFIG_HOME/configrc)
-
-    if [[ $cfg_file != '' ]]; then
-        $EDITOR "$cfg_file"
-    fi
-}
-
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 autoload -Uz compinit && compinit
-
-# Directory Stack copied from
-#   https://dev.to/phantas0s/understanding-and-configuring-zsh-3jnd
-setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack
-setopt PUSHD_SILENT         # Do not print the directory stack after pushd/popd
-
-alias d='dirs -v'
-for index ({1..9}) alias "$index"="cd +${index}"; unset index

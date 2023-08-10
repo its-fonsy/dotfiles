@@ -14,15 +14,8 @@
 
 - link:
     ~/.bashrc: dotfiles/bashrc
-    ~/.config/alacritty/alacritty.yml: dotfiles/alacritty.yml
-    ~/.config/aliasrc : dotfiles/aliasrc
-    ~/.config/configrc : dotfiles/configrc
-    ~/.config/folderc : dotfiles/folderc
     ~/.config/i3/config: dotfiles/i3
     ~/.config/i3status/config: dotfiles/i3status
-    ~/.config/nvim/:
-        glob: true
-        path: dotfiles/nvim/**
     ~/.config/ranger/rc.conf: dotfiles/rc.conf
     ~/.vim/vimrc: dotfiles/vimrc
     ~/.config/zathura/zathurarc: dotfiles/zathurarc
@@ -32,6 +25,7 @@
     ~/.imwheelrc : dotfiles/imwheelrc
     ~/.profile : dotfiles/profile
     ~/.tmux.conf: dotfiles/tmux
+    ~/.Xresources: dotfiles/Xresources
     ~/.zshrc: dotfiles/zshrc
 
 - shell:

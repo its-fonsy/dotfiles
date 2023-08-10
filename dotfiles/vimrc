@@ -1,12 +1,14 @@
+" set SPACE as leader key
 let mapleader =" "
 
 " basics
 syntax enable
 filetype plugin on
-colorscheme default
+colorscheme koehler
 set nocompatible
 set encoding=utf-8
 set number relativenumber
+set showcmd
 
 " finding files in a fuzzy way
 set path+=**
@@ -26,13 +28,8 @@ set signcolumn="yes"
 set colorcolumn=80
 
 " NETRw config
-let g:netrw_banner=0
-let g:netrw_browse_split=4
-let g:netrw_altv=1
-let g:netrw_liststyle=3
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 nnoremap <leader>pv :Ex<CR>
+nnoremap <leader>pf :find *
 
 " remaps
 nnoremap n nzzzv
@@ -49,5 +46,19 @@ nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
-" Automatically deletes all trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
+" status line
+set laststatus=2
+
+set statusline=
+set statusline+=%#PmenuSel#
+"set statusline+=%{StatuslineGit()}
+set statusline+=\ %f
+set statusline+=%m\ 
+set statusline+=%#LineNr#
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
