@@ -47,14 +47,25 @@ nnoremap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " status line
+let g:currentmode={
+       \ 'n'  : 'NORMAL ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ "\<C-V>" : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \}
+
 set laststatus=2
 
 set statusline=
 set statusline+=%#PmenuSel#
-"set statusline+=%{StatuslineGit()}
+set statusline+=\ %{toupper(g:currentmode[mode()])}
+set statusline+=%#LineNr#
 set statusline+=\ %f
 set statusline+=%m\ 
-set statusline+=%#LineNr#
 set statusline+=%=
 set statusline+=%#CursorColumn#
 set statusline+=\ %y
