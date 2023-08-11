@@ -16,6 +16,7 @@
     ~/.bashrc: dotfiles/bashrc
     ~/.config/i3/config: dotfiles/i3
     ~/.config/i3status/config: dotfiles/i3status
+    ~/.config/i3blocks: dotfiles/i3blocks
     ~/.config/ranger/rc.conf: dotfiles/rc.conf
     ~/.vim/vimrc: dotfiles/vimrc
     ~/.config/zathura/zathurarc: dotfiles/zathurarc
