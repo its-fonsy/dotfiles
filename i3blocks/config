@@ -42,7 +42,7 @@ COLOR_CRIT=#FF0000
 # Temperature
 # dependecies: lm-sensors
 [temperature]
-command=$SCRIPT_DIR/temperature/temperature
+command=sensors | grep CPUTIN | cut -d "+" -f 2 | cut -b -7
 label=TEMP 
 interval=10
 
@@ -52,6 +52,7 @@ interval=10
 command=$SCRIPT_DIR/key_layout/key_layout && echo
 label=KB 
 interval=1
+color=#00FFFF
 
 # Date Time
 [time]

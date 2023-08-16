@@ -1,12 +1,11 @@
 # dotfiles
-This is the Github repo of my dotfiles handled with
-[dotbot](https://github.com/anishathalye/dotbot)!
+This is the repo used to manage my dotfiles.
 
 # Install
-Clone the repo then launch the install script
+Run
 
 	git clone --recursive https://github.com/its-fonsy/dotfiles.git
-	./install
+    make init
 
 # Configuration
 The program that I use are:
@@ -15,4 +14,4 @@ The program that I use are:
 + Shell: `zsh`
 + Editor: `vim`
 + DE: `i3`
-+ Bar: `i3status` 
++ Bar: `i3blocks` 
