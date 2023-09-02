@@ -198,6 +198,11 @@ mode "$mode_system" {
 }
 bindsym $mod+Escape mode "$mode_system"
 
+# Fix apps in workspace
+assign [class="firefox"] $ws1
+assign [class="discord"] $ws9
+assign [class="steam"] $ws8
+
 # Multiple monitor settings
 #workspace $ws1 output DVI-I-1
 #workspace $ws2 output DVI-I-1
