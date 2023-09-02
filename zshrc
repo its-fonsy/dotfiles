@@ -7,7 +7,7 @@ stty stop undef
 setopt PROMPT_SUBST
 autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' get-revision true
 
@@ -16,7 +16,7 @@ zstyle ':vcs_info:*' unstagedstr '%f%F{red}'
 zstyle ':vcs_info:*' stagedstr '%f%F{yellow}'
 precmd () { vcs_info }
 
-PROMPT='$vcs_info_msg_0_%n@%m %3~ $ '
+PROMPT='${vcs_info_msg_0_}[%F{cyan}%n%f @ %3~] $ '
 
 # Remove .xsession-errors
 [ -e $HOME/.xsession-errors ] && rm $HOME/.xsession-errors
