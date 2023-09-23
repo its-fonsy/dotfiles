@@ -11,7 +11,8 @@ bindsym $mod+space exec "(setxkbmap -query | grep it > /dev/null) && setxkbmap u
 
 # Startup script
 # exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 "
-exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00"
+#exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00"
+exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 --rotate right"
 exec --no-startup-id "setxkbmap us"
 exec --no-startup-id "displaycal-apply-profiles &> /dev/null"
 # exec --no-startup-id "redshift -l 45.19:10.97 &> /dev/null &"
@@ -200,17 +201,17 @@ bindsym $mod+Escape mode "$mode_system"
 
 # Fix apps in workspace
 assign [class="firefox"] $ws1
-assign [class="discord"] $ws9
 assign [class="steam"] $ws8
+assign [class="discord"] $ws9
 
 # Multiple monitor settings
-#workspace $ws1 output DVI-I-1
-#workspace $ws2 output DVI-I-1
-#workspace $ws3 output DVI-I-1
-#workspace $ws4 output DVI-I-1
-#workspace $ws5 output DVI-I-1
-#workspace $ws6 output HDMI-0
-#workspace $ws7 output HDMI-0
-#workspace $ws8 output HDMI-0
-#workspace $ws9 output HDMI-0
-#workspace $ws10 output HDMI-0
+workspace $ws1 output DVI-I-1
+workspace $ws2 output DVI-I-1
+workspace $ws3 output DVI-I-1
+workspace $ws4 output DVI-I-1
+workspace $ws5 output DVI-I-1
+workspace $ws6 output HDMI-0
+workspace $ws7 output HDMI-0
+workspace $ws8 output HDMI-0
+workspace $ws9 output HDMI-0
+workspace $ws10 output HDMI-0
