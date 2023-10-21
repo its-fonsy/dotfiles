@@ -6,21 +6,18 @@ set $browser firefox
 # changing font
 font pango:Iosevka 11
 
-# change keyboard layout with GUI+SPC
-bindsym $mod+space exec "(setxkbmap -query | grep it > /dev/null) && setxkbmap us || setxkbmap it"
-
-# Startup script
+# Display settings
 # exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 "
 #exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00"
 exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 --rotate right"
-exec --no-startup-id "setxkbmap us"
+
+# Startup script
 exec --no-startup-id "displaycal-apply-profiles &> /dev/null"
-# exec --no-startup-id "redshift -l 45.19:10.97 &> /dev/null &"
 exec --no-startup-id "megasync &"
-# exec --no-startup-id "pidof easyeffects || easyeffects --gapplication-service &"
 exec --no-startup-id "nitrogen --restore"
 exec --no-startup-id "imwheel --kill -b 45"
 exec --no-startup-id "xset -dpms s off"
+# exec --no-startup-id "redshift -l 45.19:10.97 &> /dev/null &"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -178,8 +175,9 @@ bindsym $mod+r mode "resize"
 
 # Start i3blocks to display a workspace bar
 bar {
-	status_command SCRIPT_DIR=$XDG_CONFIG_HOME/i3blocks/i3blocks-contrib i3blocks
-	separator_symbol " "
+    status_command SCRIPT_DIR=$XDG_CONFIG_HOME/i3blocks/i3blocks-contrib i3blocks
+    separator_symbol " "
+    tray_output primary
 }
 
 # Power of menu
@@ -201,6 +199,8 @@ bindsym $mod+Escape mode "$mode_system"
 
 # Fix apps in workspace
 assign [class="firefox"] $ws1
+assign [class="ZapZap"] $ws4
+assign [class="TelegramDesktop"] $ws4
 assign [class="steam"] $ws8
 assign [class="discord"] $ws9
 
