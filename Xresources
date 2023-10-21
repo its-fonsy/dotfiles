@@ -5,8 +5,8 @@ XTerm.termName: xterm-256color
 *.geometry: 150x35
 
 ! ## Set font and fontsize ##
-.*faceName: JetBrains Mono
-.*faceSize: 11
+.*faceName: Ubuntu Mono
+.*faceSize: 15
 
 ! VT Font Menu: Unreadable
 .*faceSize1: 8
