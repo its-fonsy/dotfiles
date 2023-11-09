@@ -6,7 +6,7 @@ XTerm.termName: xterm-256color
 
 ! ## Set font and fontsize ##
 .*faceName: Ubuntu Mono
-.*faceSize: 15
+.*faceSize: 12
 
 ! VT Font Menu: Unreadable
 .*faceSize1: 8

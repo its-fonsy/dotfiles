@@ -4,12 +4,12 @@ set $term xterm
 set $browser firefox
 
 # changing font
-font pango:Iosevka 11
+font pango:Iosevka 10
 
 # Display settings
 # exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 "
 #exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00"
-exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 --rotate right"
+exec --no-startup-id "xrandr --output DVI-D-0 --primary --mode 1920x1080 --rate 144.00 --output HDMI-A-0 --mode 1920x1080 --rate 60.00 --right-of DVI-D-0 --rotate right"
 
 # Startup script
 exec --no-startup-id "displaycal-apply-profiles &> /dev/null"
@@ -96,7 +96,7 @@ exec --no-startup-id $term -class "pmix_scratchpad" -e pulsemixer
 
 for_window [class="term_scratchpad"] floating enable, move scratchpad
 bindsym $mod+t [class="term_scratchpad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "term_scratchpad" -e tmux
+exec --no-startup-id $term -class "term_scratchpad" -e tmux new-session -s sp_term
 
 for_window [class="ranger_scratchpad"] floating enable, move scratchpad
 bindsym $mod+u [class="ranger_scratchpad"] scratchpad show; sticky enable
@@ -198,20 +198,19 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 # Fix apps in workspace
-assign [class="firefox"] $ws1
-assign [class="ZapZap"] $ws4
-assign [class="TelegramDesktop"] $ws4
-assign [class="steam"] $ws8
+assign [class="battle.net.exe"] $ws5
+assign [class="lutris"] $ws5
+assign [class="steam"] $ws5
 assign [class="discord"] $ws9
 
 # Multiple monitor settings
-workspace $ws1 output DVI-I-1
-workspace $ws2 output DVI-I-1
-workspace $ws3 output DVI-I-1
-workspace $ws4 output DVI-I-1
-workspace $ws5 output DVI-I-1
-workspace $ws6 output HDMI-0
-workspace $ws7 output HDMI-0
-workspace $ws8 output HDMI-0
-workspace $ws9 output HDMI-0
-workspace $ws10 output HDMI-0
+workspace $ws1 output DVI-D-1
+workspace $ws2 output DVI-D-1
+workspace $ws3 output DVI-D-1
+workspace $ws4 output DVI-D-1
+workspace $ws5 output DVI-D-1
+workspace $ws6 output HDMI-A-0
+workspace $ws7 output HDMI-A-0
+workspace $ws8 output HDMI-A-0
+workspace $ws9 output HDMI-A-0
+workspace $ws10 output HDMI-A-0

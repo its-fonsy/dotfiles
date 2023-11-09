@@ -3,7 +3,7 @@
 # Simple script that lunch a tmux session with splitted cmus and lyrpy
 
 pkill cmus
-tmux new-session -d cmus
+tmux new-session -s cmus_lyrpy -d cmus
 tmux split-window -h -d "sleep 2 && lyrpy"
 tmux -2 attach-session -d
 
