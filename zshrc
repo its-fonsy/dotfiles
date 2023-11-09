@@ -25,11 +25,6 @@ PROMPT='${vcs_info_msg_0_}[%F{cyan}%n%f @ %3~] $ '
 GPG_TTY=$(tty)
 export GPG_TTY
 
-# Sources shortcuts and aliases
-if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc" ]; then
-    source "${XDG_CONFIG_HOME:-$HOME/.config}/aliasrc"
-fi
-
 # aliases
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias gpg2='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
@@ -43,11 +38,6 @@ alias r='ranger'
 alias v='vim .'
 alias imwheel='imwheel --kill -b 45'
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-
-alias nas-mount="sudo mount -t cifs -o username=Marco,uid=$(id -u),gid=$(id -g) //192.168.1.136/Plex /mnt"
-alias nas-po="ssh -t root@192.168.1.136 poweroff"
-alias nas-wu="wakeup-nas"
-alias nas-pg="ping 192.168.1.136"
 
 alias cls="clear"
 alias grep="grep --color"

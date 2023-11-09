@@ -1,0 +1,75 @@
+#! /usr/bin/env sh
+
+# Utility script to control the NAS
+
+# NAS variables
+NAS_IP=192.168.1.136
+NAS_USER=root
+NAS_MAC="D0:50:99:34:CD:2B"
+NAS_MOUNT_DIR=/run/media/$USER/nas
+
+# Waking up the NAS
+wake_up_nas () {
+    echo -ne "Waking up $NAS_IP"
+    max_attempt=20
+    attempt=0
+    until ping -c 3 "$NAS_IP" &> /dev/null
+    do
+        let attempt++
+        if [ $attempt -eq $max_attempt ]; then
+            echo "ERROR: $NAS_IP can't be wake up"
+            exit 1
+        fi
+        echo -ne "."
+
+        wol $NAS_MAC &> /dev/null
+        sleep 2 
+    done
+
+    echo -e "\nSUCCESS: $NAS_IP is online"
+}
+
+# ping the NAS 5 times
+ping_nas () {
+    echo "Pinging $NAS_IP"
+    ping -c 5 $NAS_IP
+}
+
+# create the mount directory e mount the NAS inside it
+mount_nas () {
+    echo "Mounting '//$NAS_IP/Plex' in '$NAS_MOUNT_DIR'"
+    sudo mkdir -p $NAS_MOUNT_DIR
+    sudo mount -o uid=$(id -u),gid=$(id -g) -t cifs -o username=Marco,uid=1000,gid=1000 //$NAS_IP/Plex $NAS_MOUNT_DIR
+}
+
+# unmount the mounted directory
+umount_nas () {
+    echo "Unmounting '//$NAS_IP/Plex' from '$NAS_MOUNT_DIR'"
+    sudo umount $NAS_MOUNT_DIR
+}
+
+# power off the NAS
+poweroff_nas () {
+    echo "Powering off $NAS_IP"
+    ssh -t $NAS_USER@$NAS_IP poweroff
+}
+
+# start the script by letting the user choose what to do
+echo "Select an option"
+echo "  1. Power on the NAS"
+echo "  2. Power off the NAS"
+echo "  3. Mount the NAS"
+echo "  4. Unmount the NAS"
+echo "  5. Ping the NAS"
+read -p "Number: " user_choice
+
+case $user_choice in
+    1) wake_up_nas ;;
+    2) poweroff_nas ;;
+    3) mount_nas ;;
+    4) umount_nas ;;
+    5) ping_nas ;;
+    *) echo "Unavailable option" ;;
+esac
+
+exit 0
