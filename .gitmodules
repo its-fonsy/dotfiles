@@ -1,6 +1,3 @@
-[submodule "i3blocks/i3blocks-contrib"]
-	path = i3blocks/i3blocks-contrib
-	url = https://github.com/vivien/i3blocks-contrib
 [submodule "ranger/plugins/ranger_udisk_menu"]
 	path = ranger/plugins/ranger_udisk_menu
 	url = https://github.com/SL-RU/ranger_udisk_menu.git

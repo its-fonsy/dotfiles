@@ -173,9 +173,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3blocks to display a workspace bar
+# Start i3status to display a workspace bar
 bar {
-    status_command SCRIPT_DIR=$XDG_CONFIG_HOME/i3blocks/i3blocks-contrib i3blocks
+    status_command i3status
     separator_symbol " "
     tray_output primary
 }
