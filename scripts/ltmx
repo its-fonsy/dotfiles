@@ -4,13 +4,32 @@
 
 # get the first tex file in current working directory
 TEX_FILE="$(find -maxdepth 1 -name "*.tex" | head -n 1)"
+TMUX_SESSION=ltmx
 
 zathura "${TEX_FILE:2:-4}.pdf" &> /dev/null &
 
-tmux new-session -s "ltmx" -n "latexmk" -d "latexmk -pvc -pdf -shell-escape"
+# create tmux session
+tmux new-session -s "$TMUX_SESSION" -d
+
+# rename the window
+tmux rename-window -t "$TMUX_SESSION" "tex"
+
+# open TEX_FILE with vim
+tmux send-keys -t "$TMUX_SESSION" "vim $TEX_FILE" C-m
+
+# split the window horizontally and start latexmk
+tmux split-window -h -t "$TMUX_SESSION"
+tmux send-keys -t "$TMUX_SESSION" "latexmk -pdf -pvc -verbose -file-line-error -interaction=nonstopmod -shell-escape" C-m
+tmux send-keys -t "$TMUX_SESSION" C-b C-m
+
+# open a new window with shell
 tmux new-window -n "zsh"
-tmux new-window -n "nvim" -d "$EDITOR $TEX_FILE"
-tmux -2 attach-session -d
+
+# selecting the vim pane
+tmux select-window -t $TMUX_SESSION -p
+tmux select-pane -t $TMUX_SESSION -L
+
+tmux attach -t $TMUX_SESSION
 
 latexmk -c
 

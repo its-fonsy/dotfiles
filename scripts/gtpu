@@ -11,7 +11,7 @@ USB_MOUNTPOINT=$(lsblk -l -o MOUNTPOINT,UUID | grep $USB_UUID | cut -d" " -f1)
 
 GCODE_DIR=/media/documenti/3d_printing
 LAST_MODIFIED_GCODE=$(find $GCODE_DIR -type f \
-                                      -name "*.gcode" \
+                                      -name "*.bgcode" \
                                       -exec stat --format '%Y %n' "{}" \; \
                                       | sort -nr | cut -d " " -f2 | head -1)
 

@@ -6,6 +6,7 @@
 export PATH=$PATH:$HOME/.local/bin/
 export PATH=$PATH:$HOME/.local/bin/fonsy/
 export PATH=$PATH:$HOME/.local/share/cargo/bin/
+export PATH=$PATH:/opt/riscv/bin
 
 # LaTeX env-vars
 export PATH=$PATH:$HOME/.local/opt/texlive/2023/bin/x86_64-linux

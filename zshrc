@@ -47,6 +47,8 @@ alias la="ls -a --color=auto"
 alias ll="ls -lh --color=auto --group-directories-first"
 alias lla="ls -lah --color=auto --group-directories-first"
 
+alias lagrev='ssh mbuttazzi@lagrev4.ee.ethz.ch -L 5909:localhost:5909'
+alias vcu='ssh -X pass_is_adminpass@137.204.213.182'
 # History in cache directory:
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 HISTSIZE=10000
