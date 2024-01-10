@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Shutdwon or not the NAS when the backup is done
+# Shutdwon the NAS if it was powered off when starting the backup
+# use flag '-s' to force the power off
 SHUTDOWN=0
 if [[ "$1" = "-s" ]]; then
 	SHUTDOWN=1
@@ -30,10 +31,6 @@ if [ -z $BORG_PASSPHRASE ]; then
 	echo -e "\nBORG_PASSPHRASE set correctly"
 fi
 
-# some helpers and error handling:
-info() { printf "%s %s\n" "[$( date +"%H:%m:%S" )]" "$*" >&2; }
-trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
-
 # Waking up the NAS
 max_attempt=10
 attempt=0
@@ -42,30 +39,29 @@ do
 
 	let attempt++
 	if [ $attempt -eq $max_attempt ]; then
-		info "Cannot power on the NAS"
+		echo "too many attempts, aborting"
 		exit 1
 	fi
 
 	if [ $attempt -eq 1 ]; then
-			info "nas at $NAS_IP not power on, waking up"
+			echo -n "Nas is offline, sending WOL to wake it up"
 			# The nas was offline so the script will power it off when
 			# the backup is finished
 			SHUTDOWN=1
 		else
-			info "sending WOL packet ($attempt)"
+			echo -n "."
 	fi
 	wol $NAS_MAC &> /dev/null
 	sleep 10
 done
 
-info "Starting backup"
+echo -e "\nStarting backup"
 notify-send "BORG: Starting backup"
 
 # Backup the most important directories into an archive named after
 # the machine this script is currently running on:
 
 borg create                                  \
-    --verbose                                \
     --filter AME                             \
     --list                                   \
     --stats                                  \
@@ -87,7 +83,7 @@ borg create                                  \
 
 backup_exit=$?
 
-info "Pruning repository"
+echo "Pruning repository"
 
 # Use the `prune` subcommand to maintain 3 daily, 1 weekly and 1 monthly
 # archives of THIS machine. The '{hostname}-' prefix is very important to
@@ -104,19 +100,21 @@ borg prune                          \
 
 prune_exit=$?
 
-# use highest exit code as global exit code
+# Use highest exit code as global exit code
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
 
 if [ ${global_exit} -eq 0 ]; then
-    info "Backup and Prune finished successfully"
-	if [[ $SHUTDOWN -eq 1 ]]; then
-		info "Powering off the NAS"
-		ssh -t $NAS_USER@$NAS_IP poweroff &> /dev/null
-	fi
+    echo "Backup and Prune finished successfully"
 elif [ ${global_exit} -eq 1 ]; then
-    info "Backup and/or Prune finished with warnings"
+    echo "Backup and/or Prune finished with warnings"
 else
-    info "Backup and/or Prune finished with errors"
+    echo "Backup and/or Prune finished with errors"
+fi
+
+# If the NAS was powered off then power it back off
+if [[ $SHUTDOWN -eq 1 ]]; then
+    echo "Powering off the NAS"
+    ssh -t $NAS_USER@$NAS_IP poweroff &> /dev/null
 fi
 
 notify-send "BORG: Backup finished"
