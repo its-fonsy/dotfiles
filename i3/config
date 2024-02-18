@@ -17,6 +17,7 @@ exec --no-startup-id "megasync &"
 exec --no-startup-id "nitrogen --restore"
 exec --no-startup-id "imwheel --kill -b 45"
 exec --no-startup-id "xset -dpms s off"
+exec --no-startup-id "blueman-applet"
 # exec --no-startup-id "redshift -l 45.19:10.97 &> /dev/null &"
 
 # Use pactl to adjust volume in PulseAudio.
@@ -187,7 +188,7 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s)
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
 
