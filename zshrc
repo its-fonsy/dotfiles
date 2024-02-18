@@ -3,6 +3,9 @@ autoload -U colors && colors
 setopt autocd
 stty stop undef
 
+# Ensure that the .profile is sourced
+source $HOME/.profile
+
 # Prompt
 setopt PROMPT_SUBST
 autoload -Uz vcs_info
@@ -35,7 +38,7 @@ alias gdf='git diff'
 alias gad='git add'
 
 alias r='ranger'
-alias v='vim .'
+alias n='nvim .'
 alias imwheel='imwheel --kill -b 45'
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
@@ -49,6 +52,7 @@ alias lla="ls -lah --color=auto --group-directories-first"
 
 alias lagrev='ssh mbuttazzi@lagrev4.ee.ethz.ch -L 5909:localhost:5909'
 alias vcu='ssh -X pass_is_adminpass@137.204.213.182'
+
 # History in cache directory:
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 HISTSIZE=10000

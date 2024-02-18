@@ -3,7 +3,7 @@ CONF_DIR=$(HOME_DIR)/.config
 SCRIPT_DIR=$(HOME_DIR)/.local/bin
 
 HOME_DOTFILES = bashrc imwheelrc profile tmux.conf vimrc Xresources zshrc
-CONF_DOTFILES = i3 ranger zathura
+CONF_DOTFILES = i3 ranger zathura nvim
 
 .PHONY: *
 
