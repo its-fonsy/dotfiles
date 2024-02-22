@@ -14,7 +14,7 @@ export MANPATH=$MANPATH:$HOME/.local/opt/texlive/2023/texmf-dist/doc/man
 export INFOPATH=$INFOPATH:$HOME/.local/opt/texlive/2023/texmf-dist/doc/info
 
 # Default programs:
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="xterm"
 export BROWSER="firefox"
 export LYRICS_DIR="/media/musica/lyrics"
