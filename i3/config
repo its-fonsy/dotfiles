@@ -89,7 +89,7 @@ bindsym $mod+minus scratchpad show
 
 for_window [class="cmus_scratchpad"] floating enable, move scratchpad
 bindsym $mod+c [class="cmus_scratchpad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "cmus_scratchpad" -e cmus_lyrpy
+exec --no-startup-id $term -class "cmus_scratchpad" -e tmuxp load music
 
 for_window [class="pmix_scratchpad"] floating enable, move scratchpad
 bindsym $mod+p [class="pmix_scratchpad"] scratchpad show; sticky enable
@@ -199,10 +199,7 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 # Fix apps in workspace
-assign [class="battle.net.exe"] $ws5
-assign [class="lutris"] $ws5
-assign [class="steam"] $ws5
-assign [class="discord"] $ws9
+assign [class="discord"] $ws5
 
 # Multiple monitor settings
 workspace $ws1 output DVI-D-1
