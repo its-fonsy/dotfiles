@@ -7,9 +7,9 @@ set $browser firefox
 font pango:Iosevka 10
 
 # Display settings
-# exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 "
+#exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 "
 #exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00"
-exec --no-startup-id "xrandr --output DVI-D-0 --primary --mode 1920x1080 --rate 144.00 --output HDMI-A-0 --mode 1920x1080 --rate 60.00 --right-of DVI-D-0 --rotate right"
+exec --no-startup-id "xrandr --output DVI-D-0 --primary --mode 1920x1080 --pos 0x420 --rate 144.00 --output HDMI-A-0 --mode 1920x1080 --pos 1920x0 --rate 60.00 --right-of DVI-D-0 --rotate right"
 
 # Startup script
 exec --no-startup-id "displaycal-apply-profiles &> /dev/null"

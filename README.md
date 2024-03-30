@@ -28,16 +28,16 @@ are:
 - Adding git signs: [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - Search files/string/stuff: [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - Format code on save: [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)
+- LSP: [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+- Autocompletion: [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- Tree-sitter: [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 The one disabled are:
 
 - [tpope/vim-sleuth](https://github.com/tpope/vim-sleuth)
 - [folke/which-key.nvim](https://github.com/folke/which-key.nvim)
-- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 - [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim)
-- [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 The list will be updated as I integrate disabled plugin into my developer flow.
 
