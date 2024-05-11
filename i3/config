@@ -7,18 +7,14 @@ set $browser firefox
 font pango:Iosevka 10
 
 # Display settings
-#exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00 --output HDMI-0 --mode 1920x1080 --rate 60.00 --right-of DVI-I-1 "
-#exec --no-startup-id "xrandr --output DVI-I-1 --primary --mode 1920x1080 --rate 144.00"
-exec --no-startup-id "xrandr --output DVI-D-0 --primary --mode 1920x1080 --pos 0x420 --rate 144.00 --output HDMI-A-0 --mode 1920x1080 --pos 1920x0 --rate 60.00 --right-of DVI-D-0 --rotate right"
+exec --no-startup-id "$HOME/.screenlayout/desktop.sh"
 
 # Startup script
 exec --no-startup-id "displaycal-apply-profiles &> /dev/null"
 exec --no-startup-id "megasync &"
 exec --no-startup-id "nitrogen --restore"
-exec --no-startup-id "imwheel --kill -b 45"
 exec --no-startup-id "xset -dpms s off"
 exec --no-startup-id "blueman-applet"
-# exec --no-startup-id "redshift -l 45.19:10.97 &> /dev/null &"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -76,9 +72,6 @@ bindsym $mod+f fullscreen toggle
 # toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
 
-# change focus between tiling / floating windows
-# bindsym $mod+space focus mode_toggle
-
 # focus the parent/child container
 bindsym $mod+a focus parent
 bindsym $mod+z focus child
@@ -87,24 +80,27 @@ bindsym $mod+z focus child
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+# cmus scratchpad
 for_window [class="cmus_scratchpad"] floating enable, move scratchpad
 bindsym $mod+c [class="cmus_scratchpad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "cmus_scratchpad" -e tmuxp load music
+exec --no-startup-id $term -class "cmus_scratchpad" -e cmus
 
+# pulsemixer scratchpad
 for_window [class="pmix_scratchpad"] floating enable, move scratchpad
 bindsym $mod+p [class="pmix_scratchpad"] scratchpad show; sticky enable
 exec --no-startup-id $term -class "pmix_scratchpad" -e pulsemixer
 
+# terminal scratchpad
 for_window [class="term_scratchpad"] floating enable, move scratchpad
 bindsym $mod+t [class="term_scratchpad"] scratchpad show; sticky enable
 exec --no-startup-id $term -class "term_scratchpad" -e tmux new-session -s sp_term
 
+# ranger scratchpad
 for_window [class="ranger_scratchpad"] floating enable, move scratchpad
 bindsym $mod+u [class="ranger_scratchpad"] scratchpad show; sticky enable
 exec --no-startup-id $term -class "ranger_scratchpad" -e ranger
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# Workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"

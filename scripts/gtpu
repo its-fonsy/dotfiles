@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 
 # gtpu (Gcode To Prusa Usb)
-#
+
 # This is a simple script that copies the latest modified gcode file inside a
 # folder and its subdirectory on the usb used by my PRUSA MINI 
 
-USB_UUID="FCCD-29B5"
-USB_PATH=$(lsblk -l -o PATH,UUID | grep $USB_UUID | cut -d" " -f1)
-USB_MOUNTPOINT=$(lsblk -l -o MOUNTPOINT,UUID | grep $USB_UUID | cut -d" " -f1)
+USB_LABEL="PRUSA_MINI"
+USB_PATH=$(lsblk -l -o PATH,LABEL | grep $USB_LABEL | cut -d" " -f1)
+USB_MOUNTPOINT=$(lsblk -l -o MOUNTPOINT,LABEL | grep $USB_LABEL | cut -d" " -f1)
 
 GCODE_DIR=/media/documenti/3d_printing
 LAST_MODIFIED_GCODE=$(find $GCODE_DIR -type f \
@@ -32,17 +32,15 @@ fi
 # If the drive isn't already mounted, mount it
 if [[ -z "$USB_MOUNTPOINT" ]]; then
     udisksctl mount -b $USB_PATH && sleep 1
-    USB_MOUNTPOINT=$(lsblk -l -o MOUNTPOINT,UUID | grep $USB_UUID | cut -d" " -f1)
+    USB_MOUNTPOINT=$(lsblk -l -o MOUNTPOINT,LABEL | grep $USB_LABEL | cut -d" " -f1)
 fi
 
 # Copy the file to the USB stick
 cp -f $LAST_MODIFIED_GCODE $USB_MOUNTPOINT/ && sleep 1
 echo "File copied successfully!"
 
-
 # Unmount and poweroff the USB stick to safe eject
 udisksctl unmount -b $USB_PATH && sleep 1
-udisksctl power-off -b $USB_PATH && sleep 1
 
 echo "The USB can be safely eject now, happy printing :)"
 
