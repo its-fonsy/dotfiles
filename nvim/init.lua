@@ -72,15 +72,24 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Plugins ]]
 require("lazy").setup({
-	-- Colorscheme
 	{
-		"folke/tokyonight.nvim",
+		"EdenEast/nightfox.nvim",
 		priority = 1000,
 		init = function()
-			vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("duskfox")
 			vim.cmd.hi("Comment gui=none")
 		end,
 	},
+
+	-- Colorscheme
+	-- {
+	-- 	"folke/tokyonight.nvim",
+	-- 	priority = 1000,
+	-- 	init = function()
+	-- 		vim.cmd.colorscheme("tokyonight-night")
+	-- 		vim.cmd.hi("Comment gui=none")
+	-- 	end,
+	-- },
 
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
@@ -96,6 +105,16 @@ require("lazy").setup({
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
 			},
+		},
+	},
+
+	-- Matching parenthesis
+	{
+		"altermo/ultimate-autopair.nvim",
+		event = { "InsertEnter", "CmdlineEnter" },
+		branch = "v0.6", --recommended as each new version will have breaking changes
+		opts = {
+			--Config goes here
 		},
 	},
 
@@ -178,7 +197,14 @@ require("lazy").setup({
 	},
 
 	-- Latex plugin
-	{ "lervag/vimtex" },
+	{
+		"lervag/vimtex",
+		lazy = false,
+		init = function()
+			-- VimTeX configuration goes here, e.g.
+			vim.g.vimtex_view_method = "zathura"
+		end,
+	},
 
 	-- LSP Configuration & Plugins
 	{

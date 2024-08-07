@@ -9,9 +9,10 @@ export PATH=$PATH:$HOME/.local/share/cargo/bin/
 export PATH=$PATH:/opt/riscv/bin
 
 # LaTeX env-vars
-export PATH=$PATH:$HOME/.local/opt/texlive/2023/bin/x86_64-linux
-export MANPATH=$MANPATH:$HOME/.local/opt/texlive/2023/texmf-dist/doc/man
-export INFOPATH=$INFOPATH:$HOME/.local/opt/texlive/2023/texmf-dist/doc/info
+export PATH=$PATH:$HOME/.local/opt/texlive/2024/bin/x86_64-linux
+export MANPATH=$MANPATH:$HOME/.local/opt/texlive/2024/texmf-dist/doc/man
+export INFOPATH=$INFOPATH:$HOME/.local/opt/texlive/2024/texmf-dist/doc/info
+
 
 # Default programs:
 export EDITOR="nvim"

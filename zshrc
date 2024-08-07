@@ -37,6 +37,7 @@ alias gcm='git commit'
 alias gdf='git diff'
 alias gad='git add'
 
+alias c='tmuxp load code'
 alias r='ranger'
 alias n='nvim .'
 alias imwheel='imwheel --kill -b 45'
