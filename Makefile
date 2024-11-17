@@ -15,6 +15,7 @@ home: $(HOME_DOTFILES)
 config: $(CONF_DOTFILES)
 
 scripts:
+	mkdir -p $(SCRIPT_DIR)
 	@ln -sfv $(PWD)/scripts/* $(SCRIPT_DIR)/
 
 $(HOME_DOTFILES):
