@@ -4,24 +4,24 @@ set $term xterm
 set $browser firefox
 
 # changing font
-font pango:Iosevka 10
-
-# Display settings
-exec --no-startup-id "$HOME/.screenlayout/desktop.sh"
+font pango:Iosevka 9
 
 # Startup script
-exec --no-startup-id "displaycal-apply-profiles &> /dev/null"
+exec --no-startup-id "autorandr -c"
 exec --no-startup-id "megasync &"
-exec --no-startup-id "nitrogen --restore"
-exec --no-startup-id "xset -dpms s off"
-exec --no-startup-id "blueman-applet"
+exec --no-startup-id "blueman-applet &"
+exec --no-startup-id "nm-applet &"
+exec --no-startup-id "feh -z --bg-fill ~/Pictures/walls/monochrome/*"
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Use brightnessctl to adjust brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -195,13 +195,13 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 # Multiple monitor settings
-workspace $ws1 output DVI-D-1
-workspace $ws2 output DVI-D-1
-workspace $ws3 output DVI-D-1
-workspace $ws4 output DVI-D-1
-workspace $ws5 output DVI-D-1
-workspace $ws6 output HDMI-A-0
-workspace $ws7 output HDMI-A-0
-workspace $ws8 output HDMI-A-0
-workspace $ws9 output HDMI-A-0
-workspace $ws10 output HDMI-A-0
+workspace $ws1 output HDMI-A-0
+workspace $ws2 output HDMI-A-0
+workspace $ws3 output HDMI-A-0
+workspace $ws4 output HDMI-A-0
+workspace $ws5 output HDMI-A-0
+workspace $ws6 output eDP
+workspace $ws7 output eDP
+workspace $ws8 output eDP
+workspace $ws9 output eDP
+workspace $ws10 output eDP
