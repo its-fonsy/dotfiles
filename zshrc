@@ -41,18 +41,13 @@ alias c='tmuxp load code'
 alias r='ranger'
 alias n='nvim .'
 alias imwheel='imwheel --kill -b 45'
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
-alias cls="clear"
 alias grep="grep --color"
 
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
 alias ll="ls -lh --color=auto --group-directories-first"
 alias lla="ls -lah --color=auto --group-directories-first"
-
-alias lagrev='ssh mbuttazzi@lagrev4.ee.ethz.ch -L 5909:localhost:5909'
-alias vcu='ssh -X pass_is_adminpass@137.204.213.182'
 
 # History in cache directory:
 HISTFILE=$XDG_CACHE_HOME/zsh/history
@@ -98,3 +93,9 @@ bindkey -v '^?' backward-delete-char
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 autoload -Uz compinit && compinit
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/fonsy/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/fonsy/.config/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+

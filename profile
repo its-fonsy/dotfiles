@@ -13,12 +13,10 @@ export PATH=$PATH:$HOME/.local/opt/texlive/2024/bin/x86_64-linux
 export MANPATH=$MANPATH:$HOME/.local/opt/texlive/2024/texmf-dist/doc/man
 export INFOPATH=$INFOPATH:$HOME/.local/opt/texlive/2024/texmf-dist/doc/info
 
-
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="xterm"
 export BROWSER="firefox"
-export LYRICS_DIR="/media/musica/lyrics"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"

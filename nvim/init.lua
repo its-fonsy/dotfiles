@@ -183,17 +183,40 @@ require("lazy").setup({
 	-- Autoformat
 	{
 		"stevearc/conform.nvim",
-		opts = {
-			notify_on_error = false,
-			format_on_save = function(bufnr)
-				local disable_filetypes = { c = true, cpp = true }
-				return {
-					timeout_ms = 500,
-					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-				}
-			end,
-			formatters_by_ft = { lua = { "stylua" } },
-		},
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local conform = require("conform")
+
+			conform.setup({
+				formatters_by_ft = {
+					c = { "clang_format" },
+					h = { "clang_format" },
+					cpp = { "clang_format" },
+					css = { "prettier" },
+					html = { "prettier" },
+					lua = { "stylua" },
+					markdown = { "prettier" },
+					python = { "autopep8" },
+					yaml = { "prettier" },
+				},
+				formatters = {
+					clang_format = { prepend_args = { "-style=GNU" } },
+				},
+				format_on_save = {
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 1000,
+				},
+			})
+
+			vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+				conform.format({
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 1000,
+				})
+			end, { desc = "Format file or range (in visual mode)" })
+		end,
 	},
 
 	-- Latex plugin
