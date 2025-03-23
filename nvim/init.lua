@@ -22,9 +22,9 @@ vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below
 -- Tab
 vim.opt.expandtab = true
 vim.opt.autoindent = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
@@ -51,6 +51,14 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Custom keybinds
+vim.keymap.set(
+	"n",
+	"<leader>c",
+	'yiw:%s/<C-r>"//g<left><left>',
+	{ desc = "Substitute the all occurence of the word under the cursor with a new one" }
+)
 
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
