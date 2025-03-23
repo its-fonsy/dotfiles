@@ -6,13 +6,18 @@ set $browser firefox
 # changing font
 font pango:Iosevka 9
 
-# Startup script
-exec --no-startup-id "autorandr -c"
-exec --no-startup-id "displaycal-apply-profiles"
-exec --no-startup-id "megasync &"
+# Startup applications
+exec --no-startup-id "megasync &"                   
 exec --no-startup-id "blueman-applet &"
 exec --no-startup-id "nm-applet &"
+
+# Screen configuration, calibration ans wallpaper
+exec --no-startup-id "autorandr -c"
+exec --no-startup-id "displaycal-apply-profiles"
 exec --no-startup-id "feh -z --bg-fill ~/Pictures/wallpaper/desktop/*"
+
+# Disable "Blank Screen after 5m of not usage"
+exec --no-startup-id "xset -dpms s off"
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -84,7 +89,7 @@ bindsym $mod+minus scratchpad show
 # cmus scratchpad
 for_window [class="cmus_scratchpad"] floating enable, move scratchpad
 bindsym $mod+c [class="cmus_scratchpad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "cmus_scratchpad" -e cmus
+exec --no-startup-id $term -class "cmus_scratchpad" -e tmux new-session -d 'cmus' \; splitw -h -d \; select-pane -R \; send-keys "lyrpy" C-m \; select-pane -L \; attach
 
 # pulsemixer scratchpad
 for_window [class="pmix_scratchpad"] floating enable, move scratchpad
