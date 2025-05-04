@@ -80,24 +80,15 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Plugins ]]
 require("lazy").setup({
-	{
-		"EdenEast/nightfox.nvim",
-		priority = 1000,
-		init = function()
-			vim.cmd.colorscheme("duskfox")
-			vim.cmd.hi("Comment gui=none")
-		end,
-	},
 
 	-- Colorscheme
-	-- {
-	-- 	"folke/tokyonight.nvim",
-	-- 	priority = 1000,
-	-- 	init = function()
-	-- 		vim.cmd.colorscheme("tokyonight-night")
-	-- 		vim.cmd.hi("Comment gui=none")
-	-- 	end,
-	-- },
+	{
+		"miikanissi/modus-themes.nvim",
+		priority = 1000,
+		init = function()
+			vim.cmd.colorschem("modus_vivendi")
+		end,
+	},
 
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
@@ -206,9 +197,6 @@ require("lazy").setup({
 					markdown = { "prettier" },
 					python = { "autopep8" },
 					yaml = { "prettier" },
-				},
-				formatters = {
-					clang_format = { prepend_args = { "-style=GNU" } },
 				},
 				format_on_save = {
 					lsp_fallback = true,

@@ -1,12 +1,12 @@
-! ## Enable a color supported XTerm ##
+! Enable a color supported XTerm
 XTerm.termName: xterm-256color
 
-! ## Set xterm window size ##
+! Set xterm window size
 *.geometry: 150x35
 
-! ## Set font and fontsize ##
-.*faceName: Ubuntu Mono
-.*faceSize: 11
+! Set font and fontsize
+.*faceName: Hermit
+.*faceSize: 10
 
 ! VT Font Menu: Unreadable
 .*faceSize1: 8
@@ -21,7 +21,34 @@ XTerm.termName: xterm-256color
 ! VT Font Menu: Huge
 .*faceSize6: 24
 
-! ## Scrollbar ##
+! Theme
+
+*background: #000000
+*foreground: #ffffff
+*accent_light: #82b0ec
+*accent: #79a8ff
+*accent_darker: #2fafff
+*accent_dark: #338fff
+
+*color0: #000000
+*color1: #ff5f59
+*color2: #44bc44
+*color3: #d0bc00
+*color4: #2fafff
+*color5: #feacd0
+*color6: #00d3d0
+*color7: #ffffff
+
+*color8: #1e1e1e
+*color9: #ff5f5f
+*color10: #44df44
+*color11: #efef00
+*color12: #338fff
+*color13: #ff66ff
+*color14: #00eff0
+*color15: #ffffff
+
+! Scrollbar
 *.scrollBar: false
 
 ! Do not scroll when there is new input
@@ -34,12 +61,12 @@ XTerm.termName: xterm-256color
 ! Enable copy/paste hotkeyes (mouse highlight = copy ,  shift+Insert = paste)
 *.selectToClipboard: true
 
-! ## Select text ##
+! Select text
 *.highlightSelection: true
 ! Remove trailing spaces
 *.trimSelection: true
 
-! ## Keybindings ##
+! Keybindings
 *.translations: #override \n\
   Ctrl <Key>-: smaller-vt-font() \n\
   Ctrl <Key>+: larger-vt-font() \n\
