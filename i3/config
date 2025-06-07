@@ -4,9 +4,10 @@ set $term xterm
 set $browser firefox
 
 # changing font
-font pango:Iosevka 9
+font pango:Hermit 8
 
 # Startup applications
+exec --no-startup-id "logseq &"                   
 exec --no-startup-id "megasync &"                   
 exec --no-startup-id "blueman-applet &"
 exec --no-startup-id "nm-applet &"
@@ -216,3 +217,6 @@ workspace $ws10 output VGA-1-1
 for_window [class="Bitwarden"] floating enable move position center
 for_window [class="Blueman-manager"] floating enable move position center
 for_window [class="Localsend"] floating enable move position center
+
+# Fixed workspace for app
+assign [class="Logseq"] $ws4
