@@ -4,7 +4,7 @@ set $term xterm
 set $browser firefox
 
 # changing font
-font pango:Hermit 8
+font pango:Ubuntu Mono 10
 
 # Startup applications
 exec --no-startup-id "logseq &"                   
