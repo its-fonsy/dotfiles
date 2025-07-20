@@ -7,7 +7,6 @@ set $browser firefox
 font pango:Ubuntu Mono 10
 
 # Startup applications
-exec --no-startup-id "logseq &"                   
 exec --no-startup-id "megasync &"                   
 exec --no-startup-id "blueman-applet &"
 exec --no-startup-id "nm-applet &"
@@ -15,7 +14,7 @@ exec --no-startup-id "nm-applet &"
 # Screen configuration, calibration ans wallpaper
 exec --no-startup-id "autorandr -c"
 exec --no-startup-id "displaycal-apply-profiles"
-exec --no-startup-id "feh -z --bg-fill ~/Pictures/wallpaper/desktop/*"
+exec --no-startup-id "feh -z --bg-fill ~/pictures/wallpaper/desktop/*"
 
 # Disable "Blank Screen after 5m of not usage"
 exec --no-startup-id "xset -dpms s off"
@@ -101,11 +100,6 @@ exec --no-startup-id $term -class "pmix_scratchpad" -e pulsemixer
 for_window [class="term_scratchpad"] floating enable, move scratchpad
 bindsym $mod+t [class="term_scratchpad"] scratchpad show; sticky enable
 exec --no-startup-id $term -class "term_scratchpad" -e tmux new-session -s sp_term
-
-# ranger scratchpad
-for_window [class="ranger_scratchpad"] floating enable, move scratchpad
-bindsym $mod+u [class="ranger_scratchpad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "ranger_scratchpad" -e ranger
 
 # Workspaces
 set $ws1 "1"
