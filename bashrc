@@ -55,3 +55,4 @@ source $HOME/.config/shortcuts
 export QSYS_ROOTDIR="/media/quartus/quartus/sopc_builder/bin"
 
 source /home/fonsy/.config/broot/launcher/bash/br
+. "$HOME/.cargo/env"

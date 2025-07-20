@@ -17,9 +17,12 @@ export INFOPATH=$INFOPATH:$HOME/.local/opt/texlive/2025/texmf-dist/doc/info
 export EDITOR="nvim"
 export TERMINAL="xterm"
 export BROWSER="firefox"
-export LYRICS_DIR=/media/musica/lyrics/
+export LYRICS_DIR=/media/music/lyrics/
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+
+# Rust environment variables
+. "$HOME/.cargo/env"
