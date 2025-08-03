@@ -38,7 +38,7 @@ bindsym $mod+Shift+q kill
 # app shortcuts
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
-bindsym $mod+n exec nemo
+bindsym $mod+n exec zim
 bindsym $mod+d exec --no-startup-id dmenu_run
 
 # change focus
