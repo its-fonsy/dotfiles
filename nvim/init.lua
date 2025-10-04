@@ -83,10 +83,10 @@ require("lazy").setup({
 
 	-- Colorscheme
 	{
-		"miikanissi/modus-themes.nvim",
+		"morhetz/gruvbox",
 		priority = 1000,
 		init = function()
-			vim.cmd.colorschem("modus_vivendi")
+			vim.cmd.colorschem("gruvbox")
 		end,
 	},
 

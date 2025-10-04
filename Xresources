@@ -4,9 +4,13 @@ XTerm.termName: xterm-256color
 ! Set xterm window size
 *.geometry: 150x35
 
+xterm*locale: true
+xterm*saveLinew: 4096
+xterm*renderFont: true
+
 ! Set font and fontsize
-.*faceName: Ubuntu Mono
-.*faceSize: 12
+.*faceName: Cascadia Mono
+.*faceSize: 11
 
 ! VT Font Menu: Unreadable
 .*faceSize1: 8
@@ -23,30 +27,24 @@ XTerm.termName: xterm-256color
 
 ! Theme
 
-*background: #000000
-*foreground: #ffffff
-*accent_light: #82b0ec
-*accent: #79a8ff
-*accent_darker: #2fafff
-*accent_dark: #338fff
-
-*color0: #000000
-*color1: #ff5f59
-*color2: #44bc44
-*color3: #d0bc00
-*color4: #2fafff
-*color5: #feacd0
-*color6: #00d3d0
-*color7: #ffffff
-
-*color8: #1e1e1e
-*color9: #ff5f5f
-*color10: #44df44
-*color11: #efef00
-*color12: #338fff
-*color13: #ff66ff
-*color14: #00eff0
-*color15: #ffffff
+xterm*background: #262626
+xterm*foreground: #ebdbb2
+xterm*color0: #262628
+xterm*color8: #928374
+xterm*color1: #CC241D
+xterm*color9: #fb4934
+xterm*color2: #98971a
+xterm*color10: #b8bb26
+xterm*color3: #FF8F15
+xterm*color11: #FFAF00
+xterm*color4: #458588
+xterm*color12: #83a598
+xterm*color5: #b16286
+xterm*color13: #d3869b
+xterm*color6: #689d6a
+xterm*color14: #8ec07c
+xterm*color7: #a89984
+xterm*color15: #ebdbb2
 
 ! Scrollbar
 *.scrollBar: false
