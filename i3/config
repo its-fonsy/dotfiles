@@ -13,7 +13,6 @@ exec --no-startup-id "nm-applet &"
 
 # Screen configuration, calibration ans wallpaper
 exec --no-startup-id "autorandr -c"
-exec --no-startup-id "displaycal-apply-profiles"
 exec --no-startup-id "feh -z --bg-fill ~/pictures/wallpaper/desktop/*"
 
 # Disable "Blank Screen after 5m of not usage"
@@ -38,7 +37,6 @@ bindsym $mod+Shift+q kill
 # app shortcuts
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
-bindsym $mod+n exec zim
 bindsym $mod+d exec --no-startup-id dmenu_run
 
 # change focus
@@ -87,19 +85,24 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # cmus scratchpad
-for_window [class="cmus_scratchpad"] floating enable, move scratchpad
+for_window [class="cmus_scratchpad"] floating enable, resize set height 900, resize set width 1600, move position center, move scratchpad
 bindsym $mod+c [class="cmus_scratchpad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "cmus_scratchpad" -e tmux new-session -d 'cmus' \; splitw -h -d \; select-pane -R \; send-keys "lyrpy" C-m \; select-pane -L \; attach
+exec --no-startup-id $term -class "cmus_scratchpad" -e tmux new-session -d 'cmus' \; splitw -h -d \; select-pane -R \; send-keys "ciryl" C-m \; select-pane -L \; attach
 
 # pulsemixer scratchpad
-for_window [class="pmix_scratchpad"] floating enable, move scratchpad
+for_window [class="pmix_scratchpad"] floating enable, resize set height 500, resize set width 800, move position center, move scratchpad
 bindsym $mod+p [class="pmix_scratchpad"] scratchpad show; sticky enable
 exec --no-startup-id $term -class "pmix_scratchpad" -e pulsemixer
 
 # terminal scratchpad
-for_window [class="term_scratchpad"] floating enable, move scratchpad
+for_window [class="term_scratchpad"] floating enable, resize set height 900, resize set width 1600, move position center, move scratchpad
 bindsym $mod+t [class="term_scratchpad"] scratchpad show; sticky enable
 exec --no-startup-id $term -class "term_scratchpad" -e tmux new-session -s sp_term
+
+# Double Commander scratchpad
+for_window [class="doublecmd"] floating enable, resize set height 900, resize set width 1600, move position center, move scratchpad
+bindsym $mod+n [class="doublecmd"] scratchpad show; sticky enable
+exec --no-startup-id doublecmd --no-splash
 
 # Workspaces
 set $ws1 "1"

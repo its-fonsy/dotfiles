@@ -21,9 +21,6 @@ precmd () { vcs_info }
 
 PROMPT='${vcs_info_msg_0_}[%F{cyan}%n%f @ %3~] $ '
 
-# Remove .xsession-errors
-[ -e $HOME/.xsession-errors ] && rm $HOME/.xsession-errors
-
 # GPG stuff
 GPG_TTY=$(tty)
 export GPG_TTY
