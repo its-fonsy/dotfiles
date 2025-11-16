@@ -81,12 +81,12 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Plugins ]]
 require("lazy").setup({
 
-	-- Colorscheme
+	-- lua/plugins/rose-pine.lua
 	{
-		"morhetz/gruvbox",
-		priority = 1000,
-		init = function()
-			vim.cmd.colorschem("gruvbox")
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			vim.cmd("colorscheme rose-pine-moon")
 		end,
 	},
 
@@ -329,7 +329,21 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		opts = {
-			ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc" },
+			ensure_installed = {
+				"bash",
+				"c",
+				"rust",
+				"lua",
+				"python",
+				"vim",
+				"vimdoc",
+				"latex",
+				"html",
+				"css",
+				"markdown",
+				"json",
+				"xml",
+			},
 			auto_install = true,
 			highlight = {
 				enable = true,
