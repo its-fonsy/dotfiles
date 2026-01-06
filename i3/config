@@ -9,6 +9,7 @@ font pango:Ubuntu Mono 10
 
 # Startup applications
 exec --no-startup-id "megasync &"                   
+exec --no-startup-id "steam -silent &"
 exec --no-startup-id "blueman-applet &"
 exec --no-startup-id "nm-applet &"
 
@@ -209,7 +210,8 @@ workspace $ws9 output VGA-1-1
 workspace $ws10 output VGA-1-1
 
 # Floating windows
-for_window [class="Bitwarden"] floating enable move position center
-for_window [class="Blueman-manager"] floating enable move position center
-for_window [class="Localsend"] floating enable move position center
-for_window [class="doublecmd"] floating enable move position center, resize set height 900, resize set width 1600, move position center
+for_window [class="Bitwarden"]          floating enable move position center
+for_window [class="Blueman-manager"]    floating enable move position center
+for_window [class="Localsend"]          floating enable move position center
+for_window [class="protonvpn-app"]      floating enable move position center
+for_window [class="doublecmd"]          floating enable move position center, resize set height 900, resize set width 1600, move position center
