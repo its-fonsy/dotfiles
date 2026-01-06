@@ -8,26 +8,38 @@ xterm*locale: true
 xterm*saveLinew: 4096
 xterm*renderFont: true
 
-! Set font and fontsize
-.*faceName: CommitMono
-.*faceSize: 11
+! Set typeface and size
+.*faceName: Iosevka:antialias=true:scalable=true:spacing=mono
+.*faceSize: 12
 
-! VT Font Menu: Unreadable
+! Diffferent typeface size
 .*faceSize1: 8
-! VT Font Menu: Tiny
 .*faceSize2: 10
-! VT Font Menu: Small
 .*faceSize3: 12
-! VT Font Menu: Medium
 .*faceSize4: 16
-! VT Font Menu: Large
 .*faceSize5: 22
-! VT Font Menu: Huge
 .*faceSize6: 24
 
-! Theme
-*.foreground: #FFF
-*.background: #000
+! Colorscheme
+xterm*background:      #0d1117
+xterm*foreground:      #ffffff
+
+!xterm*color0:  #000000
+!xterm*color8:  #555555
+!xterm*color1:  #cc0000
+!xterm*color9:  #ef2929
+!xterm*color2:  #008000
+!xterm*color10: #4e9a06
+!xterm*color3:  #c4a000
+!xterm*color11: #fce94f
+!xterm*color4:  #0040dd
+!xterm*color12: #729fcf
+!xterm*color5:  #75507b
+!xterm*color13: #ad7fa8
+!xterm*color6:  #06989a
+!xterm*color14: #34e2e2
+!xterm*color7:  #d3d7cf
+!xterm*color15: #eeeeec
 
 ! Scrollbar
 *.scrollBar: false
