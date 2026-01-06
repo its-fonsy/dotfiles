@@ -81,14 +81,17 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Plugins ]]
 require("lazy").setup({
 
-	-- lua/plugins/rose-pine.lua
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		config = function()
-			vim.cmd("colorscheme rose-pine-moon")
-		end,
-	},
+  -- Colorscheme
+  {
+    'projekt0n/github-nvim-theme',
+    name = 'github-theme',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('github-theme').setup({})
+      vim.cmd('colorscheme github_dark_default')
+    end,
+  },
 
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
@@ -197,11 +200,6 @@ require("lazy").setup({
 					markdown = { "prettier" },
 					python = { "autopep8" },
 					yaml = { "prettier" },
-				},
-				format_on_save = {
-					lsp_fallback = true,
-					async = false,
-					timeout_ms = 1000,
 				},
 			})
 
