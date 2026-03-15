@@ -1,8 +1,8 @@
 HOME_DIR=$(HOME)
 CONF_DIR=$(HOME_DIR)/.config
 
-HOME_DOTFILES = imwheelrc profile tmux.conf vimrc Xresources zshrc
-CONF_DOTFILES = i3 ranger zathura nvim
+HOME_DOTFILES = profile tmux.conf vimrc zshrc
+CONF_DOTFILES = ranger zathura nvim sway waybar foot
 
 .PHONY: *
 

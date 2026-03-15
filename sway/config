@@ -1,25 +1,44 @@
-# Constants
+# Configuration variables
 set $mod Mod4
-set $term xterm
+set $locker swaylock
+set $frontMonitor DP-3
+set $rightMonitor DP-2
+set $background $HOME/pictures/wallpaper/desktop/a_mountain_with_snow_and_trees.jpg
+
+# Default applications
+set $term foot
 set $browser firefox
 set $fileManager doublecmd
 
-# changing font
-font pango:Ubuntu Mono 10
+# Font
+font pango:Ubuntu Mono 11
+
+# Monitor setup
+output $frontMonitor {
+    mode 3840x2160@160Hz
+    scale 1.7
+    pos 0 0
+    bg $background fill
+}
+
+output $rightMonitor {
+    mode 1920x1080@144.001Hz
+    scale 1.0
+    pos 2260 100
+    bg $background fill
+}
+
+# Keyboard layout to EU
+input * xkb_layout eu
+
+seat seat0 xcursor_theme Adwaita 30
 
 # Startup applications
 exec --no-startup-id "megasync &"                   
 exec --no-startup-id "steam -silent &"
 exec --no-startup-id "blueman-applet &"
 exec --no-startup-id "nm-applet &"
-
-# Screen configuration, calibration ans wallpaper
-exec --no-startup-id "autorandr -c"
-exec --no-startup-id "xiccd &"
-exec --no-startup-id "feh -z --bg-fill ~/pictures/wallpaper/desktop/*"
-
-# Disable "Blank Screen after 5m of not usage"
-exec --no-startup-id "xset -dpms s off"
+exec --no-startup-id "waybar &"
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -41,7 +60,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
 bindsym $mod+m exec $fileManager
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id wmenu-run
 
 # change focus
 bindsym $mod+h focus left
@@ -89,19 +108,19 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # cmus scratchpad
-for_window [class="cmusPad"] floating enable, resize set height 900, resize set width 1600, move position center, move scratchpad
-bindsym $mod+c [class="cmusPad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "cmusPad" -e tmux new-session -d 'cmus' \; splitw -h -d \; select-pane -R \; send-keys "ciryl" C-m \; select-pane -L \; attach
+for_window [app_id="music_pad"] floating enable, move position center, move scratchpad
+bindsym $mod+c [app_id="music_pad"] scratchpad show; sticky enable
+exec --no-startup-id $term --app-id="music_pad" --title="Music scratchpad" --window-size-pixels=1600x1000 tmux new-session -d "cmus" \; splitw -h -d \; select-pane -R \; send-keys "ciryl" C-m \; select-pane -L \; attach
 
 # pulsemixer scratchpad
-for_window [class="pmixPad"] floating enable, resize set height 500, resize set width 800, move position center, move scratchpad
-bindsym $mod+p [class="pmixPad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "pmixPad" -e pulsemixer
+for_window [app_id="vol_pad"] floating enable, move position center, move scratchpad
+bindsym $mod+p [app_id="vol_pad"] scratchpad show; sticky enable
+exec --no-startup-id $term --app-id="vol_pad" --title="Volume scratchpad" --window-size-pixels=1000x600 pulsemixer
 
 # terminal scratchpad
-for_window [class="terminalPad"] floating enable, resize set height 900, resize set width 1600, move position center, move scratchpad
-bindsym $mod+t [class="terminalPad"] scratchpad show; sticky enable
-exec --no-startup-id $term -class "terminalPad" -e tmux new-session -s scratchpad
+for_window [app_id="term_pad"] floating enable, move position center, move scratchpad
+bindsym $mod+t [app_id="term_pad"] scratchpad show; sticky enable
+exec --no-startup-id $term --app-id="term_pad" --title="Terminal scratchpad" --window-size-pixels=1600x1000
 
 # Workspaces
 set $ws1 "1"
@@ -140,53 +159,40 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+r reload
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
-# Start i3status to display a workspace bar
-bar {
-    status_command i3status
-    separator_symbol " | "
-    tray_output primary
-}
-
 # Power of menu
-set $Locker i3lock -i ~/Immagini/wallpaper/desktop/other/lockscreen-1.png && sleep 1
-
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym l exec --no-startup-id $locker, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
@@ -198,16 +204,16 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 # Multiple monitor settings
-workspace $ws1 output DVI-I-1
-workspace $ws2 output DVI-I-1
-workspace $ws3 output DVI-I-1
-workspace $ws4 output DVI-I-1
-workspace $ws5 output DVI-I-1
-workspace $ws6 output VGA-1-1
-workspace $ws7 output VGA-1-1
-workspace $ws8 output VGA-1-1
-workspace $ws9 output VGA-1-1
-workspace $ws10 output VGA-1-1
+workspace $ws1 output $frontMonitor
+workspace $ws2 output $frontMonitor
+workspace $ws3 output $frontMonitor
+workspace $ws4 output $frontMonitor
+workspace $ws5 output $frontMonitor
+workspace $ws6 output $rightMonitor
+workspace $ws7 output $rightMonitor
+workspace $ws8 output $rightMonitor
+workspace $ws9 output $rightMonitor
+workspace $ws10 output $rightMonitor
 
 # Floating windows
 for_window [class="Bitwarden"]          floating enable move position center

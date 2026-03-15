@@ -1,0 +1,76 @@
+{
+    "layer": "top",	
+    "position": "bottom",
+    // "height": 24,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": [
+        "network",
+        "custom/network-speed",
+        "disk",
+        "cpu",
+        "memory",
+        "tray",
+    ],
+
+    "clock": {
+        "interval": 60,
+        "format": "{:%A %d %B %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "",
+                    "on-scroll"     : 0,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "today":      "<span color='#ffffff'><b>{}</b></span>"
+                              }
+                    },
+        "max-length": 30,
+    },
+
+    "network" : {
+        "interval" : 5,
+        "interface" : "eno1",
+        "format" : "{ifname}",
+        "format-ethernet" : "NET: {ipaddr}/{cidr}",
+        "format-disconnected": "NET: {ifname} offline",
+        "max-length" : 50,
+        "tooltip" : false,
+    },
+
+    "custom/network-speed" : {
+        "interval" : 5,
+        "exec": "[[ $(cat /sys/class/net/eno1/operstate) == 'up' ]] && cat /sys/class/net/eno1/speed || echo ''",
+        "format" : "({text} Mbit/s)"
+    },
+
+    "disk": {
+        "interval": 60,
+        "format": "NVME: {free}",
+        "path": "/",
+        "max-length" : 25
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "CPU: {usage}% ({load:0.2f})",
+        "max-length": 25
+    },
+
+    "memory" : {
+        "interval": 30,
+        "format": "MEM: {used:0.1f}G/{total:0.1f}G",
+        "max-length": 25 
+    },
+
+    "tray" : {
+        "icon-size" : 18,
+        "spacing" : 3,
+    }
+
+}
