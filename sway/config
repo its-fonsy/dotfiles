@@ -3,7 +3,7 @@ set $mod Mod4
 set $locker swaylock
 set $frontMonitor DP-3
 set $rightMonitor DP-2
-set $background $HOME/pictures/wallpaper/desktop/a_mountain_with_snow_and_trees.jpg
+set $background /home/fonsy/pictures/wallpaper/desktop/canyon.jpg
 
 # Default applications
 set $term foot
@@ -22,9 +22,9 @@ output $frontMonitor {
 }
 
 output $rightMonitor {
-    mode 1920x1080@144.001Hz
+    mode 1920x1080@60.000Hz
     scale 1.0
-    pos 2260 100
+    pos 2259 0
     bg $background fill
 }
 
@@ -163,12 +163,7 @@ bindsym $mod+Shift+r reload
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-    # These bindings trigger as soon as you enter the resize mode
-
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
+    # Shrink or grow using h, j, k or l
     bindsym h resize shrink width 10 px or 10 ppt
     bindsym j resize grow height 10 px or 10 ppt
     bindsym k resize shrink height 10 px or 10 ppt
@@ -185,8 +180,11 @@ mode "resize" {
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
-
 bindsym $mod+r mode "resize"
+
+# Gaps
+gaps outer 10
+gaps inner 10
 
 # Power of menu
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
