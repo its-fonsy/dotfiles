@@ -81,17 +81,16 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Plugins ]]
 require("lazy").setup({
 
-  -- Colorscheme
-  {
-    'projekt0n/github-nvim-theme',
-    name = 'github-theme',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('github-theme').setup({})
-      vim.cmd('colorscheme github_dark_default')
-    end,
-  },
+	--Colorscheme
+	{
+		"EdenEast/nightfox.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nightfox").setup({ options = { transparent = true } })
+			vim.cmd.colorscheme("nightfox")
+		end,
+	},
 
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
