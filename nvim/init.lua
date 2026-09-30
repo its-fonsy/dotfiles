@@ -329,6 +329,7 @@ require("lazy").setup({
 			ensure_installed = {
 				"bash",
 				"c",
+				"cpp",
 				"rust",
 				"lua",
 				"python",
@@ -342,11 +343,7 @@ require("lazy").setup({
 				"xml",
 			},
 			auto_install = true,
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = { "ruby" },
-			},
-			indent = { enable = true, disable = { "ruby" } },
+			highlight = { enable = true },
 		},
 		config = function(_, opts)
 			---@diagnostic disable-next-line: missing-fields

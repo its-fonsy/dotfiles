@@ -1,9 +1,10 @@
 # Configuration variables
 set $mod Mod4
 set $locker swaylock
-set $frontMonitor DP-3
-set $rightMonitor DP-2
-set $background /home/fonsy/pictures/wallpaper/desktop/canyon.jpg
+set $frontMonitor DP-2
+set $rightMonitor DP-1
+#set $wallpaper /home/fonsy/pictures/wallpaper/desktop/dan-otis-OYFHT4X5isg.jpg
+set $wallpaper /home/fonsy/pictures/wallpaper/desktop/forest.jpg
 
 # Default applications
 set $term foot
@@ -16,16 +17,16 @@ font pango:Ubuntu Mono 11
 # Monitor setup
 output $frontMonitor {
     mode 3840x2160@160Hz
-    scale 1.7
+    scale 1.5
     pos 0 0
-    bg $background fill
+    bg $wallpaper fill
 }
 
 output $rightMonitor {
     mode 1920x1080@60.000Hz
     scale 1.0
-    pos 2259 0
-    bg $background fill
+    pos 2560 0
+    bg $wallpaper fill
 }
 
 # Keyboard layout to EU
@@ -34,6 +35,7 @@ input * xkb_layout eu
 seat seat0 xcursor_theme Adwaita 30
 
 # Startup applications
+exec --no-startup-id "dbus-update-activation-environment --all"
 exec --no-startup-id "megasync &"                   
 exec --no-startup-id "steam -silent &"
 exec --no-startup-id "blueman-applet &"
@@ -183,8 +185,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Gaps
-gaps outer 10
-gaps inner 10
+#gaps outer 10
+#gaps inner 10
 
 # Power of menu
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown

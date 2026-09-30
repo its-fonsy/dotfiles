@@ -15,8 +15,12 @@ window#waybar {
     border-right: 2px solid gray;
 }
 
-#tray, #network {
+#network {
     padding-left: 10px;
+}
+
+#tray {
+    padding-left: 15px;
 }
 
 #network.disconnected {
@@ -30,8 +34,12 @@ window#waybar {
 #mode { 
 	 background-color: #900000;
 	 color: #ffffff;
-     padding: 0px 5px 0px 5px;
+     padding: 0 10px;
      border: 1px solid #2f343a;
+}
+
+#workspaces {
+    padding-right: 15px;
 }
 
 #workspaces button {
