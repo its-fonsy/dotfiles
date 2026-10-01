@@ -1,10 +1,9 @@
 # Configuration variables
 set $mod Mod4
 set $locker swaylock
-set $frontMonitor DP-2
-set $rightMonitor DP-1
-#set $wallpaper /home/fonsy/pictures/wallpaper/desktop/dan-otis-OYFHT4X5isg.jpg
-set $wallpaper /home/fonsy/pictures/wallpaper/desktop/forest.jpg
+set $frontMonitor "GIGA-BYTE TECHNOLOGY CO., LTD. M27UP 0x01010101"
+set $rightMonitor "Ancor Communications Inc VG248 CCLMQS014220"
+set $wallpaper /home/fonsy/pictures/wallpaper/desktop/wp9139426-mac-os-big-sur-4k-wallpapers.jpg
 
 # Default applications
 set $term foot
