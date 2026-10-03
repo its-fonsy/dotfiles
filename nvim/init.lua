@@ -257,6 +257,7 @@ require("lazy").setup({
 		},
 		config = function()
 			require("telescope").setup({
+				defaults = { preview = { treesitter = false } },
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
@@ -314,7 +315,7 @@ require("lazy").setup({
 					html = { "prettier" },
 					lua = { "stylua" },
 					markdown = { "prettier" },
-					python = { "autopep8" },
+					python = { "ruff_format" },
 					yaml = { "prettier" },
 				},
 			})
@@ -394,6 +395,11 @@ require("lazy").setup({
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+					if client and client.name == "ruff" then
+						client.server_capabilities.hoverProvider = false
+					end
+
 					if client and client.server_capabilities.documentHighlightProvider then
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 							buffer = event.buf,
@@ -414,6 +420,8 @@ require("lazy").setup({
 			local servers = {
 				clangd = {},
 				lua_ls = { settings = { Lua = { completion = { callSnippet = "Replace" } } } },
+				pyright = {},
+				ruff = { init_options = { settings = { logLevel = "error" } } },
 			}
 
 			require("mason").setup()
@@ -441,30 +449,25 @@ require("lazy").setup({
 	-- Highlight, edit, and navigate code
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		branch = "main",
 		build = ":TSUpdate",
-		opts = {
-			ensure_installed = {
+		init = function()
+			require("nvim-treesitter").install({
 				"bash",
 				"c",
 				"cpp",
-				"rust",
+				"css",
+				"html",
+				"json",
+				"latex",
 				"lua",
+				"markdown",
 				"python",
+				"rust",
 				"vim",
 				"vimdoc",
-				"latex",
-				"html",
-				"css",
-				"markdown",
-				"json",
-				"xml",
-			},
-			auto_install = true,
-			highlight = { enable = true },
-		},
-		config = function(_, opts)
-			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.configs").setup(opts)
+			})
 		end,
 	},
 
