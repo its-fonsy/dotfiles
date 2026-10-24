@@ -1,9 +1,6 @@
 # Configuration variables
 set $mod Mod4
 set $locker swaylock
-set $frontMonitor "GIGA-BYTE TECHNOLOGY CO., LTD. M27UP 0x01010101"
-set $rightMonitor "Ancor Communications Inc VG248 CCLMQS014220"
-set $wallpaper /home/fonsy/pictures/wallpaper/desktop/wp9139426-mac-os-big-sur-4k-wallpapers.jpg
 
 # Default applications
 set $term foot
@@ -14,19 +11,24 @@ set $fileManager doublecmd
 font pango:Ubuntu Mono 11
 
 # Monitor setup
+set $frontMonitor "GIGA-BYTE TECHNOLOGY CO., LTD. M27UP 0x01010101"
+set $rightMonitor "Ancor Communications Inc VG248 CCLMQS014220"
 output $frontMonitor {
     mode 3840x2160@160Hz
     scale 1.5
     pos 0 0
-    bg $wallpaper fill
 }
 
 output $rightMonitor {
     mode 1920x1080@60.000Hz
     scale 1.0
     pos 2560 0
-    bg $wallpaper fill
 }
+
+# Set wallpaper
+set $wallpaper_dir $HOME/pictures/wallpaper/desktop
+set $wallpaper $(find $wallpaper_dir/. -type f | shuf -n1)
+output "*" bg $wallpaper fill
 
 # Keyboard layout to EU
 input * xkb_layout eu
